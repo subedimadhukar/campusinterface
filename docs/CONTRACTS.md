@@ -208,3 +208,20 @@ Numbering continues from the 1.2.0 run above.
    fix: `inset-block: 0; inset-inline-start: 0;` (logical, no RTL build step needed) in
    `src/blocks/course-progress/style.scss` and `src/blocks/student-dashboard/style.scss`. Everything else on
    plugin pages mirrors correctly: curriculum, enrol card, lesson navigation (Next on the left), dashboard tabs.
+5. **Lesson counts and progress drop to "0 of 0" under a translation plugin (multilingual, medium).** Found in the
+   theme's multilingual pass (Polylang 3.9.1, English and Nepali, with `plms_course`, `plms_lesson` and
+   `plms_quiz` set as translatable). `CourseStructureRepository` loads sections and items with `get_posts()` and
+   `suppress_filters => true`, but Polylang adds its language condition on `parse_query`, which
+   `suppress_filters` does not skip. On the learner's dashboard every course whose lessons are in another
+   language than the page reads "0 of 0 lessons · 0%" with "Start learning", including a course the learner
+   finished (100% in English, 0% on the Nepali dashboard); the curriculum of such a course is empty. Suggested
+   fix: add `'lang' => ''` to the structure queries (Polylang's documented switch; ignored without it), and test
+   with WPML too, which reads `suppress_filters`. The dashboard listing all enrolled courses in every language
+   is fine as it is.
+6. **PHP warning on every block editor load (low).** `Capabilities::map_meta_cap()` runs
+   `absint( $args[0] )` for every capability check before it looks at `$cap`. Core checks
+   `current_user_can( 'edit_block_binding', $block_editor_context )` (`wp-includes/block-editor.php`), so
+   `$args[0]` is a `WP_Block_Editor_Context` object and `debug.log` gets "Object of class
+   WP_Block_Editor_Context could not be converted to int" each time the editor opens (traced with a
+   temporary error handler, WordPress 7.1.4). Suggested fix: read the object ID only inside the plugin's own
+   `case`s, or only when `is_scalar( $args[0] )`.

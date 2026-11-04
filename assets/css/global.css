@@ -3,9 +3,25 @@
  *
  * Links and buttons get their focus ring from theme.json (`:focus-visible` on the
  * link and button elements). This file covers everything else that can take
- * keyboard focus, and records the theme's reduced-motion stance. Loaded on the
- * front end and in the editor; small enough that WordPress inlines it.
+ * keyboard focus, records the theme's reduced-motion stance, and keeps
+ * translated text inside its column. Loaded on the front end and in the
+ * editor; small enough that WordPress inlines it.
  */
+
+/*
+ * Translations run longer than English: long words, URLs and translated
+ * figures wrap inside their column instead of spilling into the next one or
+ * off a phone screen. Display sizes sit in narrow grid and flex cells (the
+ * statistics band), so they may also shrink their cell and break there.
+ * Changes nothing in English layouts.
+ */
+:where(h1, h2, h3, h4, h5, h6, p, li, dt, dd, figcaption, blockquote, summary, td, th) {
+	overflow-wrap: break-word;
+}
+
+:where(h1, .has-2-xl-font-size, .has-3-xl-font-size, .has-4-xl-font-size) {
+	overflow-wrap: anywhere;
+}
 
 /* Form fields follow the palette (dark variation included); theme.json has no element for them. */
 :where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"]), select, textarea) {

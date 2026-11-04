@@ -410,6 +410,23 @@ function campusinterface_courses_url() {
 }
 
 /**
+ * Returns the URL of the privacy policy page.
+ *
+ * Uses the page chosen in Settings > Privacy once it is published, which
+ * translation plugins map to each language's own page, and the
+ * `/privacy-policy/` path WordPress gives that page otherwise, so footer
+ * links work before the page exists and in every language after.
+ *
+ * @since 0.3.0
+ *
+ * @return string
+ */
+function campusinterface_privacy_policy_url() {
+	$url = get_privacy_policy_url();
+	return $url ? $url : home_url( '/privacy-policy/' );
+}
+
+/**
  * Tells theme patterns whether Public LMS has registered one of its patterns.
  *
  * Contract 1.2.0 ships some `publiclms/*` patterns only from phase 2 (course

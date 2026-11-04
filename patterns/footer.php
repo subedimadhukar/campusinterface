@@ -41,7 +41,7 @@
 	<!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-group alignwide">
 		<!-- wp:paragraph {"fontSize":"sm"} -->
-		<p class="has-sm-font-size"><a href="<?php echo esc_url( home_url( '/accessibility/' ) ); ?>"><?php esc_html_e( 'Accessibility', 'campusinterface' ); ?></a> · <a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>"><?php esc_html_e( 'Privacy policy', 'campusinterface' ); ?></a> · <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact', 'campusinterface' ); ?></a></p>
+		<p class="has-sm-font-size"><a href="<?php echo esc_url( home_url( '/accessibility/' ) ); ?>"><?php esc_html_e( 'Accessibility', 'campusinterface' ); ?></a> · <a href="<?php echo esc_url( campusinterface_privacy_policy_url() ); ?>"><?php esc_html_e( 'Privacy policy', 'campusinterface' ); ?></a> · <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact', 'campusinterface' ); ?></a></p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
