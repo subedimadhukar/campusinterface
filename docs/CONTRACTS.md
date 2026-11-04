@@ -12,7 +12,7 @@ contract version **1.3.0**. A change to either side is a pull request on both re
 | 0.1.0 | 0.1.0 | 1.0.0 |
 | 0.2.0 (phase 1, first pass) | 0.1.0 at commit 9b29002 (blocks, bindings, 12 of 16 patterns, no seed command) | 1.0.0 |
 | 0.2.0 (phase 1 gate) | 0.1.0 at commit dd43e36 (seed command, contract 1.2.0). Full journey run with seeded data, see "Phase 1 integration status" | 1.2.0 |
-| 0.3.0 (phase 2, part A) | 0.2.0 at commits 87af6a7 (quizzes) and 6661424 (assignments, certificates), contract 1.3.0; clean builds of those commits. Seeded journey with a quiz and an assignment, see "Phase 2 integration status" | 1.3.0 |
+| 0.3.0 (phase 2, part A) | 0.2.0 at 87af6a7 (quizzes) and 6661424 (assignments, certificates), then 0.3.0 at 9ec3484 (the same code with quizzes, assignments and a certificate in the seed), contract 1.3.0; clean builds of those commits. Seeded journey, see "Phase 2 integration status" | 1.3.0 |
 
 ## A. Templates and patterns
 
@@ -141,7 +141,10 @@ file on the preview lesson.
 | Accessibility, assignments and certificates | axe on the assignment (visitor, and learner after a hand-in), the dashboard with the Certificates tab and the course with the certificate button, in all five colour variations: no violations from the theme or the plugin. Keyboard pass on the assignment at 1280 and 375 px: no issues |
 
 Assignments and certificates were checked the same way against a clean build of 6661424, with the quiz above
-and an assignment after it in the Bookkeeping course's first section (the committed seed has neither yet).
+and an assignment after it in the Bookkeeping course's first section (the seed had neither then). Public LMS
+9ec3484 (0.3.0) then put quizzes, assignments and a certificate in `wp publiclms seed` with no contract or
+source change: on that seed the Lighthouse URLs still exist and the budgets pass, and axe finds nothing on a
+seeded quiz and assignment (visitor and learner), the dashboard and the course.
 
 **Still waiting on the plugin (not in 6661424):** course reviews (`publiclms/course-reviews`,
 still behind `hidden-course-reviews`), Q&A, announcements, the instructor dashboard and `plms-instructor`
