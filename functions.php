@@ -492,6 +492,70 @@ function campusinterface_editor_styles() {
 add_action( 'after_setup_theme', 'campusinterface_editor_styles' );
 
 /**
+ * Gives the theme's own SVG images their intrinsic width and height.
+ *
+ * Image blocks in patterns point at files in `assets/images/`, which have no
+ * attachment ID, so WordPress cannot add `width` and `height` itself. Without
+ * them the browser reserves no space and the page shifts when they load.
+ * Reads the size from the SVG's root element; CSS keeps `height: auto`.
+ *
+ * @since 0.2.0
+ *
+ * @param string               $block_content Rendered block HTML.
+ * @param array<string, mixed> $block         Parsed block.
+ * @return string
+ */
+function campusinterface_theme_image_dimensions( $block_content, $block ) {
+	unset( $block );
+	$base      = trailingslashit( get_template_directory_uri() ) . 'assets/images/';
+	$processor = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $processor->next_tag( 'img' ) || null !== $processor->get_attribute( 'width' ) ) {
+		return $block_content;
+	}
+
+	$src = (string) $processor->get_attribute( 'src' );
+	if ( 0 !== strpos( $src, $base ) || '.svg' !== substr( $src, -4 ) ) {
+		return $block_content;
+	}
+
+	$size = campusinterface_svg_size( basename( $src ) );
+	if ( ! $size ) {
+		return $block_content;
+	}
+
+	$processor->set_attribute( 'width', (string) $size[0] );
+	$processor->set_attribute( 'height', (string) $size[1] );
+	return $processor->get_updated_html();
+}
+add_filter( 'render_block_core/image', 'campusinterface_theme_image_dimensions', 10, 2 );
+
+/**
+ * Reads the width and height of an SVG in the theme's `assets/images/`.
+ *
+ * @since 0.2.0
+ *
+ * @param string $file File name, without a path.
+ * @return int[]|null Width and height, or null when unknown.
+ */
+function campusinterface_svg_size( $file ) {
+	static $sizes = array();
+	$file         = sanitize_file_name( $file );
+	if ( array_key_exists( $file, $sizes ) ) {
+		return $sizes[ $file ];
+	}
+
+	$sizes[ $file ] = null;
+	$path           = get_template_directory() . '/assets/images/' . $file;
+	if ( is_readable( $path ) ) {
+		$head = (string) file_get_contents( $path, false, null, 0, 512 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local theme file, first 512 bytes only.
+		if ( preg_match( '/<svg[^>]*\swidth="(\d+)"[^>]*\sheight="(\d+)"/', $head, $match ) ) {
+			$sizes[ $file ] = array( (int) $match[1], (int) $match[2] );
+		}
+	}
+	return $sizes[ $file ];
+}
+
+/**
  * Preloads the body font, the one weight above the fold on every page.
  *
  * @since 0.1.0

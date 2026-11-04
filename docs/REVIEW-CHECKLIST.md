@@ -18,7 +18,7 @@ WPInterface before submission).
 | Block validity | Editor on WordPress 7.1.4 and on 6.7.2 (the minimum; second wp-env with `"core": "https://wordpress.org/wordpress-6.7.2.zip"`): `wp.blocks.parse()` over every theme pattern, template and part | 46 patterns, 16 templates, 10 parts: no invalid or missing blocks on either version. Markup follows 6.7 where the versions differ (resized images without `height:auto`, legacy text alignment); 7.1 accepts it through core deprecations |
 | PHP notices | `WP_DEBUG` and `WP_DEBUG_LOG` on; front page, pages on each page template, single post, category, date and search archives, 404; on 7.1.4 and 6.7.2 | Nothing logged |
 | Lighthouse 12.8.2, accessibility only, five more pages (log-in template, landing page, card styles, core block page, pattern sampler) | `npx lighthouse@12 <url> --only-categories=accessibility` | 100 on each |
-| Lighthouse 12.8.2, academy home | `npx lighthouse@12 http://localhost:8930/academy-home/` (mobile) and `--preset=desktop` | Mobile: performance 99, accessibility 100, best practices 100, SEO 92. Desktop: 100, 100, 100, 92. The SEO point lost is "no meta description", which is SEO-plugin territory (guideline 6) |
+| Lighthouse 12.8.2, academy home | `npx lighthouse@12 http://localhost:8930/academy-home/` (mobile) and `--preset=desktop`, two runs each on the final HEAD | Mobile: performance 99, accessibility 100, best practices 100, SEO 92 (FCP 1.2 s, LCP 1.8–1.9 s, CLS 0, TBT 0 ms). Desktop: 100, 100, 100, 92. The SEO point lost is "no meta description", which is SEO-plugin territory (guideline 6) |
 
 ## 1. Licensing and copyright
 
