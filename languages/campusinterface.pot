@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T16:34:50+00:00\n"
+"POT-Creation-Date: 2026-11-04T16:54:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: campusinterface\n"
@@ -1153,7 +1153,7 @@ msgstr ""
 
 #: patterns/hidden-lesson-contents.php
 msgctxt "Pattern description"
-msgid "A closed Details block on lessons and quizzes that opens the course curriculum, so the page stays distraction-free until the learner asks for the outline."
+msgid "A closed Details block on lessons, quizzes and assignments that opens the course curriculum, so the page stays distraction-free until the learner asks for the outline."
 msgstr ""
 
 #: patterns/hidden-lesson-contents.php:14

@@ -12,12 +12,12 @@ contract version **1.3.0**. A change to either side is a pull request on both re
 | 0.1.0 | 0.1.0 | 1.0.0 |
 | 0.2.0 (phase 1, first pass) | 0.1.0 at commit 9b29002 (blocks, bindings, 12 of 16 patterns, no seed command) | 1.0.0 |
 | 0.2.0 (phase 1 gate) | 0.1.0 at commit dd43e36 (seed command, contract 1.2.0). Full journey run with seeded data, see "Phase 1 integration status" | 1.2.0 |
-| 0.3.0 (phase 2, part A) | 0.2.0 at commit 87af6a7 (quizzes, contract 1.3.0), a clean build of that commit. Seeded journey with a quiz, see "Phase 2 integration status" | 1.3.0 |
+| 0.3.0 (phase 2, part A) | 0.2.0 at commits 87af6a7 (quizzes) and 6661424 (assignments, certificates), contract 1.3.0; clean builds of those commits. Seeded journey with a quiz and an assignment, see "Phase 2 integration status" | 1.3.0 |
 
 ## A. Templates and patterns
 
-**What the theme ships (0.3.0):** overrides for all six plugin slugs (A1 lets a theme ship all six although
-the plugin registers four in phase 1). Each one uses exactly the plugin's slug (A3.1), composes the
+**What the theme ships (0.3.0):** overrides for all seven plugin slugs, including `single-plms_assignment` (1.3.0);
+`plms-instructor` is overridden before the plugin registers it, as A1 allows. Each one uses exactly the plugin's slug (A3.1), composes the
 `publiclms/*` patterns from A6 by slug, and replaces only the sections the theme designs itself with
 `campusinterface/*` patterns. The post types do not exist without the plugin, so the templates never apply on
 a site without it.
@@ -43,6 +43,7 @@ contract 1.3.0, so `single-plms_quiz` now uses `publiclms/quiz-header` and `publ
 | `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also course category, tag and level archives) | Tinted archive header; a filters column (`<aside>` Group) beside an inherited Query Loop of classic cards, pagination and no-results | none: the archive header and grid are the theme's own | `hidden-course-filters` (course search scoped to `plms_course`, Terms Lists of `plms_course_category` and `plms_level`) |
 | `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free: `lesson-nav` part instead of the header (its course button is bound to `course_url` and `course_title`), content width, the course outline in a closed Details block, `footer-minimal` | `lesson-header`, `lesson-content`, `lesson-navigation`, and `lesson-sidebar` inside the Details block | `lesson-nav`, `hidden-lesson-contents` |
 | `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` (registered from 1.3.0) | Same as the lesson: `lesson-nav` part, content width, the course outline in a closed Details block, `footer-minimal` | `quiz-header` (with the 1.3.0 quiz keys), `quiz-runner`, `lesson-navigation`, and `lesson-sidebar` inside the Details block | `lesson-nav`, `hidden-lesson-contents` |
+| `templates/single-plms_assignment.html` | `publiclms//single-plms_assignment` (registered from 1.3.0) | Same as the lesson and the quiz | `lesson-header`, `assignment-submission` (brief, hand-in form, status, grade and feedback), `lesson-navigation`, and `lesson-sidebar` inside the Details block | `lesson-nav`, `hidden-lesson-contents` |
 | `templates/plms-dashboard.html` | `publiclms//plms-dashboard` | `header-minimal` part, wide column, the page title as the `h1` (Post Title, Eyebrow style; the plugin's dashboard starts at `h2`), `footer-minimal` | `student-dashboard` | none |
 | `templates/plms-instructor.html` | `publiclms//plms-instructor` (phase 2 part B in the plugin) | Same as the student dashboard | `instructor-dashboard` (through `hidden-instructor-dashboard`) | `hidden-instructor-dashboard` |
 
@@ -106,10 +107,12 @@ styles on `core/post-template` (Classic cards, Minimal cards, Overlay cards, Lis
 `assets/css/blocks/post-template.css`) instead of a section style on a plugin block. If the plugin ever adds a
 card block, add its name to `blockTypes` in `styles/blocks/card.json` and it picks up the Card section style.
 
-**Block styles in `theme.json` (B5).** `styles.blocks["publiclms/quiz"].elements.h2` sets the quiz's own
-headings ("Questions", "Your result") to `xl`, the size the plugin asks for. The plugin sets it at zero
-specificity, so without this the theme's global `h2` (`3xl`) would win. The quiz's results use `success` and
-`danger` on `base` and `surface`, pairs `composer contrast` already checks in every palette.
+**Block styles in `theme.json` (B5).** `styles.blocks["publiclms/quiz"]` and `["publiclms/assignment"]` set
+those blocks' own `h2` headings ("Questions", "Your result", "Your hand-in", "Hand in your work") to `xl`, the
+size the plugin asks for. The plugin sets it at zero specificity, so without this the theme's global `h2`
+(`3xl`) would win. The quiz's results use `success` and `danger` on `base` and `surface`, pairs
+`composer contrast` already checks in every palette; the assignment's "Waiting for a grade" is `warning` on
+`surface`, a pair B1 does not list, so the theme added it to its check (4.69:1 or better in all six palettes).
 
 Other theme decisions that plugin blocks inherit but do not depend on: `layout.contentSize` 720px,
 `layout.wideSize` 1240px, root padding aware alignments, viewport breakpoints at 30rem (mobile) and 45rem
@@ -133,9 +136,14 @@ file on the preview lesson.
 | Curriculum types | Quiz item in the outline (course page and the lesson's Details block); section count "3 lessons, 1 quiz" |
 | Accessibility | axe (WCAG 2.2 AA and best practices): quiz as a visitor, before start, running, failed and passed results, and the Quiz results tab, at 1280 and 375 px and again in the Dark variation: no violations. Keyboard pass on course, lesson, quiz and dashboard as the learner: no issues |
 | Lighthouse budgets (`lighthouserc.json`) | All pass against 87af6a7: performance 99–100, accessibility 100, LCP 1.7–1.8 s, at most 49 KB script |
+| Assignment template (6661424: `single-plms_assignment`, `assignment-submission`) | New theme override, laid out like the lesson. Brief, "Hand in your work" with text and file fields and the accepted types; by keyboard: type the answer, attach a file, Hand in. The page reloads with "Your hand-in", "Waiting for a grade" in `warning`, the file and the answer in a closed Details block, and "Hand in again"; course progress counts the hand-in (7 / 8). Focus starts at the top after the reload (finding 10) |
+| Certificates (6661424) | Dashboard "Certificates" tab: course, completion date, certificate ID, "Download PDF". The enrol card in the theme's `sidebar` part shows "Download your certificate" to the learner who completed the course. The certificate itself is a PDF from the plugin's own template, so the theme has no certificate template to ship (contract 1.3.0 item 11) |
+| Accessibility, assignments and certificates | axe on the assignment (visitor, and learner after a hand-in), the dashboard with the Certificates tab and the course with the certificate button, in all five colour variations: no violations from the theme or the plugin. Keyboard pass on the assignment at 1280 and 375 px: no issues |
 
-**Still waiting on the plugin (not in 87af6a7):** assignments (uncommitted in the plugin folder at the time of
-this run), certificates on the dashboard and the certificate template, course reviews (`publiclms/course-reviews`,
+Assignments and certificates were checked the same way against a clean build of 6661424, with the quiz above
+and an assignment after it in the Bookkeeping course's first section (the committed seed has neither yet).
+
+**Still waiting on the plugin (not in 6661424):** course reviews (`publiclms/course-reviews`,
 still behind `hidden-course-reviews`), Q&A, announcements, the instructor dashboard and `plms-instructor`
 (still behind `hidden-instructor-dashboard`), `publiclms/course-filters` (the archive keeps the theme's own
 filters), and checkout.
@@ -234,9 +242,9 @@ reads 7.9:1, seeded lessons use `h2`, and 1 of 6 shows 17%.
 
 ## Plugin findings from the theme's phase 2 work (for the plugin; nothing changed in the plugin folder)
 
-Numbering continues from the 1.2.0 run above. **Status at 87af6a7:** 4 to 8 are all still open (checked in the
-source of that commit; 7 also applies to Mark complete there, while the new quiz runner moves focus to its
-headings itself).
+Numbering continues from the 1.2.0 run above. **Status at 6661424:** 4 to 9 are all still open (checked in the
+source of that commit; for 7, the new quiz runner moves focus to its headings itself, but Mark complete still
+loses it).
 
 4. **Progress bars fill from the left in right-to-left languages (RTL, medium).** Found in the theme's RTL pass
    (site language Arabic, `<html dir="rtl">`, Public LMS at 40f9aed). `publiclms/course-progress` and the
@@ -290,3 +298,10 @@ headings itself).
    also shrinking the lesson's own content headings (both are inside `publiclms/lesson-content`). Suggested fix:
    give these headings a preset class in the markup (`has-lg-font-size`, `has-xl-font-size`), which WordPress
    prints for every theme that defines the B2 sizes, and keep the zero-specificity rule as the fallback.
+10. **After handing in an assignment, focus starts at the top of the page (accessibility, low), and B1 misses a
+    pair (contract wording).** The hand-in form posts and the page reloads, so a keyboard or screen reader user
+    lands at the start of the document with nothing pointing at the new "Your hand-in" status. Suggested fix:
+    after the reload, move focus to the status heading (it already has an `id`), or update in place as the quiz
+    runner does. Separately, "Waiting for a grade" is `warning` on `surface` (the status panel), which B1's
+    "Text partner" column does not list; please add it so themes check it. CampusInterface passes it in all six
+    palettes and now checks it in CI.
