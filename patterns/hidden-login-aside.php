@@ -3,15 +3,15 @@
  * Title: Log-in page aside
  * Slug: campusinterface/hidden-login-aside
  * Inserter: no
- * Description: The coloured half of the split log-in template: site title, a welcome line and an illustration.
+ * Description: The coloured half of the split log-in template, marked up as the page header: site title, a welcome line and an illustration.
  *
  * @package CampusInterface
  * @since 0.2.0
  */
 
 ?>
-<!-- wp:group {"className":"is-style-campusinterface-band-primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","right":"var:preset|spacing|60","bottom":"var:preset|spacing|70","left":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|60"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"space-between"}} -->
-<div class="wp-block-group is-style-campusinterface-band-primary" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--60)">
+<!-- wp:group {"tagName":"header","className":"is-style-campusinterface-band-primary","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","right":"var:preset|spacing|60","bottom":"var:preset|spacing|70","left":"var:preset|spacing|60"},"blockGap":"var:preset|spacing|60"}},"layout":{"type":"flex","orientation":"vertical","justifyContent":"stretch","verticalAlignment":"space-between"}} -->
+<header class="wp-block-group is-style-campusinterface-band-primary" style="padding-top:var(--wp--preset--spacing--70);padding-right:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70);padding-left:var(--wp--preset--spacing--60)">
 	<!-- wp:site-title {"level":0} /-->
 
 	<!-- wp:group {"layout":{"type":"default"}} -->
@@ -29,5 +29,5 @@
 	<!-- wp:image {"sizeSlug":"full","linkDestination":"none"} -->
 	<figure class="wp-block-image size-full"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learning-illustration.svg' ) ); ?>" alt="<?php esc_attr_e( 'Illustration of a laptop showing a lesson, an open book and a graduation cap', 'campusinterface' ); ?>"/></figure>
 	<!-- /wp:image -->
-</div>
+</header>
 <!-- /wp:group -->

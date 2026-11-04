@@ -1,0 +1,17 @@
+/**
+ * Core Search block with the button inside the field.
+ *
+ * Core removes the field's outline in this layout
+ * (`.wp-block-search__input:focus { outline: none }`) and draws no focus
+ * indicator in its place, so keyboard users lose track of the field. The
+ * frame around the field and its button shows the focus ring instead.
+ */
+.wp-block-search__button-inside .wp-block-search__inside-wrapper:focus-within {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+/* On dark and primary bands the ring takes the band's text colour, as in global.css. */
+:where(.is-style-campusinterface-band-dark, .is-style-campusinterface-band-primary) .wp-block-search__button-inside .wp-block-search__inside-wrapper:focus-within {
+	outline-color: currentcolor;
+}

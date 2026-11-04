@@ -225,3 +225,11 @@ Numbering continues from the 1.2.0 run above.
    WP_Block_Editor_Context could not be converted to int" each time the editor opens (traced with a
    temporary error handler, WordPress 7.1.4). Suggested fix: read the object ID only inside the plugin's own
    `case`s, or only when `is_scalar( $args[0] )`.
+7. **Keyboard focus is lost after Mark complete (accessibility, high).** Found in the theme's keyboard pass
+   (Public LMS 40f9aed, seeded learner). Tab to "Mark as complete", press Space or Enter: the save works and
+   the live region announces it, but when the request finishes focus is on `<body>`, so the next Tab starts
+   from the top of the page (WCAG 2.4.3). Cause: the button has `data-wp-bind--disabled="context.isBusy"`
+   (`src/blocks/mark-complete/render.php`), and disabling the focused button drops focus. Suggested fix: keep
+   the button enabled and use `aria-disabled` while busy, ignoring presses until the request returns (or
+   move focus back to the button once it is re-enabled). Same check for any other busy state built this way
+   (quiz submit, enrol).

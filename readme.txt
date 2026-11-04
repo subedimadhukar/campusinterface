@@ -62,6 +62,7 @@ Yes. Every text in the templates, parts and patterns is translatable, the course
 = 0.3.0 =
 * Right-to-left: the quote bar now sits on the reading side; Arabic-script languages keep their letter joins in Safari.
 * Multilingual: long translated words and figures wrap inside their column; footer privacy links point at the privacy page of the visitor's language.
+* Accessibility: visible focus on search fields with the button inside; a level-one heading on the blog and on the student and instructor dashboards; the comment form title is a level-two heading; the log-in page's coloured half is its header landmark.
 
 = 0.2.0 =
 * 49 patterns (38 in the inserter): three heroes, course grids in 3 and 4 columns and a scroll-snap carousel, subjects, statistics, features, steps, instructors, testimonials, pricing in 2 and 3 columns, FAQ, two call-to-action bands, events, logos, newsletter, blog cards, log-in panel, promo bar, accessibility statement, five headers, three footers and two full pages.

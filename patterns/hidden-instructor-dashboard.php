@@ -15,8 +15,6 @@ if ( campusinterface_has_plugin_pattern( 'publiclms/instructor-dashboard' ) ) :
 	<?php
 else :
 	?>
-<!-- wp:post-title {"level":1} /-->
-
 <!-- wp:paragraph -->
 <p><?php esc_html_e( 'Your instructor dashboard is on its way. Until then, manage your courses, lessons and learners in the WordPress admin.', 'campusinterface' ); ?></p>
 <!-- /wp:paragraph -->

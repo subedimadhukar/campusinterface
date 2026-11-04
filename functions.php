@@ -176,13 +176,16 @@ function campusinterface_block_styles() {
 		)
 	);
 
+	// Post Title takes it on the dashboard templates, where the page title sits
+	// above the plugin's own large greeting.
 	register_block_style(
-		array( 'core/paragraph', 'core/post-terms' ),
+		array( 'core/paragraph', 'core/post-terms', 'core/post-title' ),
 		array(
 			'name'       => 'campusinterface-eyebrow',
 			'label'      => __( 'Eyebrow', 'campusinterface' ),
 			'style_data' => array(
 				'typography' => array(
+					'fontFamily'    => 'var:preset|font-family|body',
 					'fontSize'      => 'var:preset|font-size|sm',
 					'fontWeight'    => '600',
 					'letterSpacing' => '0.08em',
@@ -378,7 +381,7 @@ add_action( 'init', 'campusinterface_block_styles' );
  * @return void
  */
 function campusinterface_block_stylesheets() {
-	$blocks = array( 'details', 'list', 'loginout', 'post-template', 'quote', 'table' );
+	$blocks = array( 'details', 'list', 'loginout', 'post-template', 'quote', 'search', 'table' );
 
 	foreach ( $blocks as $block ) {
 		wp_enqueue_block_style(
@@ -464,6 +467,25 @@ function campusinterface_course_query_without_plugin( $query, $block ) {
 	return $query;
 }
 add_filter( 'query_loop_block_query_vars', 'campusinterface_course_query_without_plugin', 10, 2 );
+
+/**
+ * Makes the comment form title a level-two heading.
+ *
+ * Core prints "Leave a Reply" as an `h3`. On a single post it follows the
+ * post title (`h1`) or the comments title (`h2`), so an `h3` would skip a
+ * level when a post has no comments yet.
+ *
+ * @since 0.3.0
+ *
+ * @param array<string, mixed> $defaults Comment form arguments.
+ * @return array<string, mixed>
+ */
+function campusinterface_comment_form_defaults( $defaults ) {
+	$defaults['title_reply_before'] = '<h2 id="reply-title" class="comment-reply-title">';
+	$defaults['title_reply_after']  = '</h2>';
+	return $defaults;
+}
+add_filter( 'comment_form_defaults', 'campusinterface_comment_form_defaults' );
 
 /**
  * Loads the hero image eagerly with high fetch priority.
