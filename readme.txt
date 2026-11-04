@@ -34,7 +34,7 @@ CampusInterface is built to WCAG 2.2 level AA and carries the accessibility-read
 * Layouts reflow down to 320px wide and text resizes to 200%.
 * The Accessibility statement pattern gives site owners a starting point for their own statement.
 
-Found a barrier? Please report it at https://github.com/wpinterface/campusinterface/issues.
+Found a barrier? Please report it at https://github.com/subedimadhukar/campusinterface/issues.
 
 == Installation ==
 

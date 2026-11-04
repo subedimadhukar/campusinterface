@@ -11,8 +11,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/wpinterface/campusinterface/issues",
-		"source": "https://github.com/wpinterface/campusinterface"
+		"issues": "https://github.com/subedimadhukar/campusinterface/issues",
+		"source": "https://github.com/subedimadhukar/campusinterface"
 	},
 	"require": {
 		"php": ">=7.4"

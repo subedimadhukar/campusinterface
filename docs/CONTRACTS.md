@@ -2,7 +2,7 @@
 
 The contracts themselves live in the plugin repository:
 **[`plugins/public-lms/docs/CONTRACTS.md`](../../../plugins/public-lms/docs/CONTRACTS.md)**
-(on GitHub: `wpinterface/public-lms`, `docs/CONTRACTS.md`). This file records the theme's side of
+(on GitHub: [`subedimadhukar/public-lms`](https://github.com/subedimadhukar/public-lms/blob/main/docs/CONTRACTS.md), `docs/CONTRACTS.md`). This file records the theme's side of
 contract version **1.3.0**. A change to either side is a pull request on both repositories.
 
 ## Tested with
@@ -288,7 +288,7 @@ loses it).
    `playground.json` installs Public LMS with `git:directory` from `main`, but `build/` and `vendor/` are
    git-ignored and blocks register from `build/blocks/`, so Playground would get a plugin without its blocks or
    Action Scheduler. The theme's `blueprint.json` therefore installs the plugin from
-   `https://github.com/wpinterface/public-lms/releases/latest/download/public-lms.zip`. Request: have the
+   `https://github.com/subedimadhukar/public-lms/releases/latest/download/public-lms.zip`. Request: have the
    release workflow attach the `public-lms.zip` it already builds to each GitHub release (or publish to
    WordPress.org), and point `playground.json` at the same zip. Checked with a release-like zip in
    `@wp-playground/cli` 3.1.60: activation, `wp publiclms seed` (with `WP_ENVIRONMENT_TYPE` `local`) and the

@@ -2,9 +2,10 @@ name: Lighthouse
 
 # Performance and accessibility budgets (lighthouserc.json) on the academy
 # home, the course archive, a single course and a lesson, with Public LMS
-# and its demo data. Public LMS lives in its own repository; while that is
-# private, a PUBLIC_LMS_TOKEN secret with read access to it is needed. Without
-# access the Lighthouse job is skipped, not failed.
+# and its demo data. Public LMS lives in its own public repository, which the
+# job checks out beside the theme; no secret is needed. If the repository or
+# the PUBLIC_LMS_REF branch cannot be reached, the Lighthouse job is skipped,
+# not failed. An optional PUBLIC_LMS_TOKEN secret is used when set.
 
 on:
   push:
@@ -20,7 +21,7 @@ permissions:
   contents: read
 
 env:
-  PUBLIC_LMS_REPOSITORY: wpinterface/public-lms
+  PUBLIC_LMS_REPOSITORY: subedimadhukar/public-lms
   PUBLIC_LMS_REF: ${{ vars.PUBLIC_LMS_REF || 'main' }}
 
 jobs:
@@ -43,12 +44,12 @@ jobs:
             echo "available=true" >> "$GITHUB_OUTPUT"
           else
             echo "available=false" >> "$GITHUB_OUTPUT"
-            echo "::notice title=Lighthouse skipped::${PUBLIC_LMS_REPOSITORY}@${PUBLIC_LMS_REF} is not reachable from this run. While the repository is private, add a PUBLIC_LMS_TOKEN secret with read access to it."
+            echo "::notice title=Lighthouse skipped::${PUBLIC_LMS_REPOSITORY}@${PUBLIC_LMS_REF} is not reachable from this run. Check the repository name and the PUBLIC_LMS_REF variable."
             {
               echo "### Lighthouse skipped"
               echo
               echo "Public LMS (\`${PUBLIC_LMS_REPOSITORY}@${PUBLIC_LMS_REF}\`) is not reachable from this run, so the budgets were not measured."
-              echo "While the repository is private, add a \`PUBLIC_LMS_TOKEN\` secret with read access to it."
+              echo "Check the repository name in the workflow and the \`PUBLIC_LMS_REF\` variable."
             } >> "$GITHUB_STEP_SUMMARY"
           fi
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
 # Runs blueprint.json in WordPress Playground on this machine, with the theme
-# and Public LMS taken from local working copies instead of their public URLs
-# (both repositories are private for now).
+# and Public LMS taken from local working copies instead of their GitHub URLs,
+# so unpushed commits and an unreleased plugin can be tested.
 #
 # It zips this theme (git archive of HEAD) and a release-like copy of the
 # plugin folder next to it (../../plugins/public-lms, which must be built with
