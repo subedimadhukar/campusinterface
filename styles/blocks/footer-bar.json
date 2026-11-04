@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Footer bar",
+	"slug": "campusinterface-footer-bar",
+	"blockTypes": [ "core/group" ],
+	"styles": {
+		"border": {
+			"top": {
+				"color": "var:preset|color|line",
+				"style": "solid",
+				"width": "1px"
+			}
+		},
+		"color": {
+			"background": "var:preset|color|base",
+			"text": "var:preset|color|contrast"
+		}
+	}
+}

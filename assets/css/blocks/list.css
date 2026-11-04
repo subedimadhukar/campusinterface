@@ -1,0 +1,19 @@
+/**
+ * Core List block: the Checklist style.
+ *
+ * theme.json cannot set `list-style-type` or style `::marker`, so the tick
+ * marks live here. Colours and sizes come from theme.json presets.
+ */
+.wp-block-list.is-style-campusinterface-checklist {
+	list-style-type: "\2713\00a0\00a0";
+	padding-inline-start: 1.5em;
+}
+
+.wp-block-list.is-style-campusinterface-checklist > li::marker {
+	color: var(--wp--preset--color--secondary);
+	font-weight: 700;
+}
+
+.wp-block-list.is-style-campusinterface-checklist > li + li {
+	margin-block-start: var(--wp--preset--spacing--20);
+}

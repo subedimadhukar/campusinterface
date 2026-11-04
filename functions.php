@@ -84,6 +84,14 @@ function campusinterface_pattern_categories() {
 			'label'       => _x( 'FAQ', 'Block pattern category', 'campusinterface' ),
 			'description' => __( 'Frequently asked questions.', 'campusinterface' ),
 		),
+		'campusinterface-about'        => array(
+			'label'       => _x( 'About and features', 'Block pattern category', 'campusinterface' ),
+			'description' => __( 'Statistics, features, steps, partner logos and sign-up panels.', 'campusinterface' ),
+		),
+		'campusinterface-pages'        => array(
+			'label'       => _x( 'Full pages', 'Block pattern category', 'campusinterface' ),
+			'description' => __( 'Complete page layouts assembled from the theme patterns.', 'campusinterface' ),
+		),
 	);
 
 	foreach ( $categories as $name => $properties ) {
@@ -93,39 +101,18 @@ function campusinterface_pattern_categories() {
 add_action( 'init', 'campusinterface_pattern_categories' );
 
 /**
- * Registers block style variations, styled entirely with theme.json data.
+ * Registers block style variations that are not section styles.
+ *
+ * Section styles (bands, cards, the "most popular" highlight and the header
+ * and footer bars) are theme.json partials in `styles/blocks/`, which
+ * WordPress registers itself. The styles below are small and block-specific;
+ * all but the checklist are styled entirely from theme.json data.
  *
  * @since 0.1.0
  *
  * @return void
  */
 function campusinterface_block_styles() {
-	$card = array(
-		'name'       => 'campusinterface-card',
-		'label'      => __( 'Card', 'campusinterface' ),
-		'style_data' => array(
-			'color'   => array(
-				'background' => 'var:preset|color|surface',
-			),
-			'border'  => array(
-				'color'  => 'var:preset|color|line',
-				'radius' => 'var:custom|radius|lg',
-				'style'  => 'solid',
-				'width'  => '1px',
-			),
-			'spacing' => array(
-				'padding' => array(
-					'top'    => 'var:preset|spacing|50',
-					'right'  => 'var:preset|spacing|50',
-					'bottom' => 'var:preset|spacing|50',
-					'left'   => 'var:preset|spacing|50',
-				),
-			),
-		),
-	);
-	register_block_style( 'core/group', $card );
-	register_block_style( 'core/column', $card );
-
 	register_block_style(
 		'core/button',
 		array(
@@ -138,8 +125,196 @@ function campusinterface_block_styles() {
 			),
 		)
 	);
+
+	register_block_style(
+		array( 'core/paragraph', 'core/post-terms' ),
+		array(
+			'name'       => 'campusinterface-eyebrow',
+			'label'      => __( 'Eyebrow', 'campusinterface' ),
+			'style_data' => array(
+				'typography' => array(
+					'fontSize'      => 'var:preset|font-size|sm',
+					'fontWeight'    => '600',
+					'letterSpacing' => '0.08em',
+					'textTransform' => 'uppercase',
+				),
+			),
+		)
+	);
+
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'       => 'campusinterface-badge',
+			'label'      => __( 'Badge', 'campusinterface' ),
+			'style_data' => array(
+				'border'     => array(
+					'radius' => 'var:custom|radius|pill',
+				),
+				'color'      => array(
+					'background' => 'var:preset|color|accent',
+					'text'       => 'var:preset|color|contrast',
+				),
+				'spacing'    => array(
+					'padding' => array(
+						'top'    => 'var:preset|spacing|20',
+						'right'  => 'var:preset|spacing|40',
+						'bottom' => 'var:preset|spacing|20',
+						'left'   => 'var:preset|spacing|40',
+					),
+				),
+				'typography' => array(
+					'fontSize'      => 'var:preset|font-size|xs',
+					'fontWeight'    => '700',
+					'letterSpacing' => '0.06em',
+					'lineHeight'    => '1.4',
+					'textTransform' => 'uppercase',
+				),
+			),
+		)
+	);
+
+	register_block_style(
+		'core/paragraph',
+		array(
+			'name'       => 'campusinterface-step-number',
+			'label'      => __( 'Step number', 'campusinterface' ),
+			'style_data' => array(
+				'color'      => array(
+					'text' => 'var:preset|color|primary',
+				),
+				'typography' => array(
+					'fontFamily' => 'var:preset|font-family|display',
+					'fontSize'   => 'var:preset|font-size|3-xl',
+					'fontWeight' => '600',
+					'lineHeight' => '1',
+				),
+			),
+		)
+	);
+
+	register_block_style(
+		'core/group',
+		array(
+			'name'       => 'campusinterface-date-badge',
+			'label'      => __( 'Date badge', 'campusinterface' ),
+			'style_data' => array(
+				'border'  => array(
+					'radius' => 'var:custom|radius|md',
+				),
+				'color'   => array(
+					'background' => 'var:preset|color|primary-soft',
+					'text'       => 'var:preset|color|contrast',
+				),
+				'spacing' => array(
+					'padding' => array(
+						'top'    => 'var:preset|spacing|30',
+						'right'  => 'var:preset|spacing|40',
+						'bottom' => 'var:preset|spacing|30',
+						'left'   => 'var:preset|spacing|40',
+					),
+				),
+			),
+		)
+	);
+
+	register_block_style(
+		'core/group',
+		array(
+			'name'       => 'campusinterface-placeholder',
+			'label'      => __( 'Placeholder', 'campusinterface' ),
+			'style_data' => array(
+				'border'  => array(
+					'color'  => 'var:preset|color|contrast',
+					'radius' => 'var:custom|radius|md',
+					'style'  => 'dashed',
+					'width'  => '1px',
+				),
+				'spacing' => array(
+					'padding' => array(
+						'top'    => 'var:preset|spacing|40',
+						'right'  => 'var:preset|spacing|40',
+						'bottom' => 'var:preset|spacing|40',
+						'left'   => 'var:preset|spacing|40',
+					),
+				),
+			),
+		)
+	);
+
+	// The tick marks need `list-style-type`, which theme.json cannot set.
+	register_block_style(
+		'core/list',
+		array(
+			'name'  => 'campusinterface-checklist',
+			'label' => __( 'Checklist', 'campusinterface' ),
+		)
+	);
 }
 add_action( 'init', 'campusinterface_block_styles' );
+
+/**
+ * Enqueues the per-block stylesheets for what theme.json cannot express.
+ *
+ * Each file loads only on pages that render its block.
+ *
+ * @since 0.2.0
+ *
+ * @return void
+ */
+function campusinterface_block_stylesheets() {
+	$blocks = array( 'details', 'list' );
+
+	foreach ( $blocks as $block ) {
+		wp_enqueue_block_style(
+			'core/' . $block,
+			array(
+				'handle' => 'campusinterface-' . $block,
+				'src'    => get_theme_file_uri( "assets/css/blocks/{$block}.css" ),
+				'path'   => get_theme_file_path( "assets/css/blocks/{$block}.css" ),
+				'ver'    => wp_get_theme()->get( 'Version' ),
+			)
+		);
+	}
+}
+add_action( 'init', 'campusinterface_block_stylesheets' );
+
+/**
+ * Returns the URL of the course catalogue.
+ *
+ * Uses the Public LMS course archive when the plugin is active, and the
+ * `/courses/` path it would use otherwise, so pattern links work either way.
+ *
+ * @since 0.2.0
+ *
+ * @return string
+ */
+function campusinterface_courses_url() {
+	$url = get_post_type_archive_link( 'plms_course' );
+	return $url ? $url : home_url( '/courses/' );
+}
+
+/**
+ * Keeps course Query Loops empty while Public LMS is inactive.
+ *
+ * WordPress swaps an unregistered post type in a Query Loop for `post`, so
+ * without this the course patterns would list blog posts. With the plugin
+ * active this does nothing.
+ *
+ * @since 0.2.0
+ *
+ * @param array<string, mixed> $query Query vars built from the block.
+ * @param WP_Block             $block The Query Loop's Post Template block.
+ * @return array<string, mixed>
+ */
+function campusinterface_course_query_without_plugin( $query, $block ) {
+	$post_type = isset( $block->context['query']['postType'] ) ? $block->context['query']['postType'] : '';
+	if ( 'plms_course' === $post_type && ! post_type_exists( 'plms_course' ) ) {
+		$query['post__in'] = array( 0 );
+	}
+	return $query;
+}
+add_filter( 'query_loop_block_query_vars', 'campusinterface_course_query_without_plugin', 10, 2 );
 
 /**
  * Loads the hero image eagerly with high fetch priority.

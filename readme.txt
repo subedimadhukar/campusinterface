@@ -17,7 +17,7 @@ CampusInterface pairs with the free Public LMS plugin: install it to add courses
 
 * No jQuery and no theme JavaScript
 * Self-hosted variable fonts, nothing loaded from third-party servers
-* Patterns for heroes, course grids, calls to action and more
+* 35 patterns: heroes, course grids and a scroll-snap carousel, pricing, instructors, testimonials, events, FAQ, headers, footers and two full pages
 * Templates for posts, pages, archives, search and 404
 
 == Installation ==
@@ -71,6 +71,15 @@ GNU General Public License for more details.
   Source: https://github.com/erikdkennedy/figtree, files served by Google Fonts (https://fonts.google.com/specimen/Figtree)
   Used: assets/fonts/figtree/Figtree-Variable.woff2 and Figtree-Italic-Variable.woff2; licence text in assets/fonts/figtree/OFL.txt
 
-* learning-illustration.svg and screenshot.png
-  Created for CampusInterface by WPInterface, 2026.
+* Illustrations, portraits, icons and logos in assets/images/ (SVG), and screenshot.png
+  Created for CampusInterface by WPInterface, 2026. No stock photography is used.
+  The people shown in the portrait illustrations and the organisations in the logo strip are fictional.
   License: GPLv2 or later, https://www.gnu.org/licenses/gpl-2.0.html
+  Files: learning-illustration.svg, coaching-session.svg, course-data-analysis.svg, course-javascript.svg,
+  course-public-speaking.svg, course-sql.svg, course-ux-design.svg, course-web-development.svg,
+  instructor-asha-gurung.svg, instructor-daniel-okafor.svg, instructor-elena-ortiz.svg, instructor-marcus-bell.svg,
+  learner-grace-mwangi.svg, learner-sanjana-shrestha.svg, learner-tom-whitaker.svg,
+  icon-business.svg, icon-career.svg, icon-certificate.svg, icon-clock.svg, icon-code.svg, icon-data.svg,
+  icon-design.svg, icon-mentor.svg, icon-mobile.svg, icon-speaking.svg,
+  logo-bluegate-labs.svg, logo-harbor-and-pine.svg, logo-meridian-trust.svg, logo-northfield-college.svg,
+  logo-openfield-school.svg

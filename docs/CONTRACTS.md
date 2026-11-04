@@ -10,6 +10,7 @@ contract version **1.0.0**. A change to either side is a pull request on both re
 | CampusInterface | Public LMS | Contract |
 |---|---|---|
 | 0.1.0 | 0.1.0 | 1.0.0 |
+| 0.2.0 (phase 1, in progress) | 0.1.0 (phase 1 not yet merged) | 1.0.0 |
 
 ## A. Templates and patterns
 
@@ -42,14 +43,15 @@ Rules the theme follows (plugin contract A3 to A5):
    ordinary page named "Dashboard".
 5. Theme parts the overrides may use: `header`, `footer` now; `lesson-nav` and `sidebar` from phase 1.
 
-**Patterns that use plugin data today:**
+**Patterns that use plugin data (0.2.0):**
 
 | Theme pattern | Uses | Behaviour without the plugin |
 |---|---|---|
-| `campusinterface/course-grid` | Core Query Loop with `postType: plms_course`; Post Featured Image at the `campusinterface-course-card` size (480×270, registered by the theme); Post Title; the `plms_course` archive link | Shows "New courses are on their way"; the button links to `/courses/` |
+| `campusinterface/course-grid` (3 columns), `course-grid-4`, `course-carousel` | Core Query Loop over `plms_course` with `"namespace":"publiclms/course-query"` (A5.5); Post Featured Image at the `campusinterface-course-card` size (480×270, registered by the theme); Post Title; Paragraphs bound to `publiclms/course-field` keys `level`, `lesson_count`, `duration`, `price`; in the 3-column grid a Button bound to `enroll_url` (url) and `enroll_label` (text), falling back to "View course" | The theme's `query_loop_block_query_vars` filter returns no posts while `plms_course` is unregistered (WordPress would otherwise swap in `post`), so each pattern shows its "New courses are on their way" message |
+| `campusinterface/category-tiles`, the footer course links | Links to `/course-category/{slug}/` (the plugin's `plms_course_category` rewrite base) for the subjects Data and analytics, Web development, Design, Communication, Business and marketing, Career skills | Links 404 until the plugin and those terms exist; site owners edit them |
+| Hero, CTA and header buttons | `campusinterface_courses_url()`: the `plms_course` archive link, or `/courses/` | Links to `/courses/` |
 
-From phase 1 the course grid adds the `publiclms/course-query` namespace and Paragraph and Button blocks bound
-to `publiclms/course-field` (`price`, `level`, `lesson_count`, `enroll_url`).
+All other patterns are plain core blocks with static content and work on any site.
 
 ## B. Tokens the theme provides
 

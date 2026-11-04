@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Card",
+	"slug": "campusinterface-card",
+	"blockTypes": [ "core/group", "core/columns", "core/column" ],
+	"styles": {
+		"border": {
+			"color": "var:preset|color|line",
+			"radius": "var:custom|radius|lg",
+			"style": "solid",
+			"width": "1px"
+		},
+		"color": {
+			"background": "var:preset|color|base",
+			"text": "var:preset|color|contrast"
+		},
+		"spacing": {
+			"padding": {
+				"top": "var:preset|spacing|50",
+				"right": "var:preset|spacing|50",
+				"bottom": "var:preset|spacing|50",
+				"left": "var:preset|spacing|50"
+			}
+		},
+		"elements": {
+			"heading": {
+				"color": {
+					"text": "var:preset|color|contrast"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|primary"
+				}
+			}
+		}
+	}
+}

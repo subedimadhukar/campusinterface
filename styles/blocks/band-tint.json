@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Tinted band",
+	"slug": "campusinterface-band-tint",
+	"blockTypes": [ "core/group", "core/columns" ],
+	"styles": {
+		"color": {
+			"background": "var:preset|color|primary-soft",
+			"text": "var:preset|color|contrast"
+		},
+		"elements": {
+			"heading": {
+				"color": {
+					"text": "var:preset|color|contrast"
+				}
+			},
+			"link": {
+				"color": {
+					"text": "var:preset|color|primary"
+				}
+			}
+		}
+	}
+}
