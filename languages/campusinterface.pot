@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T11:36:54+00:00\n"
+"POT-Creation-Date: 2026-11-04T12:21:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: campusinterface\n"
@@ -725,7 +725,7 @@ msgid "Course categories"
 msgstr ""
 
 #: patterns/footer-columns.php:43
-#: patterns/lesson-nav.php:34
+#: patterns/lesson-nav.php:32
 msgid "All courses"
 msgstr ""
 
@@ -1107,6 +1107,34 @@ msgstr ""
 msgid "Enrol now"
 msgstr ""
 
+#: patterns/hidden-course-reviews.php
+msgctxt "Pattern title"
+msgid "Course reviews area"
+msgstr ""
+
+#: patterns/hidden-course-reviews.php
+msgctxt "Pattern description"
+msgid "The reviews area of the single course template. Shows the Public LMS course reviews pattern once the plugin registers it (phase 2) and nothing before, so the course page has no empty section."
+msgstr ""
+
+#: patterns/hidden-instructor-dashboard.php
+msgctxt "Pattern title"
+msgid "Instructor dashboard area"
+msgstr ""
+
+#: patterns/hidden-instructor-dashboard.php
+msgctxt "Pattern description"
+msgid "The body of the Instructor Dashboard page template. Shows the Public LMS instructor dashboard once the plugin registers it (phase 2); before that, the page title and a link to the course tools in the WordPress admin."
+msgstr ""
+
+#: patterns/hidden-instructor-dashboard.php:21
+msgid "Your instructor dashboard is on its way. Until then, manage your courses, lessons and learners in the WordPress admin."
+msgstr ""
+
+#: patterns/hidden-instructor-dashboard.php:27
+msgid "Open course tools"
+msgstr ""
+
 #: patterns/hidden-lesson-contents.php
 msgctxt "Pattern title"
 msgid "Lesson course contents"
@@ -1153,6 +1181,20 @@ msgstr ""
 msgid "Nothing matched your search. Try different keywords."
 msgstr ""
 
+#: patterns/hidden-quiz-body.php
+msgctxt "Pattern title"
+msgid "Quiz body"
+msgstr ""
+
+#: patterns/hidden-quiz-body.php
+msgctxt "Pattern description"
+msgid "The body of the single quiz template. Shows the Public LMS quiz header and runner once the plugin registers them (phase 2); before that, the quiz title and a short note (Public LMS keeps quiz content closed until its quiz runner ships)."
+msgstr ""
+
+#: patterns/hidden-quiz-body.php:25
+msgid "This quiz is not open yet. Carry on with the lessons and check back soon."
+msgstr ""
+
 #: patterns/hidden-related-courses.php
 msgctxt "Pattern title"
 msgid "Related courses"
@@ -1160,7 +1202,7 @@ msgstr ""
 
 #: patterns/hidden-related-courses.php
 msgctxt "Pattern description"
-msgid "Bottom of the single course template: three more courses as classic cards."
+msgid "Bottom of the single course template: three related courses as classic cards. With Public LMS 0.1.0+ (contract 1.2.0) the query leaves out the current course and prefers courses in the same categories."
 msgstr ""
 
 #: patterns/hidden-related-courses.php:18
@@ -1254,10 +1296,10 @@ msgstr ""
 
 #: patterns/lesson-nav.php
 msgctxt "Pattern description"
-msgid "A slim bar for lessons and quizzes: the site title on the left, and links to the learner's dashboard and the course catalogue with a log-out link on the right. No main navigation, so learners stay on the lesson."
+msgid "A slim bar for lessons and quizzes: the site title and a button back to the current course (bound to the Public LMS course_title and course_url keys; it reads \"All courses\" and links to the catalogue where no course is in context), and on the right the learner's dashboard and a log-out link. No main navigation, so learners stay on the lesson."
 msgstr ""
 
-#: patterns/lesson-nav.php:30
+#: patterns/lesson-nav.php:42
 msgid "My dashboard"
 msgstr ""
 
