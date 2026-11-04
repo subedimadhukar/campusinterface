@@ -162,7 +162,7 @@ visitor and as the seeded learner `sita.gurung`.
 | Step | Visitor | Learner |
 |---|---|---|
 | Course archive (`/courses/`, theme `archive-plms_course`) | Classic cards with bound level, lesson count, duration and price; theme filter column (course search, subject and level Terms Lists) | Same |
-| Single course (theme `single-plms_course`) | Hero button bound to `enroll_label`/`enroll_url` reads "Log in to enrol"; plugin curriculum (sections, preview badge, durations) and instructor fill the main column; plugin enrol card in the `sidebar` part; related courses leave out the current course; reviews area absent | Hero and enrol card read "Continue learning" with the progress bar (33%, 2 / 6); curriculum shows completion ticks |
+| Single course (theme `single-plms_course`) | Hero button bound to `enroll_label`/`enroll_url` reads "Log in to enrol"; plugin curriculum (sections, preview badge, durations) and instructor fill the main column; plugin enrol card in the `sidebar` part; related courses did not show the current course (by coincidence, see finding 11); reviews area absent | Hero and enrol card read "Continue learning" with the progress bar (33%, 2 / 6); curriculum shows completion ticks |
 | Lesson (theme `single-plms_lesson`) | Gated: the plugin's "Log in and enrol" panel; the preview lesson opens; the `lesson-nav` button reads the course title and links to the course | Mark complete flips to "Completed", the progress bar moves from 16% to 33% without a reload, the live region announces "Progress saved. Course progress 33%."; previous and next links work |
 | Student dashboard (`/my-learning/`, theme `plms-dashboard` via the plugin's hierarchy filter) | "Log in to see your courses and progress" | In progress (2) and Completed (1) tabs; cards show "2 of 6 lessons · 33%" after the lesson above |
 | Quiz (theme `single-plms_quiz`, test quiz) | Quiz title and the theme's "not open yet" note | Same |
@@ -213,7 +213,7 @@ All nine items the theme raised at 1.0.0 are settled (plugin `docs/CONTRACTS.md`
 | # | Item | Resolution | Theme side |
 |---|---|---|---|
 | 1 | Course link on lessons and quizzes | 1.1.0 keys `course_title` and `course_url` | `lesson-nav` binds its course button to them |
-| 2 | Related courses | `"query":{"publiclmsRelated":true}` on `publiclms/course-query` | `hidden-related-courses` uses it; checked: the current course is left out |
+| 2 | Related courses | `"query":{"publiclmsRelated":true}` on `publiclms/course-query` | `hidden-related-courses` uses it. The phase 1 check that the current course is left out was a coincidence of dates: the setting never applies on the front end (finding 11) |
 | 3 | Archive filters | `publiclms/course-filters` is phase 2; the plugin never injects into a theme's filter column | Theme keeps its Search and Terms Lists |
 | 4 | Form field colours on other themes | Plugin block CSS sets field background, text and border from its aliases | Nothing to change; the theme's own zero-specificity field rule stays for core blocks such as Search |
 | 5 | `2-xl` slugs in `theme.json` references | B2 wording added | Theme already uses `2-xl` to `4-xl` |
@@ -258,12 +258,14 @@ loses it).
    `src/blocks/course-progress/style.scss` and `src/blocks/student-dashboard/style.scss`. Everything else on
    plugin pages mirrors correctly: curriculum, enrol card, lesson navigation (Next on the left), dashboard tabs.
 5. **Lesson counts and progress drop to "0 of 0" under a translation plugin (multilingual, medium).** Found in the
-   theme's multilingual pass (Polylang 3.9.1, English and Nepali, with `plms_course`, `plms_lesson` and
-   `plms_quiz` set as translatable). `CourseStructureRepository` loads sections and items with `get_posts()` and
+   theme's multilingual passes (Polylang 3.9.1 with `plms_course`, `plms_lesson`, `plms_quiz` and
+   `plms_assignment` set as translatable; seen with English plus a Devanagari-script language, and again with
+   English, Arabic and Japanese on 0.3.0 at 9ec3484, where every dashboard, English included, shows the courses of
+   the other languages as "0 of 0 steps"). `CourseStructureRepository` loads sections and items with `get_posts()` and
    `suppress_filters => true`, but Polylang adds its language condition on `parse_query`, which
    `suppress_filters` does not skip. On the learner's dashboard every course whose lessons are in another
    language than the page reads "0 of 0 lessons · 0%" with "Start learning", including a course the learner
-   finished (100% in English, 0% on the Nepali dashboard); the curriculum of such a course is empty. Suggested
+   finished (100% on the English dashboard, 0% on the others); the curriculum of such a course is empty. Suggested
    fix: add `'lang' => ''` to the structure queries (Polylang's documented switch; ignored without it), and test
    with WPML too, which reads `suppress_filters`. The dashboard listing all enrolled courses in every language
    is fine as it is.
@@ -308,3 +310,15 @@ loses it).
     runner does. Separately, "Waiting for a grade" is `warning` on `surface` (the status panel), which B1's
     "Text partner" column does not list; please add it so themes check it. CampusInterface passes it in all six
     palettes and now checks it in CI.
+11. **`publiclmsRelated` and `publiclmsHideEnrolled` never apply on the front end (high).** `CourseQuery::query_vars()`
+    returns early unless `$block->context['query']['namespace']` is `publiclms/course-query`, but core passes the
+    Query block's `query` attribute as context, and A5.5 (rightly) puts `namespace` beside it as a separate block
+    attribute, as both the theme's `hidden-related-courses` and the plugin's own `course-grid` do. Logged on 9ec3484:
+    the context keys are `perPage … inherit, publiclmsRelated` with no `namespace`, and the vars come back without
+    `post__in`. So related courses are just the newest courses: on an Arabic or Japanese course, the only course in
+    that language, "You might also like" lists the course itself, and the English row is right only because
+    Bookkeeping is not among the three newest. The phase 1 check that the current course is left out was this
+    coincidence. Suggested fix: read the namespace from the Query block (for example keep it from
+    `render_block_data` for `core/query` blocks in a static, or check `$block->context['query']` for the
+    `publiclms*` keys alone), and add an e2e check with the current course among the newest. The theme keeps
+    the contract's markup and does not work around it.

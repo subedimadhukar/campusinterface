@@ -23,6 +23,21 @@
 	overflow-wrap: anywhere;
 }
 
+/*
+ * The bundled Fraunces and Figtree files hold Latin-1 only. In any other
+ * language (Polish, Turkish, Vietnamese, Yorùbá, Greek, Cyrillic, Arabic,
+ * Hebrew, Indic, CJK and the rest) their letters would come partly from the web
+ * font and partly from a fallback, mixing fonts inside words and detaching
+ * combining marks. So unless the page language is one whose alphabet fits in
+ * Latin-1, the display and body presets switch to the system stacks, which
+ * cover every script. Keep this list in step with
+ * campusinterface_language_uses_bundled_fonts() in functions.php.
+ */
+:root:not(:lang(af), :lang(br), :lang(ca), :lang(co), :lang(da), :lang(de), :lang(en), :lang(es), :lang(eu), :lang(fi), :lang(fil), :lang(fo), :lang(fr), :lang(fy), :lang(ga), :lang(gd), :lang(gl), :lang(id), :lang(is), :lang(it), :lang(lb), :lang(ms), :lang(nb), :lang(nl), :lang(nn), :lang(no), :lang(oc), :lang(pt), :lang(rm), :lang(so), :lang(sq), :lang(sv), :lang(sw), :lang(tl), :lang(xh), :lang(zu)) {
+	--wp--preset--font-family--display: var(--wp--preset--font-family--system-serif);
+	--wp--preset--font-family--body: var(--wp--preset--font-family--system-sans);
+}
+
 /* Form fields follow the palette (dark variation included); theme.json has no element for them. */
 :where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"]), select, textarea) {
 	background-color: var(--wp--preset--color--base);

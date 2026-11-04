@@ -55,13 +55,13 @@ Its patterns and styles do. Course template overrides are built for Public LMS.
 
 = Can I run a multilingual site? =
 
-Yes. Every text in the templates, parts and patterns is translatable, the course catalogue and privacy policy links follow the visitor's language, and layouts make room for longer translations. Menus you build with the Navigation block are your own content: create one per language with your translation plugin.
+Yes, in any language and script. Every text in the templates, parts and patterns is translatable, layouts mirror for right-to-left languages, the course catalogue and privacy policy links follow the visitor's language, and layouts make room for longer translations. The bundled fonts cover languages written in Latin-1 (English, French, German, Spanish and others); in every other language the theme uses the visitor's system fonts, which cover every script. Menus you build with the Navigation block are your own content: create one per language with your translation plugin.
 
 == Changelog ==
 
 = 0.3.0 =
 * Right-to-left: the quote bar now sits on the reading side; Arabic-script languages keep their letter joins in Safari.
-* Multilingual: long translated words and figures wrap inside their column; footer privacy links point at the privacy page of the visitor's language.
+* Multilingual: long translated words and figures wrap inside their column; footer privacy links point at the privacy page of the visitor's language; languages outside Latin-1 (Polish, Vietnamese, Greek, Arabic, Hindi, Chinese and every other) use the system fonts for the whole page instead of mixing fonts inside words. Checked with Arabic and Japanese sites and a 30-language type test.
 * Public LMS quizzes (contract 1.3.0): the quiz template now shows the plugin's quiz header and runner, laid out like a lesson with the course outline and previous and next links; a new assignment template in the same layout; quiz and assignment headings take the plugin's intended size.
 * Accessibility: visible focus on search fields with the button inside; a level-one heading on the blog and on the student and instructor dashboards; the comment form title is a level-two heading; the log-in page's coloured half is its header landmark.
 

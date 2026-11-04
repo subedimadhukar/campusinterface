@@ -612,6 +612,24 @@ function campusinterface_svg_size( $file ) {
 }
 
 /**
+ * Tells whether the site language is written entirely in Latin-1.
+ *
+ * The bundled Fraunces and Figtree files hold Latin-1 only. For other
+ * languages `assets/css/global.css` switches the display and body presets to
+ * the system stacks (so no word mixes two fonts), and the theme then skips
+ * the font preload. The language list matches the `:lang()` list there.
+ *
+ * @since 0.3.0
+ *
+ * @return bool
+ */
+function campusinterface_language_uses_bundled_fonts() {
+	$latin_1  = array( 'af', 'br', 'ca', 'co', 'da', 'de', 'en', 'es', 'eu', 'fi', 'fil', 'fo', 'fr', 'fy', 'ga', 'gd', 'gl', 'id', 'is', 'it', 'lb', 'ms', 'nb', 'nl', 'nn', 'no', 'oc', 'pt', 'rm', 'so', 'sq', 'sv', 'sw', 'tl', 'xh', 'zu' );
+	$language = strtolower( (string) strtok( str_replace( '_', '-', get_locale() ), '-' ) );
+	return in_array( $language, $latin_1, true );
+}
+
+/**
  * Preloads the body font, the one weight above the fold on every page.
  *
  * @since 0.1.0
@@ -619,6 +637,9 @@ function campusinterface_svg_size( $file ) {
  * @return void
  */
 function campusinterface_preload_fonts() {
+	if ( ! campusinterface_language_uses_bundled_fonts() ) {
+		return;
+	}
 	printf(
 		'<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n",
 		esc_url( get_theme_file_uri( 'assets/fonts/figtree/Figtree-Variable.woff2' ) )
