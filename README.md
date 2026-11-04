@@ -5,8 +5,8 @@ A full-site-editing block theme for schools, academies and online courses, and t
 
 Status: **phase 1** (0.2.0): 46 patterns (38 in the inserter), 16 templates including overrides for all six Public LMS
 templates, 10 template parts, five colour and three type variations, section styles and five Query Loop card
-styles. Accessibility-ready. Integration with the Public LMS phase 1 blocks is pending (see
-[docs/CONTRACTS.md](docs/CONTRACTS.md), "Phase 1 integration status").
+styles. Accessibility-ready. Checked against Public LMS 9b29002 (blocks, bindings, 12 of 16 patterns); a full rerun with seeded
+lessons waits for the plugin's seed command (see [docs/CONTRACTS.md](docs/CONTRACTS.md), "Phase 1 integration status").
 
 - What the theme takes from the plugin: [docs/CONTRACTS.md](docs/CONTRACTS.md)
 - Lint: `composer install && composer check` (PHPCS plus the palette contrast check)
