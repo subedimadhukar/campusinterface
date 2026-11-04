@@ -6,7 +6,7 @@
  * Block Types: core/query
  * Keywords: courses, catalogue, grid, lms, public lms
  * Viewport Width: 1400
- * Description: A heading, a link to the catalogue and a three-column grid of the latest Public LMS courses, as classic cards with level, lesson count, duration, price and an enrol button.
+ * Description: A heading, a link to the catalogue and a three-column grid of the latest Public LMS courses, as classic cards with level, lesson count, duration and price. The course title is the card's only link.
  *
  * @package CampusInterface
  * @since 0.1.0
@@ -62,21 +62,9 @@
 			</div>
 			<!-- /wp:group -->
 
-			<!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
-			<div class="wp-block-group">
-				<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"publiclms/course-field","args":{"key":"price"}}}},"style":{"typography":{"fontWeight":"700"}},"fontSize":"lg"} -->
-				<p class="has-lg-font-size" style="font-weight:700"></p>
-				<!-- /wp:paragraph -->
-
-				<!-- wp:buttons -->
-				<div class="wp-block-buttons">
-					<!-- wp:button {"metadata":{"bindings":{"url":{"source":"publiclms/course-field","args":{"key":"enroll_url"}},"text":{"source":"publiclms/course-field","args":{"key":"enroll_label"}}}},"className":"is-style-outline"} -->
-					<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'View course', 'campusinterface' ); ?></a></div>
-					<!-- /wp:button -->
-				</div>
-				<!-- /wp:buttons -->
-			</div>
-			<!-- /wp:group -->
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"publiclms/course-field","args":{"key":"price"}}}},"style":{"typography":{"fontWeight":"700"}},"fontSize":"lg"} -->
+			<p class="has-lg-font-size" style="font-weight:700"></p>
+			<!-- /wp:paragraph -->
 		<!-- /wp:post-template -->
 
 		<!-- wp:query-no-results -->

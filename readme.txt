@@ -3,7 +3,7 @@ Contributors: wpinterface
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,23 @@ CampusInterface pairs with the free Public LMS plugin: install it to add courses
 
 * No jQuery and no theme JavaScript
 * Self-hosted variable fonts, nothing loaded from third-party servers
-* 35 patterns: heroes, course grids and a scroll-snap carousel, pricing, instructors, testimonials, events, FAQ, headers, footers and two full pages
+* 38 patterns: heroes, course grids and a scroll-snap carousel, pricing, instructors, testimonials, events, FAQ, headers, footers and two full pages
 * Templates for posts, pages, archives, search and 404
+
+== Accessibility ==
+
+CampusInterface is built to WCAG 2.2 level AA and carries the accessibility-ready tag:
+
+* A "Skip to content" link is the first focusable element on every template (WordPress adds it for block themes).
+* Header, main, footer and every navigation landmark are named; footer menus have their own labels.
+* Every link, button, form field, disclosure (Details block), menu toggle and the course carousel shows a visible focus outline.
+* Links in text are underlined. Text and controls meet AA contrast in all five colour variations, which is checked automatically for every palette.
+* Images that carry meaning have alternative text; purely decorative icons have empty alternative text.
+* The theme has no animations, no auto-playing media and no JavaScript. It honours "reduce motion" for anything added later.
+* Layouts reflow down to 320px wide and text resizes to 200%.
+* The Accessibility statement pattern gives site owners a starting point for their own statement.
+
+Found a barrier? Please report it at https://github.com/wpinterface/campusinterface/issues.
 
 == Installation ==
 
@@ -38,6 +53,14 @@ No. The theme works on its own. The course grid pattern shows courses only when 
 Its patterns and styles do. Course template overrides are built for Public LMS.
 
 == Changelog ==
+
+= 0.2.0 =
+* 46 patterns (38 in the inserter): three heroes, course grids in 3 and 4 columns and a scroll-snap carousel, subjects, statistics, features, steps, instructors, testimonials, pricing in 2 and 3 columns, FAQ, two call-to-action bands, events, logos, newsletter, blog cards, log-in panel, promo bar, accessibility statement, five headers, three footers and two full pages.
+* Templates for Public LMS courses, course archives, lessons, quizzes and the student and instructor dashboards, plus landing and split log-in page templates.
+* Ten template parts, including a lesson bar, a course sidebar and a WordPress 7.0 navigation overlay.
+* Colour variations Studio, Kids, Corporate and Dark; System type set; section styles for bands and cards; five Query Loop card styles.
+* Accessibility-ready: focus styles for every control, reduced-motion support, accessibility statement pattern.
+* Fix: 2X, 3X and 4X large font sizes now apply.
 
 = 0.1.0 =
 * Initial scaffold: theme.json v3 design tokens, two bundled variable fonts, eight templates, header and footer parts, eight patterns, two colour and two typography variations.

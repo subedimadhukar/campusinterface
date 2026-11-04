@@ -1,0 +1,42 @@
+/**
+ * CampusInterface global stylesheet: accessibility rules theme.json cannot express.
+ *
+ * Links and buttons get their focus ring from theme.json (`:focus-visible` on the
+ * link and button elements). This file covers everything else that can take
+ * keyboard focus, and records the theme's reduced-motion stance. Loaded on the
+ * front end and in the editor; small enough that WordPress inlines it.
+ */
+
+/* Visible focus on every interactive element theme.json does not reach. */
+:where(input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible,
+:where(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close):focus-visible {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+/* Scrollable regions (the course carousel) show where focus is too. */
+:where(.wp-block-post-template):focus-visible {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 4px;
+}
+
+/* On dark and primary bands the ring takes the band's text colour. */
+:where(.is-style-campusinterface-band-dark, .is-style-campusinterface-band-primary) :where(input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+	outline-color: currentcolor;
+}
+
+/*
+ * The theme ships no animations or transitions of its own. This rule makes sure
+ * nothing added later (core, plugins, user CSS) moves for people who ask the
+ * system for less motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}

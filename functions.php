@@ -461,6 +461,37 @@ function campusinterface_hero_image_priority( $block_content, $block ) {
 add_filter( 'render_block_core/image', 'campusinterface_hero_image_priority', 10, 2 );
 
 /**
+ * Enqueues the global stylesheet: focus rings for form controls and the
+ * reduced-motion rule. Registered with its path so WordPress can inline it.
+ *
+ * @since 0.2.0
+ *
+ * @return void
+ */
+function campusinterface_global_styles() {
+	wp_enqueue_style(
+		'campusinterface-global',
+		get_theme_file_uri( 'assets/css/global.css' ),
+		array(),
+		wp_get_theme()->get( 'Version' )
+	);
+	wp_style_add_data( 'campusinterface-global', 'path', get_theme_file_path( 'assets/css/global.css' ) );
+}
+add_action( 'wp_enqueue_scripts', 'campusinterface_global_styles' );
+
+/**
+ * Loads the global stylesheet in the editor canvas too.
+ *
+ * @since 0.2.0
+ *
+ * @return void
+ */
+function campusinterface_editor_styles() {
+	add_editor_style( 'assets/css/global.css' );
+}
+add_action( 'after_setup_theme', 'campusinterface_editor_styles' );
+
+/**
  * Preloads the body font, the one weight above the fold on every page.
  *
  * @since 0.1.0
