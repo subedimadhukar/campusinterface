@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Dark",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#12131a",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#f1f2f6",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#a5b4fc",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#262a45",
+					"name": "Primary Soft",
+					"slug": "primary-soft"
+				},
+				{
+					"color": "#5eead4",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#7c3aed",
+					"name": "Accent",
+					"slug": "accent"
+				},
+				{
+					"color": "#1b1d27",
+					"name": "Surface",
+					"slug": "surface"
+				},
+				{
+					"color": "#2e3140",
+					"name": "Line",
+					"slug": "line"
+				},
+				{
+					"color": "#4ade80",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#fbbf24",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#f87171",
+					"name": "Danger",
+					"slug": "danger"
+				}
+			]
+		},
+		"shadow": {
+			"presets": [
+				{
+					"name": "Card",
+					"slug": "card",
+					"shadow": "0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 35%)"
+				}
+			]
+		}
+	}
+}

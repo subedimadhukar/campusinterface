@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Kids",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#fffdf7",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#1d2a4d",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#0b62bd",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#e3f1ff",
+					"name": "Primary Soft",
+					"slug": "primary-soft"
+				},
+				{
+					"color": "#c2410c",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#ffd23f",
+					"name": "Accent",
+					"slug": "accent"
+				},
+				{
+					"color": "#fff4d6",
+					"name": "Surface",
+					"slug": "surface"
+				},
+				{
+					"color": "#f2e3b8",
+					"name": "Line",
+					"slug": "line"
+				},
+				{
+					"color": "#1a7f37",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#9a5b06",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#c0262d",
+					"name": "Danger",
+					"slug": "danger"
+				}
+			]
+		}
+	}
+}

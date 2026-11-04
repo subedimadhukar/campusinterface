@@ -68,14 +68,23 @@ CampusInterface.
 
 | Contract token | CampusInterface value |
 |---|---|
-| Colour roles `base`, `contrast`, `primary`, `primary-soft`, `secondary`, `accent`, `surface`, `line`, `success`, `warning`, `danger` | `settings.color.palette` in `theme.json`, and the same eleven slugs in `styles/colors/campus.json` and `styles/colors/studio.json` |
+| Colour roles `base`, `contrast`, `primary`, `primary-soft`, `secondary`, `accent`, `surface`, `line`, `success`, `warning`, `danger` | `settings.color.palette` in `theme.json`, and the same eleven slugs in each colour variation: `styles/colors/campus.json`, `studio.json`, `kids.json`, `corporate.json` and `dark.json` |
 | Font sizes `xs`, `sm`, `base`, `lg`, `xl`, `2xl`, `3xl`, `4xl` | `settings.typography.fontSizes`, fluid from `base` up, between 360px and 1240px viewports |
 | Spacing `20` to `80` | `settings.spacing.spacingScale`: 7 steps, ×1.5, medium (`50`) 1.5rem |
 | `--wp--custom--radius--{sm,md,lg,pill}` | `settings.custom.radius`: 4px, 8px, 16px, 9999px |
 | `--wp--preset--shadow--card` | `settings.shadow.presets`, slug `card` |
 
-Every palette meets WCAG 2.2 AA (4.5:1) on all colour pairs listed in plugin contract B1;
-`composer contrast` checks this in CI and fails the build otherwise.
+Every palette meets WCAG 2.2 AA (4.5:1) on all colour pairs listed in plugin contract B1, plus `secondary`
+on `surface` (the theme's checklist ticks); `composer contrast` (`php bin/check-contrast.php`) checks all six
+palettes in CI and fails the build otherwise. In the Dark variation `base` is dark and `contrast` is light, so
+plugin blocks invert with the rest of the page; `accent` is a deep violet there so that `contrast` text on it
+still passes.
+
+**Course cards.** Contract A5.4 says there is no `publiclms/course-card` block: course cards are core Post
+Template, Post Featured Image, Post Title and bound Paragraph blocks. The theme styles them with five block
+styles on `core/post-template` (Classic cards, Minimal cards, Overlay cards, List, Carousel; CSS in
+`assets/css/blocks/post-template.css`) instead of a section style on a plugin block. If the plugin ever adds a
+card block, add its name to `blockTypes` in `styles/blocks/card.json` and it picks up the Card section style.
 
 Other theme decisions that plugin blocks inherit but do not depend on: `layout.contentSize` 720px,
 `layout.wideSize` 1240px, root padding aware alignments, viewport breakpoints at 30rem (mobile) and 45rem

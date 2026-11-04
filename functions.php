@@ -292,6 +292,71 @@ function campusinterface_block_styles() {
 		)
 	);
 
+	// Query Loop card styles. The card frame is on the `<li>`, which only CSS
+	// can reach (assets/css/blocks/post-template.css); nested blocks are styled
+	// here from theme.json data.
+	$flush_image          = array(
+		'core/post-featured-image' => array(
+			'border' => array(
+				'radius' => '0',
+			),
+		),
+	);
+	$post_template_styles = array(
+		'campusinterface-classic'  => array(
+			'label'      => __( 'Classic cards', 'campusinterface' ),
+			'style_data' => array( 'blocks' => $flush_image ),
+		),
+		'campusinterface-minimal'  => array(
+			'label'      => __( 'Minimal cards', 'campusinterface' ),
+			'style_data' => array(),
+		),
+		'campusinterface-overlay'  => array(
+			'label'      => __( 'Overlay cards', 'campusinterface' ),
+			'style_data' => array(
+				'elements' => array(
+					'link' => array(
+						'color' => array(
+							'text' => 'var:preset|color|base',
+						),
+					),
+				),
+				'blocks'   => array_merge(
+					$flush_image,
+					array(
+						'core/post-title' => array(
+							'elements' => array(
+								'link' => array(
+									'color' => array(
+										'text' => 'var:preset|color|base',
+									),
+								),
+							),
+						),
+					)
+				),
+			),
+		),
+		'campusinterface-list'     => array(
+			'label'      => __( 'List', 'campusinterface' ),
+			'style_data' => array(),
+		),
+		'campusinterface-carousel' => array(
+			'label'      => __( 'Carousel', 'campusinterface' ),
+			'style_data' => array( 'blocks' => $flush_image ),
+		),
+	);
+	foreach ( $post_template_styles as $name => $style ) {
+		$properties = array(
+			'name'  => $name,
+			'label' => $style['label'],
+		);
+		if ( $style['style_data'] ) {
+			$properties['style_data'] = $style['style_data'];
+		}
+		register_block_style( 'core/post-template', $properties );
+	}
+
 	// The tick marks need `list-style-type`, which theme.json cannot set.
 	register_block_style(
 		'core/list',
@@ -313,7 +378,7 @@ add_action( 'init', 'campusinterface_block_styles' );
  * @return void
  */
 function campusinterface_block_stylesheets() {
-	$blocks = array( 'details', 'list', 'loginout' );
+	$blocks = array( 'details', 'list', 'loginout', 'post-template' );
 
 	foreach ( $blocks as $block ) {
 		wp_enqueue_block_style(

@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "System",
+	"styles": {
+		"typography": {
+			"fontFamily": "var:preset|font-family|system-sans",
+			"lineHeight": "1.6"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-serif",
+					"fontWeight": "700",
+					"letterSpacing": "-0.01em"
+				}
+			},
+			"button": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-sans"
+				}
+			}
+		},
+		"blocks": {
+			"core/site-title": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-serif"
+				}
+			},
+			"core/quote": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-serif"
+				}
+			},
+			"core/navigation": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|system-sans"
+				}
+			}
+		}
+	}
+}

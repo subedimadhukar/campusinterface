@@ -11,7 +11,7 @@ A full-site-editing block theme for schools, academies, online course creators a
 
 == Description ==
 
-CampusInterface is a block theme for education websites. Every colour, font size, space and radius is a theme.json token you can change in Styles, with fluid type, responsive styles for phones and tablets, two colour variations (Campus and Studio) and two type sets (Editorial and Modern) that mix freely.
+CampusInterface is a block theme for education websites. Every colour, font size, space and radius is a theme.json token you can change in Styles, with fluid type, responsive styles for phones and tablets, five colour variations (Campus, Studio, Kids, Corporate and Dark) and three type sets (Editorial, Modern and System) that mix freely. Every palette passes WCAG 2.2 AA contrast on the colour pairs the theme and Public LMS use.
 
 CampusInterface pairs with the free Public LMS plugin: install it to add courses, lessons, quizzes and certificates, and the theme's course patterns fill with your courses. Without the plugin, CampusInterface is a clean, fast school or academy website.
 

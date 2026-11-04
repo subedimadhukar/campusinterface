@@ -6,57 +6,57 @@
 		"color": {
 			"palette": [
 				{
-					"color": "#16161d",
+					"color": "#fffaf5",
 					"name": "Base",
 					"slug": "base"
 				},
 				{
-					"color": "#f4f4f6",
+					"color": "#1f1a24",
 					"name": "Contrast",
 					"slug": "contrast"
 				},
 				{
-					"color": "#ff8a6b",
+					"color": "#b4235a",
 					"name": "Primary",
 					"slug": "primary"
 				},
 				{
-					"color": "#2c2230",
+					"color": "#fdebf2",
 					"name": "Primary Soft",
 					"slug": "primary-soft"
 				},
 				{
-					"color": "#5eead4",
+					"color": "#6d28d9",
 					"name": "Secondary",
 					"slug": "secondary"
 				},
 				{
-					"color": "#7c3aed",
+					"color": "#f59e0b",
 					"name": "Accent",
 					"slug": "accent"
 				},
 				{
-					"color": "#1f1f29",
+					"color": "#f8f0e8",
 					"name": "Surface",
 					"slug": "surface"
 				},
 				{
-					"color": "#34343f",
+					"color": "#eaded3",
 					"name": "Line",
 					"slug": "line"
 				},
 				{
-					"color": "#4ade80",
+					"color": "#137333",
 					"name": "Success",
 					"slug": "success"
 				},
 				{
-					"color": "#fbbf24",
+					"color": "#9a4f08",
 					"name": "Warning",
 					"slug": "warning"
 				},
 				{
-					"color": "#f87171",
+					"color": "#b42318",
 					"name": "Danger",
 					"slug": "danger"
 				}

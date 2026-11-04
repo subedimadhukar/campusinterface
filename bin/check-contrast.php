@@ -12,7 +12,10 @@ if ( 'cli' !== PHP_SAPI ) {
 	exit( 1 );
 }
 
-// Foreground, background, minimum ratio.
+// Foreground, background, minimum ratio. The first fifteen are the pairs in the
+// plugin's token contract (B1); `secondary` on `surface` is the theme's own
+// (checklist ticks on surface bands). Dark and primary bands reuse these pairs
+// with the roles swapped, which gives the same ratios.
 $campusinterface_pairs = array(
 	array( 'contrast', 'base', 4.5 ),
 	array( 'contrast', 'surface', 4.5 ),
@@ -24,6 +27,7 @@ $campusinterface_pairs = array(
 	array( 'primary', 'primary-soft', 4.5 ),
 	array( 'base', 'secondary', 4.5 ),
 	array( 'secondary', 'base', 4.5 ),
+	array( 'secondary', 'surface', 4.5 ),
 	array( 'success', 'base', 4.5 ),
 	array( 'success', 'surface', 4.5 ),
 	array( 'warning', 'base', 4.5 ),
