@@ -55,8 +55,8 @@ Its patterns and styles do. Course template overrides are built for Public LMS.
 == Changelog ==
 
 = 0.2.0 =
-* 46 patterns (38 in the inserter): three heroes, course grids in 3 and 4 columns and a scroll-snap carousel, subjects, statistics, features, steps, instructors, testimonials, pricing in 2 and 3 columns, FAQ, two call-to-action bands, events, logos, newsletter, blog cards, log-in panel, promo bar, accessibility statement, five headers, three footers and two full pages.
-* Templates for Public LMS courses, course archives, lessons, quizzes and the student and instructor dashboards, plus landing and split log-in page templates.
+* 49 patterns (38 in the inserter): three heroes, course grids in 3 and 4 columns and a scroll-snap carousel, subjects, statistics, features, steps, instructors, testimonials, pricing in 2 and 3 columns, FAQ, two call-to-action bands, events, logos, newsletter, blog cards, log-in panel, promo bar, accessibility statement, five headers, three footers and two full pages.
+* Templates for Public LMS courses, course archives, lessons, quizzes and the student and instructor dashboards, plus landing and split log-in page templates. Tested with Public LMS contract 1.2.0; quiz, reviews and instructor dashboard areas show a fallback until the plugin ships them.
 * Ten template parts, including a lesson bar, a course sidebar and a WordPress 7.0 navigation overlay.
 * Colour variations Studio, Kids, Corporate and Dark; System type set; section styles for bands and cards; five Query Loop card styles.
 * Accessibility-ready: focus styles for every control, reduced-motion support, accessibility statement pattern.

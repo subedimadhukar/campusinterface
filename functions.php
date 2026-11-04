@@ -410,6 +410,23 @@ function campusinterface_courses_url() {
 }
 
 /**
+ * Tells theme patterns whether Public LMS has registered one of its patterns.
+ *
+ * Contract 1.2.0 ships some `publiclms/*` patterns only from phase 2 (course
+ * reviews, the quiz runner, the instructor dashboard). The theme's templates
+ * reach them through small `hidden-*` patterns that use this check, so each
+ * area shows the plugin's pattern when it exists and a clean fallback before.
+ *
+ * @since 0.2.0
+ *
+ * @param string $slug Pattern slug, for example `publiclms/course-reviews`.
+ * @return bool
+ */
+function campusinterface_has_plugin_pattern( $slug ) {
+	return WP_Block_Patterns_Registry::get_instance()->is_registered( $slug );
+}
+
+/**
  * Keeps course Query Loops empty while Public LMS is inactive.
  *
  * WordPress swaps an unregistered post type in a Query Loop for `post`, so

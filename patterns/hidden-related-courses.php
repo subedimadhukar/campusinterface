@@ -3,7 +3,7 @@
  * Title: Related courses
  * Slug: campusinterface/hidden-related-courses
  * Inserter: no
- * Description: Bottom of the single course template: three more courses as classic cards.
+ * Description: Bottom of the single course template: three related courses as classic cards. With Public LMS 0.1.0+ (contract 1.2.0) the query leaves out the current course and prefers courses in the same categories.
  *
  * @package CampusInterface
  * @since 0.2.0
@@ -20,7 +20,7 @@
 	</div>
 	<!-- /wp:group -->
 
-	<!-- wp:query {"queryId":41,"query":{"perPage":3,"pages":0,"offset":0,"postType":"plms_course","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false},"namespace":"publiclms/course-query","align":"wide","layout":{"type":"default"}} -->
+	<!-- wp:query {"queryId":41,"query":{"perPage":3,"pages":0,"offset":0,"postType":"plms_course","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"publiclmsRelated":true},"namespace":"publiclms/course-query","align":"wide","layout":{"type":"default"}} -->
 	<div class="wp-block-query alignwide">
 		<!-- wp:post-template {"className":"is-style-campusinterface-classic","layout":{"type":"grid","columnCount":3,"minimumColumnWidth":"16rem"}} -->
 			<!-- wp:post-featured-image {"aspectRatio":"16/9","sizeSlug":"campusinterface-course-card"} /-->

@@ -3,30 +3,45 @@
 The contracts themselves live in the plugin repository:
 **[`plugins/public-lms/docs/CONTRACTS.md`](../../../plugins/public-lms/docs/CONTRACTS.md)**
 (on GitHub: `wpinterface/public-lms`, `docs/CONTRACTS.md`). This file records the theme's side of
-contract version **1.0.0**. A change to either side is a pull request on both repositories.
+contract version **1.2.0**. A change to either side is a pull request on both repositories.
 
 ## Tested with
 
 | CampusInterface | Public LMS | Contract |
 |---|---|---|
 | 0.1.0 | 0.1.0 | 1.0.0 |
-| 0.2.0 (phase 1) | 0.1.0 at commit 9b29002 (phase 1 blocks, bindings source, course-query variation, 12 of 16 patterns; no seed command yet). Partial integration run, see below | 1.0.0 |
+| 0.2.0 (phase 1, first pass) | 0.1.0 at commit 9b29002 (blocks, bindings, 12 of 16 patterns, no seed command) | 1.0.0 |
+| 0.2.0 (phase 1 gate) | 0.1.0 at commit dd43e36 (seed command, contract 1.2.0). Full journey run with seeded data, see "Phase 1 integration status" | 1.2.0 |
 
 ## A. Templates and patterns
 
-**What the theme ships (0.2.0):** overrides for all six plugin slugs. Each one uses exactly the plugin's slug
-(A3.1), composes the `publiclms/*` patterns from A6 by slug, and replaces only the sections the theme designs
-itself with `campusinterface/*` patterns. Until Public LMS registers its patterns, those references render
-nothing; the post types do not exist without the plugin, so the templates never apply on a site without it.
+**What the theme ships (0.2.0):** overrides for all six plugin slugs (A1 lets a theme ship all six although
+the plugin registers four in phase 1). Each one uses exactly the plugin's slug (A3.1), composes the
+`publiclms/*` patterns from A6 by slug, and replaces only the sections the theme designs itself with
+`campusinterface/*` patterns. The post types do not exist without the plugin, so the templates never apply on
+a site without it.
+
+**Phase 2 patterns degrade cleanly (A6, 1.2.0 item 9).** The four patterns the plugin registers only from
+phase 2 are never referenced directly. Each sits behind a small theme pattern that checks
+`WP_Block_Patterns_Registry::is_registered()` at render time (`campusinterface_has_plugin_pattern()` in
+`functions.php`) and outputs the plugin pattern when it exists, or a fallback until then:
+
+| Area | Theme pattern | Before the plugin pattern exists |
+|---|---|---|
+| Course reviews (`publiclms/course-reviews`) | `campusinterface/hidden-course-reviews` | Nothing: no heading, no empty section |
+| Quiz body (`publiclms/quiz-header`, `publiclms/quiz-runner`) | `campusinterface/hidden-quiz-body` | Quiz title and a short "not open yet" note. Post Content is left out because Public LMS keeps quiz content closed in phase 1 |
+| Instructor dashboard (`publiclms/instructor-dashboard`) | `campusinterface/hidden-instructor-dashboard` | Page title, a sentence and a button to the plugin's admin screen (`admin.php?page=publiclms`) |
+
+When a phase 2 plugin registers the pattern, the same theme files show it with no theme release.
 
 | Theme file | Overrides | Layout | Plugin patterns used | Theme pieces |
 |---|---|---|---|---|
-| `templates/single-plms_course.html` | `publiclms//single-plms_course` | Tinted hero (subject, title, excerpt, meta row, enrol button, featured image); two columns: description and course sections, then the `sidebar` part; related courses on a surface band | `course-curriculum`, `course-instructor`, `course-reviews`, and `course-enroll-card` inside the `sidebar` part | `hidden-course-hero` (meta row and button bound to `publiclms/course-field`: `instructor`, `level`, `lesson_count`, `duration`, `enrolled_count`, `enroll_url`, `enroll_label`), `sidebar-course`, `hidden-related-courses` |
+| `templates/single-plms_course.html` | `publiclms//single-plms_course` | Tinted hero (subject, title, excerpt, meta row, enrol button, featured image); two columns: description and course sections, then the `sidebar` part; related courses on a surface band | `course-curriculum`, `course-instructor`, `course-reviews` (through `hidden-course-reviews`), and `course-enroll-card` inside the `sidebar` part | `hidden-course-hero` (meta row and button bound to `publiclms/course-field`: `instructor`, `level`, `lesson_count`, `duration`, `enrolled_count`, `enroll_url`, `enroll_label`), `sidebar-course`, `hidden-related-courses` (`publiclmsRelated`) |
 | `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also course category, tag and level archives) | Tinted archive header; a filters column (`<aside>` Group) beside an inherited Query Loop of classic cards, pagination and no-results | none: the archive header and grid are the theme's own | `hidden-course-filters` (course search scoped to `plms_course`, Terms Lists of `plms_course_category` and `plms_level`) |
-| `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free: `lesson-nav` part instead of the header, content width, the course outline in a closed Details block, `footer-minimal` | `lesson-header`, `lesson-content`, `lesson-navigation`, and `lesson-sidebar` inside the Details block | `hidden-lesson-contents` |
-| `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` | `lesson-nav` part, narrow 40rem column, `footer-minimal` | `quiz-header`, `quiz-runner` | none |
+| `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free: `lesson-nav` part instead of the header (its course button is bound to `course_url` and `course_title`), content width, the course outline in a closed Details block, `footer-minimal` | `lesson-header`, `lesson-content`, `lesson-navigation`, and `lesson-sidebar` inside the Details block | `lesson-nav`, `hidden-lesson-contents` |
+| `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` (phase 2 in the plugin) | `lesson-nav` part, narrow 40rem column, `footer-minimal` | `quiz-header`, `quiz-runner` (through `hidden-quiz-body`) | `hidden-quiz-body` |
 | `templates/plms-dashboard.html` | `publiclms//plms-dashboard` | `header-minimal` part, wide column, `footer-minimal` | `student-dashboard` | none |
-| `templates/plms-instructor.html` | `publiclms//plms-instructor` | Same as the student dashboard | `instructor-dashboard` | none |
+| `templates/plms-instructor.html` | `publiclms//plms-instructor` (phase 2 in the plugin) | Same as the student dashboard | `instructor-dashboard` (through `hidden-instructor-dashboard`) | `hidden-instructor-dashboard` |
 
 `theme.json` lists `plms-dashboard` ("Student Dashboard") and `plms-instructor` ("Instructor Dashboard") in
 `customTemplates` with `"postTypes": [ "page" ]` (A3.2), next to the theme's own page templates
@@ -57,6 +72,8 @@ Rules the theme follows (plugin contract A3 to A5):
 |---|---|---|
 | `campusinterface/course-grid` (3 columns), `course-grid-4`, `course-carousel` | Core Query Loop over `plms_course` with `"namespace":"publiclms/course-query"` (A5.5); Post Featured Image at the `campusinterface-course-card` size (480×270, registered by the theme); Post Title; Paragraphs bound to `publiclms/course-field` keys `level`, `lesson_count`, `duration`, `price`; the title is each card's only link (a repeated per-card enrol button would give every card the same link text, which accessibility-ready forbids). `enroll_url` and `enroll_label` are used on the single course hero instead | The theme's `query_loop_block_query_vars` filter returns no posts while `plms_course` is unregistered (WordPress would otherwise swap in `post`), so each pattern shows its "New courses are on their way" message |
 | `campusinterface/category-tiles`, the footer course links | Links to `/course-category/{slug}/` (the plugin's `plms_course_category` rewrite base) for the subjects Data and analytics, Web development, Design, Communication, Business and marketing, Career skills | Links 404 until the plugin and those terms exist; site owners edit them |
+| `campusinterface/hidden-related-courses` | Query Loop with `"namespace":"publiclms/course-query"` and `"query":{"publiclmsRelated":true}` (A5.5, 1.2.0): leaves out the current course and prefers its categories | Not used: it only appears in the course template |
+| `campusinterface/lesson-nav` (the `lesson-nav` part) | Outline Button bound to `course_url` (url) and `course_title` (text), 1.1.0 keys | Where no course is in context the binding returns nothing and the button keeps its own text and link: "All courses", to `campusinterface_courses_url()` |
 | Hero, CTA and header buttons | `campusinterface_courses_url()`: the `plms_course` archive link, or `/courses/` | Links to `/courses/` |
 
 All other patterns are plain core blocks with static content and work on any site.
@@ -92,27 +109,34 @@ Other theme decisions that plugin blocks inherit but do not depend on: `layout.c
 
 ## Phase 1 integration status
 
-**Partial, run on 2026-11-04 against Public LMS 9b29002**, mounted unchanged into the theme's wp-env (WordPress
-7.1.4) next to CampusInterface. The plugin had committed its eight blocks (`course-meta`, `course-progress`,
-`curriculum`, `enroll-button`, `lesson-content`, `lesson-navigation`, `mark-complete`, `student-dashboard`),
-the `publiclms/course-field` bindings source, the `publiclms/course-query` variation, its B5 token stylesheet and
-12 of the 16 A6 patterns, but no seed command, so ten courses were created with WP-CLI instead (the cast from the
-theme's patterns: titles, `plms_course_category` and `plms_level` terms, `_plms_access_mode`, `_plms_price`,
-`_plms_duration`, featured images; no sections or lessons). Still to do when the plugin's seed command and
-remaining patterns land: rerun with seeded sections, lessons, quizzes and an enrolled learner.
+**Done, 2026-11-04, against Public LMS dd43e36 (contract 1.2.0)**, mounted unchanged into the theme's wp-env
+(WordPress 7.1.4, http://localhost:8930). Data from the plugin's own seed command, `wp publiclms seed
+--courses=10`: ten courses in two sections of three lessons each (60 lessons), three instructors, six learners,
+18 enrolments with some progress, and the `/my-learning/` dashboard page. The journey was run as a logged-out
+visitor and as the seeded learner `sita.gurung`.
 
-| Check | Result |
-|---|---|
-| Template precedence | `get_block_templates()` returns `campusinterface//single-plms_course`, `//single-plms_lesson` and `//plms-dashboard` (source `theme`) over the plugin's; the archive and term archives use the theme's `archive-plms_course` |
-| Bindings in theme patterns | Course grid, carousel, related courses, archive cards and the single course hero show the plugin's values: level, lesson count, duration, price ("$49", "Free"), instructor, enrolled count, and "Enrol for free" or "Buy for $49" on the hero button |
-| Plugin patterns in theme templates | `course-curriculum`, `course-instructor` and `course-enroll-card` (in the `sidebar` part) render on the single course; `lesson-header`, `lesson-content`, `lesson-navigation` and `lesson-sidebar` (inside the theme's Course contents Details) on lessons; `student-dashboard` on the dashboard template |
-| Tokens on live plugin blocks | All 31 `--publiclms-*` aliases read on a real plugin block wrapper equal the theme's values; no fallback in use. The enrol button carries `wp-element-button`, so it takes the theme's button element style (primary background, Figtree, `radius--md`, theme padding) |
-| Theme CSS aimed at plugin classes | None |
-| Lighthouse (mobile) with the plugin active | Single course, course archive, a course category archive, a page of plugin blocks and the academy home: accessibility 100 and performance 99 on each |
-| PHP notices | None from the theme or the plugin |
+| Step | Visitor | Learner |
+|---|---|---|
+| Course archive (`/courses/`, theme `archive-plms_course`) | Classic cards with bound level, lesson count, duration and price; theme filter column (course search, subject and level Terms Lists) | Same |
+| Single course (theme `single-plms_course`) | Hero button bound to `enroll_label`/`enroll_url` reads "Log in to enrol"; plugin curriculum (sections, preview badge, durations) and instructor fill the main column; plugin enrol card in the `sidebar` part; related courses leave out the current course; reviews area absent | Hero and enrol card read "Continue learning" with the progress bar (33%, 2 / 6); curriculum shows completion ticks |
+| Lesson (theme `single-plms_lesson`) | Gated: the plugin's "Log in and enrol" panel; the preview lesson opens; the `lesson-nav` button reads the course title and links to the course | Mark complete flips to "Completed", the progress bar moves from 16% to 33% without a reload, the live region announces "Progress saved. Course progress 33%."; previous and next links work |
+| Student dashboard (`/my-learning/`, theme `plms-dashboard` via the plugin's hierarchy filter) | "Log in to see your courses and progress" | In progress (2) and Completed (1) tabs; cards show "2 of 6 lessons · 33%" after the lesson above |
+| Quiz (theme `single-plms_quiz`, test quiz) | Quiz title and the theme's "not open yet" note | Same |
+| Instructor Dashboard page template | Page title, sentence, "Open course tools" button | Same |
 
-Theme-side change from the run: the course description in `single-plms_course` now uses a constrained layout so
-it lines up with the plugin's constrained `course-curriculum` and `course-instructor` sections (see open item 8).
+Token use: on live plugin blocks every `--publiclms-*` alias equals the theme's value (31 of 31), and plugin
+buttons carry `wp-element-button`, so they take the theme's button style. No theme CSS targets plugin classes.
+
+Lighthouse accessibility (12.8.2, mobile) with seeded data: 100 on every page above for the visitor except the
+preview lesson (98, see "Plugin findings" 2). Logged in as the learner, 98 to 100: besides finding 2, the only
+other flag is core's admin bar (`<li role="group">`, `aria-allowed-role`), which logged-in visitors see on every
+theme.
+
+Theme changes from this run: `hidden-related-courses` uses `publiclmsRelated`; the `lesson-nav` part binds a
+course button to `course_url` and `course_title`; the course description is back to a default (full column)
+layout now that plugin column patterns fill their column (the 9b29002 workaround is gone); the main course
+column spaces its sections at `spacing|60`; reviews, quiz and instructor dashboard areas degrade through the
+three conditional patterns above.
 
 **Earlier the same day, before the plugin's blocks landed: Twenty Twenty-Five parity with core blocks.** A page of core blocks the plugin's
 UI will sit next to (buttons, outline buttons, a striped table, Details with a list, Search, Quote, Separator)
@@ -138,51 +162,36 @@ Theme-side fixes this turned up, all made in the theme:
   `:where(input, select, textarea)` the `base` background and `contrast` text at zero specificity. Plugin form
   fields inherit this on CampusInterface, but see open item 4 for other themes.
 
-## Open items for the plugin
+## Open items for the plugin: closed in contract 1.2.0
 
-Gaps the theme found while building against contract 1.0.0. Each is an addition (minor bump) unless noted.
-The theme works around every one today; none blocks the phase 1 gate.
+All nine items the theme raised at 1.0.0 are settled (plugin `docs/CONTRACTS.md`, "Changes in 1.2.0").
 
-1. **Course link on lessons and quizzes.** The `lesson-nav` bar can link to the dashboard and the catalogue but
-   not back to the current course: A7 has no key for it. Request: `course_url` and `course_title` keys on
-   `publiclms/course-field`, resolved from the lesson or quiz context, bindable to Button `url`/`text` and
-   Paragraph `content`.
-2. **Related courses.** `campusinterface/hidden-related-courses` shows the three newest courses, which can
-   include the course being viewed. Request: a `publiclms/course-query` attribute, for example
-   `"query":{"publiclmsRelated":true}`, that excludes the current course and prefers its
-   `plms_course_category` terms.
-3. **Archive filters.** The archive's filter column is an `<aside>` Group whose inner Group has the class
-   `campusinterface-course-filters` and the block name "Course filters"; it holds a core Search scoped to
-   `plms_course` and Terms Lists of `plms_course_category` and `plms_level`. Request: a `publiclms/course-filters`
-   block (level, price, duration) that the theme can place in that Group, documented in A6; until then the
-   plugin should not inject into it.
-4. **Form fields on other themes.** Quiz answers, dashboard filters and the checkout form should not rely on
-   browser defaults for field colours: in a dark palette a white field with inherited light text is unreadable.
-   Request: in the plugin's block CSS, `:where([class*="wp-block-publiclms-"]) :where(input, select, textarea)
-   { background-color: var(--publiclms-color-base); color: var(--publiclms-color-contrast); border-color:
-   var(--publiclms-color-contrast); }`. CampusInterface already does this globally, so it is not urgent here.
-5. **Font size slugs in `theme.json` references (contract wording, patch).** B2 lists the slugs `2xl`, `3xl`,
-   `4xl` and correctly gives the custom properties as `--2-xl` and so on, but a `theme.json` value written
-   `var:preset|font-size|2xl` resolves to the undefined `--wp--preset--font-size--2xl`. CampusInterface had this
-   bug from phase 0 to phase 1. Request: B2 should add that `theme.json` and block style references must use
-   `var:preset|font-size|2-xl` (and `3-xl`, `4-xl`), including any `styles.blocks["publiclms/*"]` defaults the
-   plugin ships.
-6. **Query variation detection.** The theme's course grids, carousel, related courses and archive set
-   `"namespace":"publiclms/course-query"` on the Query block. Request: the variation's `isActive` should match
-   on `namespace` (not on `postType` alone), so the archive's inherited query and the theme's grids keep the
-   variation's controls in the editor.
-7. **Font size slugs in plugin patterns (contract conformance).** Several plugin patterns use core's default
-   slugs, which are not in B2 and which CampusInterface does not define (it sets `defaultFontSizes: false`), so
-   the text silently keeps its inherited size: `"fontSize":"small"` in `course-details`, `course-grid`,
-   `course-hero`, `lesson-header` and `lesson-sidebar`; `"fontSize":"medium"` in `course-enroll-card` and
-   `lesson-sidebar`; `"fontSize":"large"` in `course-grid` and `course-hero`. Request: use the contract slugs
-   (`sm`, `base` or `lg`, `xl`), which every conforming theme defines.
-8. **Pattern wrappers inside template columns.** `course-curriculum`, `course-instructor`, `course-details`,
-   `course-enroll-card`, `lesson-sidebar` and others wrap their content in a Group with
-   `"layout":{"type":"constrained"}`. Inside a theme's two-column course layout this centres the section at the
-   global content width instead of filling the column. CampusInterface works around it (its course description
-   is constrained too). Request: `"layout":{"type":"default"}` on wrappers of patterns meant for columns and
-   sidebars, or `"justifyContent":"left"` as `lesson-header` already does.
-9. **Patterns not registered yet.** `publiclms/course-reviews`, `quiz-header`, `quiz-runner` and
-   `instructor-dashboard` (A6) are referenced by the theme's `single-plms_course`, `single-plms_quiz` and
-   `plms-instructor` templates and currently render nothing.
+| # | Item | Resolution | Theme side |
+|---|---|---|---|
+| 1 | Course link on lessons and quizzes | 1.1.0 keys `course_title` and `course_url` | `lesson-nav` binds its course button to them |
+| 2 | Related courses | `"query":{"publiclmsRelated":true}` on `publiclms/course-query` | `hidden-related-courses` uses it; checked: the current course is left out |
+| 3 | Archive filters | `publiclms/course-filters` is phase 2; the plugin never injects into a theme's filter column | Theme keeps its Search and Terms Lists |
+| 4 | Form field colours on other themes | Plugin block CSS sets field background, text and border from its aliases | Nothing to change; the theme's own zero-specificity field rule stays for core blocks such as Search |
+| 5 | `2-xl` slugs in `theme.json` references | B2 wording added | Theme already uses `2-xl` to `4-xl` |
+| 6 | Variation detection | `isActive` matches on `namespace` (A5.5) | Nothing to change |
+| 7 | Font size slugs in plugin patterns | Patterns use B2 slugs only (A5.8) | Checked: plugin sections take the theme's sizes |
+| 8 | Pattern wrappers in columns | Column and sidebar patterns use `"layout":{"type":"default"}` (A5.7) | Workaround removed from `single-plms_course` |
+| 9 | Phase 2 patterns not registered | Documented in A6 | Reviews, quiz and instructor dashboard areas go through conditional theme patterns |
+
+## Plugin findings from the 1.2.0 run (for the plugin; nothing changed in the plugin folder)
+
+1. **Next-lesson link text disappears once a lesson is complete (accessibility, high).** After Mark complete,
+   and on every later load of a completed lesson, the next link gets `is-ready`. The plugin styles it with
+   `:where(.wp-block-publiclms-lesson-navigation__link.is-next.is-ready) { color: var(--publiclms-color-base); }`
+   on a `--publiclms-color-primary` background, at zero specificity. Core's global link rule
+   `a:where(:not(.wp-element-button)) { color: var(--wp--preset--color--primary) }` (0,0,1), present on every
+   block theme that sets a link colour, wins, so the text is primary on primary (1:1, invisible). Measured on
+   CampusInterface: text and background both `rgb(67, 56, 202)`. Suggested fix: give the state rule at least
+   (0,1,1), for example `.wp-block-publiclms-lesson-navigation .wp-block-publiclms-lesson-navigation__link.is-next.is-ready`
+   (and its `:hover`/`:focus-visible`), or colour the inner `__label` and `__title` spans, which inherit from
+   the anchor only when nothing else sets `color`. The theme cannot fix it without targeting a plugin class.
+2. **Seeded lesson content skips a heading level.** Seeded lessons put "Try this" in an `<h3>` straight under
+   the lesson's `<h1>`, which Lighthouse flags (`heading-order`) on every open lesson. Suggested fix: `<h2>` in the
+   seed content.
+3. **Rounding (minor).** One of six lessons shows as "16%" on the dashboard and progress bar; 16.7% usually
+   rounds to 17%.
