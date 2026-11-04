@@ -3,7 +3,7 @@
  * Title: Lesson course contents
  * Slug: campusinterface/hidden-lesson-contents
  * Inserter: no
- * Description: A closed Details block on lessons that opens the course curriculum, so the lesson stays distraction-free until the learner asks for the outline.
+ * Description: A closed Details block on lessons and quizzes that opens the course curriculum, so the page stays distraction-free until the learner asks for the outline.
  *
  * @package CampusInterface
  * @since 0.2.0

@@ -3,7 +3,7 @@
 A full-site-editing block theme for schools, academies and online courses, and the first of WPInterface's
 "Interface" theme family. Pairs with the free [Public LMS](https://github.com/wpinterface/public-lms) plugin.
 
-Status: **phase 2** (0.3.0, in progress): 50 patterns (38 in the inserter), 16 templates including overrides for all six
+Status: **phase 2** (0.3.0, in progress): 49 patterns (38 in the inserter), 16 templates including overrides for all six
 Public LMS templates, 10 template parts, five colour and three type variations, section styles and five Query Loop card
 styles. Accessibility-ready, right-to-left and multilingual checked, Lighthouse CI budgets, a Playground blueprint.
 Tested with Public LMS and its seeded demo data (see [docs/CONTRACTS.md](docs/CONTRACTS.md) for the contract version
