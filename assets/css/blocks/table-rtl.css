@@ -1,0 +1,15 @@
+/* Generated from table.css by rtlcss 4.3.0. Edit the source and run npm run rtl. */
+/**
+ * Core Table block: the Stripes style.
+ *
+ * Core tints odd rows with a fixed light grey, which would put light text on
+ * light rows in the Dark variation. theme.json cannot reach `nth-child` rows,
+ * so the tint and the row rule use palette tokens here.
+ */
+.wp-block-table.is-style-stripes {
+	border-block-end-color: var(--wp--preset--color--line);
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+	background-color: var(--wp--preset--color--surface);
+}

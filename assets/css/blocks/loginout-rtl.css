@@ -1,0 +1,55 @@
+/* Generated from loginout.css by rtlcss 4.3.0. Edit the source and run npm run rtl. */
+/**
+ * Core Login/out block: the log-in form.
+ *
+ * theme.json has no element for form fields, so the inputs, labels and the
+ * focus ring are set here, all from theme.json presets. Field borders use the
+ * contrast colour, as the token contract asks of form controls.
+ */
+.wp-block-loginout form p {
+	margin-block: 0 var(--wp--preset--spacing--40);
+}
+
+.wp-block-loginout label {
+	display: block;
+	font-size: var(--wp--preset--font-size--sm);
+	font-weight: 600;
+	margin-block-end: var(--wp--preset--spacing--20);
+}
+
+.wp-block-loginout input[type="text"],
+.wp-block-loginout input[type="password"] {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--contrast);
+	border-radius: var(--wp--custom--radius--sm);
+	box-sizing: border-box;
+	color: var(--wp--preset--color--contrast);
+	font: inherit;
+	padding: var(--wp--preset--spacing--30);
+	width: 100%;
+}
+
+.wp-block-loginout .login-remember label {
+	display: inline;
+	font-weight: 400;
+}
+
+.wp-block-loginout input:focus-visible {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+.wp-block-loginout input[type="submit"] {
+	background: var(--wp--preset--color--primary);
+	border: 0;
+	border-radius: var(--wp--custom--radius--md);
+	color: var(--wp--preset--color--base);
+	cursor: pointer;
+	font: inherit;
+	font-weight: 600;
+	padding: 0.7em 1.4em;
+}
+
+.wp-block-loginout input[type="submit"]:hover {
+	background: var(--wp--preset--color--contrast);
+}

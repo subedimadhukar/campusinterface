@@ -1,0 +1,12 @@
+{
+	"name": "campusinterface",
+	"private": true,
+	"description": "Development tools for the CampusInterface theme. Not part of the theme zip.",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"rtl": "node bin/rtl.js"
+	},
+	"devDependencies": {
+		"rtlcss": "4.3.0"
+	}
+}

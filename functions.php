@@ -531,7 +531,12 @@ function campusinterface_global_styles() {
 		array(),
 		wp_get_theme()->get( 'Version' )
 	);
-	wp_style_add_data( 'campusinterface-global', 'path', get_theme_file_path( 'assets/css/global.css' ) );
+	// In right-to-left languages WordPress serves global-rtl.css instead (made
+	// by `npm run rtl`); the path points at the same file, so an inlined copy is
+	// the right-to-left one too. Per-block stylesheets get this from
+	// wp_enqueue_block_style(), and the editor from add_editor_style().
+	wp_style_add_data( 'campusinterface-global', 'rtl', 'replace' );
+	wp_style_add_data( 'campusinterface-global', 'path', get_theme_file_path( is_rtl() ? 'assets/css/global-rtl.css' : 'assets/css/global.css' ) );
 }
 add_action( 'wp_enqueue_scripts', 'campusinterface_global_styles' );
 
@@ -543,6 +548,7 @@ add_action( 'wp_enqueue_scripts', 'campusinterface_global_styles' );
  * @return void
  */
 function campusinterface_editor_styles() {
+	// In right-to-left languages core adds global-rtl.css after it.
 	add_editor_style( 'assets/css/global.css' );
 }
 add_action( 'after_setup_theme', 'campusinterface_editor_styles' );

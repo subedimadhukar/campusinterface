@@ -1,0 +1,177 @@
+/* Generated from post-template.css by rtlcss 4.3.0. Edit the source and run npm run rtl. */
+/**
+ * Core Post Template block: course and post card styles.
+ *
+ * theme.json cannot style the `<li>` that wraps each post, set flex or grid
+ * on it, or add scroll snapping, so those live here. Colours, sizes, radii
+ * and spacing all come from theme.json presets; nested block styles (image
+ * radius, link colours) are in each style's `style_data` in functions.php.
+ */
+
+/* Shared: every card is a column, spaced by gap rather than margins. */
+.wp-block-post-template:is(
+	.is-style-campusinterface-classic,
+	.is-style-campusinterface-minimal,
+	.is-style-campusinterface-overlay,
+	.is-style-campusinterface-carousel
+) > li {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--30);
+}
+
+.wp-block-post-template:is(
+	.is-style-campusinterface-classic,
+	.is-style-campusinterface-minimal,
+	.is-style-campusinterface-overlay,
+	.is-style-campusinterface-list,
+	.is-style-campusinterface-carousel
+) > li > * {
+	margin-block: 0;
+}
+
+/* Classic and carousel: a framed card with the image flush to the top. */
+.wp-block-post-template:is(.is-style-campusinterface-classic, .is-style-campusinterface-carousel) > li {
+	background: var(--wp--preset--color--base);
+	border: 1px solid var(--wp--preset--color--line);
+	border-radius: var(--wp--custom--radius--lg);
+	box-shadow: var(--wp--preset--shadow--card);
+	color: var(--wp--preset--color--contrast);
+	overflow: hidden;
+	padding-block-end: var(--wp--preset--spacing--50);
+}
+
+.wp-block-post-template:is(.is-style-campusinterface-classic, .is-style-campusinterface-carousel) > li > :not(.wp-block-post-featured-image) {
+	padding-inline: var(--wp--preset--spacing--50);
+}
+
+.wp-block-post-template:is(.is-style-campusinterface-classic, .is-style-campusinterface-carousel) > li > .wp-block-post-featured-image {
+	margin-block-end: var(--wp--preset--spacing--20);
+}
+
+/* Keep the last row (price, button or date) on the card's bottom edge. */
+.wp-block-post-template:is(.is-style-campusinterface-classic, .is-style-campusinterface-carousel) > li > :last-child {
+	margin-block-start: auto;
+}
+
+/* Minimal: no frame, a little air under the image. */
+.wp-block-post-template.is-style-campusinterface-minimal > li {
+	gap: var(--wp--preset--spacing--20);
+}
+
+.wp-block-post-template.is-style-campusinterface-minimal > li > .wp-block-post-featured-image {
+	margin-block-end: var(--wp--preset--spacing--20);
+}
+
+/* Overlay: the image fills the card and the text sits on a scrim. */
+.wp-block-post-template.is-style-campusinterface-overlay > li {
+	background: var(--wp--preset--color--contrast);
+	border-radius: var(--wp--custom--radius--lg);
+	color: var(--wp--preset--color--base);
+	gap: var(--wp--preset--spacing--20);
+	isolation: isolate;
+	justify-content: flex-end;
+	min-height: 18rem;
+	overflow: hidden;
+	padding: var(--wp--preset--spacing--50);
+	position: relative;
+}
+
+.wp-block-post-template.is-style-campusinterface-overlay > li > .wp-block-post-featured-image {
+	inset: 0;
+	position: absolute;
+	z-index: -1;
+}
+
+.wp-block-post-template.is-style-campusinterface-overlay > li > .wp-block-post-featured-image :is(a, img) {
+	aspect-ratio: auto !important;
+	display: block;
+	height: 100% !important;
+	object-fit: cover;
+	width: 100%;
+}
+
+.wp-block-post-template.is-style-campusinterface-overlay > li::after {
+	background: linear-gradient(to top, var(--wp--preset--color--contrast) 40%, transparent);
+	content: "";
+	inset: 0;
+	opacity: 0.94;
+	position: absolute;
+	z-index: -1;
+}
+
+/* Preset text colours (eyebrows) would sit on the scrim: use the card's text colour. */
+.wp-block-post-template.is-style-campusinterface-overlay > li .has-text-color {
+	color: inherit !important;
+}
+
+/* List: image at the start of the line, text after it (mirrors in RTL); stacks on phones. */
+.wp-block-post-template.is-style-campusinterface-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--50);
+}
+
+.wp-block-post-template.is-style-campusinterface-list > li {
+	align-items: start;
+	border-block-end: 1px solid var(--wp--preset--color--line);
+	column-gap: var(--wp--preset--spacing--50);
+	display: grid;
+	grid-template-columns: minmax(8rem, 16rem) 1fr;
+	padding-block-end: var(--wp--preset--spacing--50);
+}
+
+.wp-block-post-template.is-style-campusinterface-list > li > * {
+	grid-column: 2;
+}
+
+.wp-block-post-template.is-style-campusinterface-list > li > * + * {
+	margin-block-start: var(--wp--preset--spacing--20);
+}
+
+.wp-block-post-template.is-style-campusinterface-list > li > .wp-block-post-featured-image {
+	grid-column: 1;
+	grid-row: 1 / span 12;
+}
+
+.wp-block-post-template.is-style-campusinterface-list > li > .wp-block-post-featured-image + * {
+	margin-block-start: 0;
+}
+
+@media (width <= 30rem) {
+	.wp-block-post-template.is-style-campusinterface-list > li {
+		grid-template-columns: 1fr;
+	}
+
+	.wp-block-post-template.is-style-campusinterface-list > li > *,
+	.wp-block-post-template.is-style-campusinterface-list > li > .wp-block-post-featured-image {
+		grid-column: 1;
+		grid-row: auto;
+	}
+
+	.wp-block-post-template.is-style-campusinterface-list > li > .wp-block-post-featured-image + * {
+		margin-block-start: var(--wp--preset--spacing--30);
+	}
+}
+
+/* Carousel: one row that scrolls sideways and snaps card by card. No JavaScript. */
+.wp-block-post-template.is-style-campusinterface-carousel {
+	display: flex;
+	gap: var(--wp--preset--spacing--50);
+	overflow-x: auto;
+	overscroll-behavior-inline: contain;
+	padding-block: var(--wp--preset--spacing--20) var(--wp--preset--spacing--40);
+	scroll-snap-type: inline mandatory;
+	scrollbar-color: var(--wp--preset--color--line) transparent;
+}
+
+.wp-block-post-template.is-style-campusinterface-carousel > li {
+	flex: 0 0 min(85%, 20rem);
+	scroll-snap-align: start;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.wp-block-post-template.is-style-campusinterface-carousel {
+		scroll-behavior: smooth;
+	}
+}

@@ -1,0 +1,22 @@
+/* Generated from details.css by rtlcss 4.3.0. Edit the source and run npm run rtl. */
+/**
+ * Core Details block: the summary row.
+ *
+ * theme.json styles the Details wrapper (border and spacing) but cannot reach
+ * the `summary` element, so its weight, pointer and focus ring live here.
+ */
+.wp-block-details > summary {
+	cursor: pointer;
+	font-weight: 600;
+	padding-block: var(--wp--preset--spacing--20);
+}
+
+.wp-block-details > summary:focus-visible {
+	border-radius: var(--wp--custom--radius--sm);
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+.wp-block-details[open] > summary {
+	margin-block-end: var(--wp--preset--spacing--30);
+}
