@@ -586,7 +586,10 @@
 			},
 			"core/search": {
 				"border": {
-					"radius": "var:custom|radius|sm"
+					"color": "var:preset|color|contrast",
+					"radius": "var:custom|radius|sm",
+					"style": "solid",
+					"width": "1px"
 				}
 			},
 			"core/separator": {
@@ -620,6 +623,34 @@
 			"postTypes": [
 				"page"
 			]
+		},
+		{
+			"name": "page-landing",
+			"title": "Landing page (no header or footer)",
+			"postTypes": [
+				"page"
+			]
+		},
+		{
+			"name": "page-login",
+			"title": "Log-in page (split)",
+			"postTypes": [
+				"page"
+			]
+		},
+		{
+			"name": "plms-dashboard",
+			"title": "Student Dashboard",
+			"postTypes": [
+				"page"
+			]
+		},
+		{
+			"name": "plms-instructor",
+			"title": "Instructor Dashboard",
+			"postTypes": [
+				"page"
+			]
 		}
 	],
 	"templateParts": [
@@ -629,9 +660,49 @@
 			"area": "header"
 		},
 		{
+			"name": "header-centered",
+			"title": "Header, centred",
+			"area": "header"
+		},
+		{
+			"name": "header-large-title",
+			"title": "Header with large title",
+			"area": "header"
+		},
+		{
+			"name": "header-minimal",
+			"title": "Header, minimal",
+			"area": "header"
+		},
+		{
 			"name": "footer",
 			"title": "Footer",
 			"area": "footer"
+		},
+		{
+			"name": "footer-columns",
+			"title": "Footer with columns",
+			"area": "footer"
+		},
+		{
+			"name": "footer-minimal",
+			"title": "Footer, minimal",
+			"area": "footer"
+		},
+		{
+			"name": "sidebar",
+			"title": "Course sidebar",
+			"area": "sidebar"
+		},
+		{
+			"name": "lesson-nav",
+			"title": "Lesson bar",
+			"area": "lesson-nav"
+		},
+		{
+			"name": "navigation-overlay",
+			"title": "Navigation overlay",
+			"area": "navigation-overlay"
 		}
 	]
 }

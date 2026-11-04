@@ -14,21 +14,29 @@ contract version **1.0.0**. A change to either side is a pull request on both re
 
 ## A. Templates and patterns
 
-**What the theme ships today (0.1.0):** none of the plugin's six template slugs. The plugin's own templates
-(`publiclms//single-plms_course`, `archive-plms_course`, `single-plms_lesson`, `single-plms_quiz`,
-`plms-dashboard`, `plms-instructor`) render inside CampusInterface's `header` and `footer` parts, which is
-the contract's default path.
+**What the theme ships (0.2.0):** overrides for all six plugin slugs. Each one uses exactly the plugin's slug
+(A3.1), composes the `publiclms/*` patterns from A6 by slug, and replaces only the sections the theme designs
+itself with `campusinterface/*` patterns. Until Public LMS registers its patterns, those references render
+nothing; the post types do not exist without the plugin, so the templates never apply on a site without it.
 
-**Planned overrides** (phase 1, after the plugin's templates and patterns land, at least two weeks later):
+| Theme file | Overrides | Layout | Plugin patterns used | Theme pieces |
+|---|---|---|---|---|
+| `templates/single-plms_course.html` | `publiclms//single-plms_course` | Tinted hero (subject, title, excerpt, meta row, enrol button, featured image); two columns: description and course sections, then the `sidebar` part; related courses on a surface band | `course-curriculum`, `course-instructor`, `course-reviews`, and `course-enroll-card` inside the `sidebar` part | `hidden-course-hero` (meta row and button bound to `publiclms/course-field`: `instructor`, `level`, `lesson_count`, `duration`, `enrolled_count`, `enroll_url`, `enroll_label`), `sidebar-course`, `hidden-related-courses` |
+| `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also course category, tag and level archives) | Tinted archive header; a filters column (`<aside>` Group) beside an inherited Query Loop of classic cards, pagination and no-results | none: the archive header and grid are the theme's own | `hidden-course-filters` (course search scoped to `plms_course`, Terms Lists of `plms_course_category` and `plms_level`) |
+| `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free: `lesson-nav` part instead of the header, content width, the course outline in a closed Details block, `footer-minimal` | `lesson-header`, `lesson-content`, `lesson-navigation`, and `lesson-sidebar` inside the Details block | `hidden-lesson-contents` |
+| `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` | `lesson-nav` part, narrow 40rem column, `footer-minimal` | `quiz-header`, `quiz-runner` | none |
+| `templates/plms-dashboard.html` | `publiclms//plms-dashboard` | `header-minimal` part, wide column, `footer-minimal` | `student-dashboard` | none |
+| `templates/plms-instructor.html` | `publiclms//plms-instructor` | Same as the student dashboard | `instructor-dashboard` | none |
 
-| Theme file | Overrides | Adds |
-|---|---|---|
-| `templates/single-plms_course.html` | `publiclms//single-plms_course` | Hero section style, sticky enrol card in a sidebar column |
-| `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also used for course category, tag and level archives) | Filters column, card section style |
-| `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free layout at content width, `lesson-nav` part |
-| `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` | Narrow layout |
-| `templates/plms-dashboard.html` | `publiclms//plms-dashboard` | Theme header with account menu |
-| `templates/plms-instructor.html` | `publiclms//plms-instructor` | Same |
+`theme.json` lists `plms-dashboard` ("Student Dashboard") and `plms-instructor` ("Instructor Dashboard") in
+`customTemplates` with `"postTypes": [ "page" ]` (A3.2), next to the theme's own page templates
+`page-no-title`, `page-landing` (no header or footer) and `page-login` (split log-in layout).
+
+**Template parts.** `header`, `header-centered`, `header-large-title`, `header-minimal`, `footer`,
+`footer-columns`, `footer-minimal`, `sidebar` (area `sidebar`), `lesson-nav` (area `lesson-nav`) and
+`navigation-overlay` (area `navigation-overlay`). The theme adds the `sidebar` and `lesson-nav` areas with the
+`default_wp_template_part_areas` filter, and `navigation-overlay` too on WordPress versions before 7.0. Every
+part is a single `campusinterface/*` pattern reference, so its text is translatable.
 
 Rules the theme follows (plugin contract A3 to A5):
 
@@ -41,7 +49,7 @@ Rules the theme follows (plugin contract A3 to A5):
 4. No hierarchy filtering is needed: the slugs are the plugin's post type keys or `plms-` prefixed, so the
    theme's copies can never render for another plugin's `course`, `lesson` or `quiz` post types or for an
    ordinary page named "Dashboard".
-5. Theme parts the overrides may use: `header`, `footer` now; `lesson-nav` and `sidebar` from phase 1.
+5. Theme parts the overrides use: the ten parts listed above.
 
 **Patterns that use plugin data (0.2.0):**
 
@@ -72,3 +80,22 @@ Every palette meets WCAG 2.2 AA (4.5:1) on all colour pairs listed in plugin con
 Other theme decisions that plugin blocks inherit but do not depend on: `layout.contentSize` 720px,
 `layout.wideSize` 1240px, root padding aware alignments, viewport breakpoints at 30rem (mobile) and 45rem
 (tablet), and button `:hover`, `:focus` and `:active` styles on `core/button`.
+
+## Open items for the plugin
+
+Gaps the theme found while building against contract 1.0.0. Each is an addition (minor bump) unless noted.
+The theme works around every one today; none blocks the phase 1 gate.
+
+1. **Course link on lessons and quizzes.** The `lesson-nav` bar can link to the dashboard and the catalogue but
+   not back to the current course: A7 has no key for it. Request: `course_url` and `course_title` keys on
+   `publiclms/course-field`, resolved from the lesson or quiz context, bindable to Button `url`/`text` and
+   Paragraph `content`.
+2. **Related courses.** `campusinterface/hidden-related-courses` shows the three newest courses, which can
+   include the course being viewed. Request: a `publiclms/course-query` attribute, for example
+   `"query":{"publiclmsRelated":true}`, that excludes the current course and prefers its
+   `plms_course_category` terms.
+3. **Archive filters.** The archive's filter column is an `<aside>` Group whose inner Group has the class
+   `campusinterface-course-filters` and the block name "Course filters"; it holds a core Search scoped to
+   `plms_course` and Terms Lists of `plms_course_category` and `plms_level`. Request: a `publiclms/course-filters`
+   block (level, price, duration) that the theme can place in that Group, documented in A6; until then the
+   plugin should not inject into it.

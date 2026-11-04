@@ -1,0 +1,37 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="margin-top:0">
+	<!-- wp:pattern {"slug":"campusinterface/hidden-course-hero"} /-->
+
+	<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|80"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
+	<div class="wp-block-group alignfull" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--80)">
+		<!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|70"}}}} -->
+		<div class="wp-block-columns alignwide">
+			<!-- wp:column {"width":"66.66%"} -->
+			<div class="wp-block-column" style="flex-basis:66.66%">
+				<!-- wp:post-content {"layout":{"type":"default"}} /-->
+
+				<!-- wp:pattern {"slug":"publiclms/course-curriculum"} /-->
+
+				<!-- wp:pattern {"slug":"publiclms/course-instructor"} /-->
+
+				<!-- wp:pattern {"slug":"publiclms/course-reviews"} /-->
+			</div>
+			<!-- /wp:column -->
+
+			<!-- wp:column {"width":"33.33%"} -->
+			<div class="wp-block-column" style="flex-basis:33.33%">
+				<!-- wp:template-part {"slug":"sidebar","tagName":"aside"} /-->
+			</div>
+			<!-- /wp:column -->
+		</div>
+		<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:pattern {"slug":"campusinterface/hidden-related-courses"} /-->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

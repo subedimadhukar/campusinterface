@@ -101,6 +101,56 @@ function campusinterface_pattern_categories() {
 add_action( 'init', 'campusinterface_pattern_categories' );
 
 /**
+ * Adds the template part areas the theme's parts use.
+ *
+ * `sidebar` (the course sidebar) and `lesson-nav` (the slim bar on lessons
+ * and quizzes) are theme areas. WordPress 7.0 added `navigation-overlay`;
+ * on older versions the theme registers it too, so the overlay part keeps a
+ * valid area and its header falls back to the default mobile menu.
+ *
+ * @since 0.2.0
+ *
+ * @param array<int, array<string, string>> $areas Template part areas.
+ * @return array<int, array<string, string>>
+ */
+function campusinterface_template_part_areas( $areas ) {
+	$known = wp_list_pluck( $areas, 'area' );
+
+	$theme_areas = array(
+		array(
+			'area'        => 'sidebar',
+			'area_tag'    => 'aside',
+			'label'       => _x( 'Sidebar', 'template part area', 'campusinterface' ),
+			'description' => __( 'The sidebar of single course pages, which holds the enrol card.', 'campusinterface' ),
+			'icon'        => 'sidebar',
+		),
+		array(
+			'area'        => 'lesson-nav',
+			'area_tag'    => 'header',
+			'label'       => _x( 'Lesson bar', 'template part area', 'campusinterface' ),
+			'description' => __( 'The slim bar at the top of lessons and quizzes, without the main navigation.', 'campusinterface' ),
+			'icon'        => 'header',
+		),
+		array(
+			'area'        => 'navigation-overlay',
+			'area_tag'    => 'div',
+			'label'       => _x( 'Navigation Overlay', 'template part area', 'campusinterface' ),
+			'description' => __( 'The menu that opens over the page on small screens.', 'campusinterface' ),
+			'icon'        => 'navigation-overlay',
+		),
+	);
+
+	foreach ( $theme_areas as $area ) {
+		if ( ! in_array( $area['area'], $known, true ) ) {
+			$areas[] = $area;
+		}
+	}
+
+	return $areas;
+}
+add_filter( 'default_wp_template_part_areas', 'campusinterface_template_part_areas' );
+
+/**
  * Registers block style variations that are not section styles.
  *
  * Section styles (bands, cards, the "most popular" highlight and the header
@@ -263,7 +313,7 @@ add_action( 'init', 'campusinterface_block_styles' );
  * @return void
  */
 function campusinterface_block_stylesheets() {
-	$blocks = array( 'details', 'list' );
+	$blocks = array( 'details', 'list', 'loginout' );
 
 	foreach ( $blocks as $block ) {
 		wp_enqueue_block_style(
