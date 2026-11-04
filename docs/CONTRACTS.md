@@ -10,7 +10,7 @@ contract version **1.0.0**. A change to either side is a pull request on both re
 | CampusInterface | Public LMS | Contract |
 |---|---|---|
 | 0.1.0 | 0.1.0 | 1.0.0 |
-| 0.2.0 (phase 1) | Not yet: the plugin's phase 1 blocks, patterns and seed command were not committed at the theme's phase 1 gate (plugin HEAD 37bdd68). Token parity checked instead, see below | 1.0.0 |
+| 0.2.0 (phase 1) | 0.1.0 at commit 9b29002 (phase 1 blocks, bindings source, course-query variation, 12 of 16 patterns; no seed command yet). Partial integration run, see below | 1.0.0 |
 
 ## A. Templates and patterns
 
@@ -92,12 +92,29 @@ Other theme decisions that plugin blocks inherit but do not depend on: `layout.c
 
 ## Phase 1 integration status
 
-**Pending.** At the theme's phase 1 gate (2026-11-04) Public LMS had committed its data layer, REST API and
-admin app but not its blocks, patterns, bindings source or seed command, so the planned check (activate both,
-seed ten courses, inspect the single course, archive, lesson and dashboard) could not run. It is the first task
-of phase 2, or of a follow-up as soon as the plugin's blocks land.
+**Partial, run on 2026-11-04 against Public LMS 9b29002**, mounted unchanged into the theme's wp-env (WordPress
+7.1.4) next to CampusInterface. The plugin had committed its eight blocks (`course-meta`, `course-progress`,
+`curriculum`, `enroll-button`, `lesson-content`, `lesson-navigation`, `mark-complete`, `student-dashboard`),
+the `publiclms/course-field` bindings source, the `publiclms/course-query` variation, its B5 token stylesheet and
+12 of the 16 A6 patterns, but no seed command, so ten courses were created with WP-CLI instead (the cast from the
+theme's patterns: titles, `plms_course_category` and `plms_level` terms, `_plms_access_mode`, `_plms_price`,
+`_plms_duration`, featured images; no sections or lessons). Still to do when the plugin's seed command and
+remaining patterns land: rerun with seeded sections, lessons, quizzes and an enrolled learner.
 
-**What was checked instead (Twenty Twenty-Five parity with core blocks).** A page of core blocks the plugin's
+| Check | Result |
+|---|---|
+| Template precedence | `get_block_templates()` returns `campusinterface//single-plms_course`, `//single-plms_lesson` and `//plms-dashboard` (source `theme`) over the plugin's; the archive and term archives use the theme's `archive-plms_course` |
+| Bindings in theme patterns | Course grid, carousel, related courses, archive cards and the single course hero show the plugin's values: level, lesson count, duration, price ("$49", "Free"), instructor, enrolled count, and "Enrol for free" or "Buy for $49" on the hero button |
+| Plugin patterns in theme templates | `course-curriculum`, `course-instructor` and `course-enroll-card` (in the `sidebar` part) render on the single course; `lesson-header`, `lesson-content`, `lesson-navigation` and `lesson-sidebar` (inside the theme's Course contents Details) on lessons; `student-dashboard` on the dashboard template |
+| Tokens on live plugin blocks | All 31 `--publiclms-*` aliases read on a real plugin block wrapper equal the theme's values; no fallback in use. The enrol button carries `wp-element-button`, so it takes the theme's button element style (primary background, Figtree, `radius--md`, theme padding) |
+| Theme CSS aimed at plugin classes | None |
+| Lighthouse (mobile) with the plugin active | Single course, course archive, a course category archive, a page of plugin blocks and the academy home: accessibility 100 and performance 99 on each |
+| PHP notices | None from the theme or the plugin |
+
+Theme-side change from the run: the course description in `single-plms_course` now uses a constrained layout so
+it lines up with the plugin's constrained `course-curriculum` and `course-instructor` sections (see open item 8).
+
+**Earlier the same day, before the plugin's blocks landed: Twenty Twenty-Five parity with core blocks.** A page of core blocks the plugin's
 UI will sit next to (buttons, outline buttons, a striped table, Details with a list, Search, Quote, Separator)
 plus a Group with the class `wp-block-publiclms-probe`, on CampusInterface and on Twenty Twenty-Five, in
 wp-env (WordPress 7.1.4). The B5 alias layer was injected exactly as the contract writes it
@@ -154,3 +171,18 @@ The theme works around every one today; none blocks the phase 1 gate.
    `"namespace":"publiclms/course-query"` on the Query block. Request: the variation's `isActive` should match
    on `namespace` (not on `postType` alone), so the archive's inherited query and the theme's grids keep the
    variation's controls in the editor.
+7. **Font size slugs in plugin patterns (contract conformance).** Several plugin patterns use core's default
+   slugs, which are not in B2 and which CampusInterface does not define (it sets `defaultFontSizes: false`), so
+   the text silently keeps its inherited size: `"fontSize":"small"` in `course-details`, `course-grid`,
+   `course-hero`, `lesson-header` and `lesson-sidebar`; `"fontSize":"medium"` in `course-enroll-card` and
+   `lesson-sidebar`; `"fontSize":"large"` in `course-grid` and `course-hero`. Request: use the contract slugs
+   (`sm`, `base` or `lg`, `xl`), which every conforming theme defines.
+8. **Pattern wrappers inside template columns.** `course-curriculum`, `course-instructor`, `course-details`,
+   `course-enroll-card`, `lesson-sidebar` and others wrap their content in a Group with
+   `"layout":{"type":"constrained"}`. Inside a theme's two-column course layout this centres the section at the
+   global content width instead of filling the column. CampusInterface works around it (its course description
+   is constrained too). Request: `"layout":{"type":"default"}` on wrappers of patterns meant for columns and
+   sidebars, or `"justifyContent":"left"` as `lesson-header` already does.
+9. **Patterns not registered yet.** `publiclms/course-reviews`, `quiz-header`, `quiz-runner` and
+   `instructor-dashboard` (A6) are referenced by the theme's `single-plms_course`, `single-plms_quiz` and
+   `plms-instructor` templates and currently render nothing.
