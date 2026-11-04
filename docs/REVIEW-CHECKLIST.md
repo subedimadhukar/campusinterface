@@ -2,8 +2,9 @@
 
 Checked against the [required review guidelines](https://make.wordpress.org/themes/handbook/review/required/)
 and the [accessibility-ready guidelines](https://make.wordpress.org/themes/handbook/review/accessibility/required/)
-on 2026-11-04, for CampusInterface 0.2.0 (phase 1 gate), on the distributable copy that `git archive` builds
-(dev files are `export-ignore`d in `.gitattributes`).
+on 2026-11-04, for CampusInterface 0.3.0 (phase 2, end of the theme-only work), on the distributable copy that
+`git archive` builds (dev files are `export-ignore`d in `.gitattributes`). Phase 1 results are kept where the
+phase 2 run did not replace them; rows marked "phase 2" are new.
 
 Legend: **Pass**, **N/A** (does not apply to this theme), **Owner** (needs a decision or account action by
 WPInterface before submission).
@@ -12,11 +13,11 @@ WPInterface before submission).
 
 | Check | Command | Result |
 |---|---|---|
-| Theme Check | `mkdir -p dist/campusinterface && git archive HEAD \| tar -x -C dist/campusinterface`, then wp-env with `"themes": [ "./dist/campusinterface" ]` in `.wp-env.override.json`, then `npx @wordpress/env@12 run cli wp theme-check run campusinterface` | No REQUIRED, WARNING or RECOMMENDED results; two INFO notes (accessibility-ready tag triggers an accessibility review; one text domain, `campusinterface`) |
+| Theme Check | `mkdir -p dist/campusinterface && git archive HEAD \| tar -x -C dist/campusinterface`, then wp-env with `"themes": [ "./dist/campusinterface" ]` in `.wp-env.override.json`, then `npx @wordpress/env@12 run cli wp theme-check run campusinterface` | 0.3.0, on WordPress 6.7.11 and 7.1.4: no REQUIRED, WARNING or RECOMMENDED results; two INFO notes (accessibility-ready tag triggers an accessibility review; one text domain, `campusinterface`) |
 | PHPCS (WordPress-Extra, WordPress-Docs, PHPCompatibilityWP 7.4+) | `composer lint` | Clean |
 | Palette contrast, six palettes × 16 pairs | `composer contrast` | 96 of 96 pass AA; lowest 4.63:1 (Kids, `success` on `surface`) |
-| Block validity | Editor on WordPress 7.1.4 and on 6.7.2 (the minimum; second wp-env with `"core": "https://wordpress.org/wordpress-6.7.2.zip"`): `wp.blocks.parse()` over every theme pattern, template and part | 49 patterns, 16 templates, 10 parts: no invalid or missing blocks on either version (rechecked after the contract 1.2.0 changes). Markup follows 6.7 where the versions differ (resized images without `height:auto`, legacy text alignment); 7.1 accepts it through core deprecations |
-| PHP notices | `WP_DEBUG` and `WP_DEBUG_LOG` on; front page, pages on each page template, single post, category, date and search archives, 404; on 7.1.4 and 6.7.2 | Nothing logged |
+| Block validity | Editor on WordPress 7.1.4 and on 6.7.11 (the minimum to test; 6.7.0 rejects underscores in plugin template names; second wp-env with `"core": "https://wordpress.org/wordpress-6.7.11.zip"` mounting the `git archive` copy, theme pattern cache cleared before each run): `wp.blocks.parse()` over every theme pattern (rendered by PHP, from REST), template and part file, before every phase 2 commit | 50 patterns, 16 templates, 10 parts: no invalid or missing blocks on either version. On 6.7.11 nothing needs a deprecation; on 7.1.4 resized images in six patterns go through core's Image deprecation (markup follows 6.7 where the versions differ), which the editor applies silently |
+| PHP notices | `WP_DEBUG` and `WP_DEBUG_LOG` on, log cleared first; front page, landing, log-in, every pattern, posts page, page, single post, category, author, date and search archives (results and none), 404, feed, course archive, course category and level, course, open and gated lessons, quiz, both dashboards; as a visitor and as the seeded learner; on 7.1.4 and 6.7.11 (phase 2, 100 requests on each) | Nothing logged by the theme on either version. Editor loads log one warning from Public LMS (`docs/CONTRACTS.md`, "Plugin findings" 6) |
 | Lighthouse 12.8.2, accessibility only, five more pages (log-in template, landing page, card styles, core block page, pattern sampler) | `npx lighthouse@12 <url> --only-categories=accessibility` | 100 on each |
 | Lighthouse 12.8.2, accessibility, Public LMS pages with seeded data (contract 1.2.0 run) | `wp publiclms seed --courses=10`, then `npx lighthouse@12 <url> --only-categories=accessibility`, as a visitor and with the learner's cookie in `--extra-headers` | Visitor: 100 on the course archive, a single course, two lessons, the dashboard, a quiz and the instructor dashboard template; 98 on the open preview lesson (`heading-order` in the plugin's seeded lesson text). Learner: 98–100; the extra flag is core's admin bar (`aria-allowed-role`). Details and a plugin contrast bug in `docs/CONTRACTS.md` |
 | Lighthouse CI budgets (phase 2) | `lighthouserc.json` with `@lhci/cli@0.15.1`, three runs per page, median run; CI job `.github/workflows/lighthouse.yml` (skips cleanly when Public LMS is not reachable) | Reproduced locally in a fresh wp-env laid out as on CI (theme and plugin side by side, `WP_DEBUG` off, `bin/lighthouse-seed.sh`): all assertions pass on the academy home, course archive, Bookkeeping course and its preview lesson. Measured: performance 99–100, accessibility 100, FCP 1.4–1.7 s, LCP 1.7–2.1 s, CLS 0, TBT 0 ms; 126–148 KB per page (44–47 KB script, 2–9 KB CSS, 57 KB fonts); no third-party request except one Gravatar image on the course page (core avatars in the plugin's instructor block), which the matrix allows there only. The no-token probe was checked against the private repository (skip) and a public one (run) |
@@ -47,8 +48,8 @@ WPInterface before submission).
 | Requirement | Status | Notes |
 |---|---|---|
 | Skip link, first focusable, visible on focus, moves focus to main | Pass | WordPress adds it for block themes when a template has `<main>`; every template has exactly one `<main>` |
-| Visible focus on menus, form fields, submit buttons, text links | Pass | Links and buttons: `:focus-visible` in `theme.json`; fields, summaries, menu toggles and the carousel: `assets/css/global.css`; log-in fields: `assets/css/blocks/loginout.css`; Details summary: `assets/css/blocks/details.css` |
-| Everything reachable and operable by keyboard, on all screen sizes | Pass | Core navigation overlay (keyboard and touch), Details blocks, scroll-snap carousel (tab into each card link). No hover-only controls |
+| Visible focus on menus, form fields, submit buttons, text links | Pass | Links and buttons: `:focus-visible` in `theme.json`; fields, summaries, menu toggles and the carousel: `assets/css/global.css`; log-in fields: `assets/css/blocks/loginout.css`; Details summary: `assets/css/blocks/details.css`; Search fields with the button inside: `assets/css/blocks/search.css` (phase 2). Every Tab stop on 15 pages checked for a visible change ("Keyboard pass" above) |
+| Everything reachable and operable by keyboard, on all screen sizes | Pass | Core navigation overlay (modal dialog: focus moves in, stays in, Escape returns it to the menu button), Details blocks, scroll-snap carousel (tab into each card link). No hover-only controls. Checked at 1280 and 375 px in the phase 2 keyboard pass |
 
 ## 4. Code
 
@@ -68,7 +69,7 @@ WPInterface before submission).
 | No paywalled WordPress features | Pass | |
 | Non-presentational hooks left in place | Pass | |
 | No custom post types, blocks, roles, contact methods, mime types or shortcodes | Pass | Courses come from the Public LMS plugin. The only course-related PHP is a `query_loop_block_query_vars` filter that returns no posts for `plms_course` queries while the plugin is inactive (presentation: avoids blog posts appearing in course grids) |
-| Only design and presentation | Pass | |
+| Only design and presentation | Pass | Phase 2 PHP is presentational too: `comment_form_defaults` only changes the form title's heading level, and `campusinterface_privacy_policy_url()` reads core's privacy page setting for the footer link |
 
 ## 6. Plugins
 
@@ -101,12 +102,12 @@ WPInterface before submission).
 | Requirement | Status | Notes |
 |---|---|---|
 | Complete, no code meant for other versions | Pass | |
-| No VCS folders, hidden files, zips or disallowed files | Pass | `git archive` output holds only `assets/`, `languages/`, `parts/`, `patterns/`, `styles/`, `templates/`, `functions.php`, `readme.txt`, `screenshot.png`, `style.css`, `theme.json` |
+| No VCS folders, hidden files, zips or disallowed files | Pass | `git archive` output holds only `assets/`, `languages/`, `parts/`, `patterns/`, `styles/`, `templates/`, `functions.php`, `readme.txt`, `screenshot.png`, `style.css`, `theme.json` (rechecked at 0.3.0: `blueprint.json`, `lighthouserc.json`, `bin/`, `docs/` and `.github/` stay out) |
 | One line-ending type | Pass | LF only |
 | All assets bundled; no CDNs or remote fetches | Pass | |
 | `style.css` headers complete | Pass | Theme Name, Author, Description, Version, Requires at least, Tested up to, Requires PHP, License, License URI, Text Domain |
 | Theme URI points to the theme; Author URI about the author | **Owner** | `https://wpinterface.com/themes/campusinterface/` must exist before submission |
-| Tags from the Theme Tag List | Pass | Includes `education` and `accessibility-ready` |
+| Tags from the Theme Tag List | Pass | Includes `education` and `accessibility-ready`; `rtl-language-support` and `translation-ready` were checked in phase 2 (section 8) |
 | Valid `readme.txt`, one Contributors username, short description ≤ 150 characters | Pass / **Owner** | 103 characters. `Contributors: wpinterface` must be the WordPress.org account that submits |
 | Original files for minified ones; no bundled core libraries | Pass | Nothing minified; no jQuery |
 | No images of recognisable children, hate or violence | Pass | Portraits are faceless illustrations of adults |
@@ -144,17 +145,17 @@ N/A: no settings pages, options or onboarding.
 | Guideline | Status | How |
 |---|---|---|
 | Skip to content link | Pass | Core skip link |
-| Meaningful landmark roles and names | Pass | `<header>`, `<main>`, `<footer>` from template parts and groups; every navigation has an `aria-label` (Main, Footer, Course categories, Academy, Help); course sidebar and archive filters are `<aside>` |
-| Keyboard navigation | Pass | See section 3 |
+| Meaningful landmark roles and names | Pass | `<header>`, `<main>`, `<footer>` from template parts and groups; every navigation has an `aria-label` (Main, Footer, Course categories, Academy, Help); course sidebar and archive filters are `<aside>`; the log-in template's coloured half is its `<header>` (phase 2) |
+| Keyboard navigation | Pass | See section 3 and the phase 2 keyboard pass |
 | Controls with names, roles and states | Pass | Core blocks only (navigation toggles, Details, buttons, Login/out) |
 | Labelled form fields | Pass | Search blocks keep their label (visually hidden where `showLabel` is false); `wp_login_form()` labels |
-| Meaningful heading structure | Pass | One `h1` per template or full-page pattern (hero, post title or archive title); sections `h2`, cards `h3`; site title is a paragraph |
+| Meaningful heading structure | Pass | One `h1` per template or full-page pattern (hero, post title, archive title, the "Blog" heading on `home` and `index`, the page title on both dashboards); sections `h2`, cards `h3`; the comment form title is an `h2`; site title is a paragraph. axe `heading-order` and `page-has-heading-one` pass on every template |
 | Underlined links in text | Pass | `styles.elements.link` underlines; only navigation and post-title links drop the underline |
 | No ambiguous link text | Pass | No "Read more"; course cards link only from the title. Buttons have distinct labels ("Book a place", "Register", "Reserve your place") |
-| Contrast of text and UI controls | Pass | `composer contrast`, all six palettes; form-field borders use `contrast` |
+| Contrast of text and UI controls | Pass | `composer contrast`, all six palettes; form-field borders use `contrast`; axe `color-contrast` on rendered pages under all five colour variations (phase 2) |
 | Alternative text | Pass | Every content image has alt text; the ten icons beside headings are decorative and have `alt=""` (WCAG technique H67) |
 | Accessible audio, video and animation | Pass | No media and no animation in the theme; `prefers-reduced-motion` rule in `global.css` |
-| Reflow, resize, text spacing | Pass | Fluid type and grids down to 320px; tested at 375px |
+| Reflow, resize, text spacing | Pass | Fluid type and grids down to 320px; tested at 375px; long translated words and figures wrap inside their column (phase 2, section 8) |
 | No unexpected changes of context | Pass | |
 | No new windows without warning | Pass | No `target="_blank"` |
 | Content on hover or focus accessible | Pass | No hover-revealed content beyond core submenus |
@@ -168,3 +169,11 @@ N/A: no settings pages, options or onboarding.
 2. Make the Theme URI page live.
 3. Confirm the `Contributors` username.
 4. Run Theme Check again on the final zip and attach the result to the Trac ticket.
+
+## Owner actions for the public beta (outside WordPress.org)
+
+1. Add a `PUBLIC_LMS_TOKEN` repository secret (read access to `wpinterface/public-lms`) so the Lighthouse
+   workflow runs; until then it is skipped. Remove it once the plugin repository is public.
+2. For the Playground link: make both repositories public and have the plugin's release workflow attach
+   `public-lms.zip` to each GitHub release (plugin finding 8), then open the blueprint link in `README.md` once
+   to check it.
