@@ -19,6 +19,7 @@ CampusInterface pairs with the free Public LMS plugin: install it to add courses
 * Self-hosted variable fonts, nothing loaded from third-party servers
 * 38 patterns: heroes, course grids and a scroll-snap carousel, pricing, instructors, testimonials, events, FAQ, headers, footers and two full pages
 * Templates for posts, pages, archives, search and 404
+* Right-to-left ready: layouts, card styles, the quote bar and the carousel mirror in Arabic, Hebrew and other RTL languages
 
 == Accessibility ==
 
@@ -53,6 +54,9 @@ No. The theme works on its own. The course grid pattern shows courses only when 
 Its patterns and styles do. Course template overrides are built for Public LMS.
 
 == Changelog ==
+
+= 0.3.0 =
+* Right-to-left: the quote bar now sits on the reading side; Arabic-script languages keep their letter joins in Safari.
 
 = 0.2.0 =
 * 49 patterns (38 in the inserter): three heroes, course grids in 3 and 4 columns and a scroll-snap carousel, subjects, statistics, features, steps, instructors, testimonials, pricing in 2 and 3 columns, FAQ, two call-to-action bands, events, logos, newsletter, blog cards, log-in panel, promo bar, accessibility statement, five headers, three footers and two full pages.

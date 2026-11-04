@@ -378,7 +378,7 @@ add_action( 'init', 'campusinterface_block_styles' );
  * @return void
  */
 function campusinterface_block_stylesheets() {
-	$blocks = array( 'details', 'list', 'loginout', 'post-template', 'table' );
+	$blocks = array( 'details', 'list', 'loginout', 'post-template', 'quote', 'table' );
 
 	foreach ( $blocks as $block ) {
 		wp_enqueue_block_style(

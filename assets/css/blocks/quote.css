@@ -1,0 +1,17 @@
+/**
+ * Core Quote block: the accent bar on the reading side.
+ *
+ * theme.json can only set a physical side (`border.left`), which stays on the
+ * left in right-to-left languages. Logical properties put the bar and its
+ * padding at the start of the line in either direction. Zero specificity, so
+ * a border or padding set in Global Styles or on the block still wins.
+ */
+:where(.wp-block-quote) {
+	border-inline-start: 4px solid var(--wp--preset--color--primary);
+	padding-inline-start: var(--wp--preset--spacing--50);
+}
+
+:where(.wp-block-quote.is-style-plain) {
+	border-inline-start: 0;
+	padding-inline-start: 0;
+}

@@ -104,7 +104,7 @@
 	color: inherit !important;
 }
 
-/* List: image on the left, text on the right; stacks on phones. */
+/* List: image at the start of the line, text after it (mirrors in RTL); stacks on phones. */
 .wp-block-post-template.is-style-campusinterface-list {
 	display: flex;
 	flex-direction: column;

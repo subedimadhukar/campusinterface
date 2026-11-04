@@ -1,5 +1,5 @@
 /**
- * CampusInterface global stylesheet: accessibility rules theme.json cannot express.
+ * CampusInterface global stylesheet: accessibility and language rules theme.json cannot express.
  *
  * Links and buttons get their focus ring from theme.json (`:focus-visible` on the
  * link and button elements). This file covers everything else that can take
@@ -29,6 +29,16 @@
 /* On dark and primary bands the ring takes the band's text colour. */
 :where(.is-style-campusinterface-band-dark, .is-style-campusinterface-band-primary) :where(input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
 	outline-color: currentcolor;
+}
+
+/*
+ * Arabic-script languages join their letters; tracking (the eyebrow, badge and
+ * date styles, the headings' slight negative spacing) pulls the joins apart in
+ * Safari. Chrome and Firefox already ignore letter-spacing for these scripts.
+ * `!important` because the tracking also comes from inline block styles.
+ */
+:is(:lang(ar), :lang(ary), :lang(azb), :lang(ckb), :lang(fa), :lang(haz), :lang(ps), :lang(sd), :lang(skr), :lang(ug), :lang(ur)) * {
+	letter-spacing: normal !important;
 }
 
 /*

@@ -195,3 +195,16 @@ All nine items the theme raised at 1.0.0 are settled (plugin `docs/CONTRACTS.md`
    seed content.
 3. **Rounding (minor).** One of six lessons shows as "16%" on the dashboard and progress bar; 16.7% usually
    rounds to 17%.
+
+## Plugin findings from the theme's phase 2 work (for the plugin; nothing changed in the plugin folder)
+
+Numbering continues from the 1.2.0 run above.
+
+4. **Progress bars fill from the left in right-to-left languages (RTL, medium).** Found in the theme's RTL pass
+   (site language Arabic, `<html dir="rtl">`, Public LMS at 40f9aed). `publiclms/course-progress` and the
+   student dashboard cards place the fill with `inset: 0 auto 0 0`. The build's `style-index-rtl.css` keeps that
+   unchanged (rtlcss does not flip the `inset` shorthand), so on the learner's dashboard a 33% bar is filled at
+   the left end (fill `left: 0`, `right: 171px` of a 256px track) while every other element mirrors. Suggested
+   fix: `inset-block: 0; inset-inline-start: 0;` (logical, no RTL build step needed) in
+   `src/blocks/course-progress/style.scss` and `src/blocks/student-dashboard/style.scss`. Everything else on
+   plugin pages mirrors correctly: curriculum, enrol card, lesson navigation (Next on the left), dashboard tabs.
