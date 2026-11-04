@@ -1,0 +1,66 @@
+{
+	"ci": {
+		"collect": {
+			"url": [
+				"http://localhost:8888/academy-home/",
+				"http://localhost:8888/courses/",
+				"http://localhost:8888/courses/bookkeeping-basics-for-small-businesses/",
+				"http://localhost:8888/lessons/why-bookkeeping-matters/"
+			],
+			"numberOfRuns": 3,
+			"settings": {
+				"onlyCategories": [ "performance", "accessibility" ],
+				"chromeFlags": "--no-sandbox --headless=new"
+			}
+		},
+		"assert": {
+			"assertMatrix": [
+				{
+					"matchingUrlPattern": ".*",
+					"aggregationMethod": "median-run",
+					"assertions": {
+						"categories:performance": [ "error", { "minScore": 0.9 } ],
+						"categories:accessibility": [ "error", { "minScore": 0.95 } ],
+						"first-contentful-paint": [ "error", { "maxNumericValue": 2000 } ],
+						"largest-contentful-paint": [ "error", { "maxNumericValue": 2500 } ],
+						"cumulative-layout-shift": [ "error", { "maxNumericValue": 0.05 } ],
+						"total-blocking-time": [ "error", { "maxNumericValue": 150 } ],
+						"resource-summary:script:size": [ "error", { "maxNumericValue": 80000 } ],
+						"resource-summary:stylesheet:size": [ "error", { "maxNumericValue": 30000 } ],
+						"resource-summary:font:size": [ "error", { "maxNumericValue": 100000 } ],
+						"resource-summary:image:size": [ "error", { "maxNumericValue": 250000 } ],
+						"resource-summary:total:size": [ "error", { "maxNumericValue": 400000 } ],
+						"color-contrast": "error",
+						"document-title": "error",
+						"html-has-lang": "error",
+						"image-alt": "error",
+						"link-name": "error",
+						"button-name": "error",
+						"label": "error",
+						"heading-order": "error",
+						"duplicate-id-aria": "error",
+						"aria-allowed-attr": "error",
+						"aria-required-attr": "error",
+						"aria-valid-attr-value": "error"
+					}
+				},
+				{
+					"matchingUrlPattern": "^(?!.*/courses/[^/]+/$).*",
+					"assertions": {
+						"resource-summary:third-party:count": [ "error", { "maxNumericValue": 0 } ]
+					}
+				},
+				{
+					"matchingUrlPattern": "/courses/[^/]+/$",
+					"assertions": {
+						"resource-summary:third-party:count": [ "error", { "maxNumericValue": 1 } ]
+					}
+				}
+			]
+		},
+		"upload": {
+			"target": "filesystem",
+			"outputDir": ".lighthouseci/reports"
+		}
+	}
+}

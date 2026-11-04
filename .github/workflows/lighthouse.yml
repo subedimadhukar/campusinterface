@@ -1,0 +1,117 @@
+name: Lighthouse
+
+# Performance and accessibility budgets (lighthouserc.json) on the academy
+# home, the course archive, a single course and a lesson, with Public LMS
+# and its demo data. Public LMS lives in its own repository; while that is
+# private, a PUBLIC_LMS_TOKEN secret with read access to it is needed. Without
+# access the Lighthouse job is skipped, not failed.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: lighthouse-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  PUBLIC_LMS_REPOSITORY: wpinterface/public-lms
+  PUBLIC_LMS_REF: ${{ vars.PUBLIC_LMS_REF || 'main' }}
+
+jobs:
+  plugin:
+    name: Check Public LMS is reachable
+    runs-on: ubuntu-latest
+    outputs:
+      available: ${{ steps.probe.outputs.available }}
+    steps:
+      - name: Look for the plugin repository
+        id: probe
+        env:
+          TOKEN: ${{ secrets.PUBLIC_LMS_TOKEN }}
+        run: |
+          url="https://github.com/${PUBLIC_LMS_REPOSITORY}.git"
+          if [ -n "$TOKEN" ]; then
+            url="https://x-access-token:${TOKEN}@github.com/${PUBLIC_LMS_REPOSITORY}.git"
+          fi
+          if GIT_TERMINAL_PROMPT=0 git ls-remote --exit-code "$url" "$PUBLIC_LMS_REF" > /dev/null 2>&1; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Lighthouse skipped::${PUBLIC_LMS_REPOSITORY}@${PUBLIC_LMS_REF} is not reachable from this run. While the repository is private, add a PUBLIC_LMS_TOKEN secret with read access to it."
+            {
+              echo "### Lighthouse skipped"
+              echo
+              echo "Public LMS (\`${PUBLIC_LMS_REPOSITORY}@${PUBLIC_LMS_REF}\`) is not reachable from this run, so the budgets were not measured."
+              echo "While the repository is private, add a \`PUBLIC_LMS_TOKEN\` secret with read access to it."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  lighthouse:
+    name: Lighthouse budgets
+    needs: plugin
+    if: needs.plugin.outputs.available == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: campusinterface
+
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PUBLIC_LMS_REPOSITORY }}
+          ref: ${{ env.PUBLIC_LMS_REF }}
+          token: ${{ secrets.PUBLIC_LMS_TOKEN || github.token }}
+          path: public-lms
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          tools: composer:v2
+
+      - name: Install the plugin's Composer dependencies
+        working-directory: public-lms
+        run: composer install --no-dev --prefer-dist --no-interaction
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: public-lms/.nvmrc
+          cache: npm
+          cache-dependency-path: public-lms/package-lock.json
+
+      - name: Build the plugin
+        working-directory: public-lms
+        run: |
+          npm ci
+          npm run build
+
+      # Only the plugin under test: no Theme Check or Polylang, and no debug
+      # logging, so the pages are measured as a visitor would get them.
+      - name: Start WordPress with the theme and Public LMS
+        working-directory: campusinterface
+        run: |
+          echo '{ "plugins": [ "../public-lms" ], "config": { "WP_DEBUG": false, "WP_DEBUG_LOG": false } }' > .wp-env.override.json
+          npx --yes @wordpress/env@12 start
+
+      - name: Seed demo content
+        working-directory: campusinterface
+        run: bin/lighthouse-seed.sh
+
+      - name: Run Lighthouse CI
+        working-directory: campusinterface
+        run: npx --yes @lhci/cli@0.15.1 autorun
+
+      - name: Keep the reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: campusinterface/.lighthouseci/
+          if-no-files-found: ignore

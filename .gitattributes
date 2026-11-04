@@ -9,6 +9,7 @@
 /composer.json      export-ignore
 /composer.lock      export-ignore
 /phpcs.xml.dist     export-ignore
+/lighthouserc.json  export-ignore
 /README.md          export-ignore
 
 *.woff2 binary
