@@ -233,3 +233,12 @@ Numbering continues from the 1.2.0 run above.
    the button enabled and use `aria-disabled` while busy, ignoring presses until the request returns (or
    move focus back to the button once it is re-enabled). Same check for any other busy state built this way
    (quiz submit, enrol).
+8. **The plugin's Playground blueprint installs an unbuilt plugin (packaging, low until the public beta).**
+   `playground.json` installs Public LMS with `git:directory` from `main`, but `build/` and `vendor/` are
+   git-ignored and blocks register from `build/blocks/`, so Playground would get a plugin without its blocks or
+   Action Scheduler. The theme's `blueprint.json` therefore installs the plugin from
+   `https://github.com/wpinterface/public-lms/releases/latest/download/public-lms.zip`. Request: have the
+   release workflow attach the `public-lms.zip` it already builds to each GitHub release (or publish to
+   WordPress.org), and point `playground.json` at the same zip. Checked with a release-like zip in
+   `@wp-playground/cli` 3.1.60: activation, `wp publiclms seed` (with `WP_ENVIRONMENT_TYPE` `local`) and the
+   course, lesson and dashboard blocks all work in Playground on PHP 8.3.

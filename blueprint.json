@@ -1,0 +1,74 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "CampusInterface with Public LMS",
+		"description": "The CampusInterface block theme with the Public LMS plugin and ten demo courses: an academy home page, the course catalogue, lessons and a learner dashboard.",
+		"author": "WPInterface",
+		"categories": [
+			"Themes",
+			"Education"
+		]
+	},
+	"landingPage": "/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "defineWpConfigConsts",
+			"consts": {
+				"WP_ENVIRONMENT_TYPE": "local"
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "url",
+				"url": "https://github.com/wpinterface/public-lms/releases/latest/download/public-lms.zip"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "public-lms"
+			}
+		},
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/wpinterface/campusinterface",
+				"ref": "main",
+				"refType": "branch",
+				"path": "/"
+			},
+			"options": {
+				"activate": true,
+				"targetFolderName": "campusinterface"
+			}
+		},
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "Lakeside Academy",
+				"blogdescription": "Practical courses taught by people who do the work",
+				"permalink_structure": "/%postname%/"
+			}
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp publiclms seed --courses=10"
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire_once '/wordpress/wp-load.php';\n\n// Front page: the theme's academy home pattern on a page without a title.\n$home = wp_insert_post(\n\tarray(\n\t\t'post_type'     => 'page',\n\t\t'post_status'   => 'publish',\n\t\t'post_title'    => 'Academy home',\n\t\t'post_name'     => 'academy-home',\n\t\t'page_template' => 'page-no-title',\n\t\t'post_content'  => '<!-- wp:pattern {\"slug\":\"campusinterface/page-academy-home\"} /-->',\n\t)\n);\nupdate_option( 'show_on_front', 'page' );\nupdate_option( 'page_on_front', $home );\n\n// Main menu: the course catalogue and the learner's dashboard.\nwp_insert_post(\n\tarray(\n\t\t'post_type'    => 'wp_navigation',\n\t\t'post_status'  => 'publish',\n\t\t'post_title'   => 'Main menu',\n\t\t'post_content' => '<!-- wp:navigation-link {\"label\":\"Courses\",\"url\":\"/courses/\",\"kind\":\"custom\"} /--><!-- wp:navigation-link {\"label\":\"My learning\",\"url\":\"/my-learning/\",\"kind\":\"custom\"} /-->',\n\t)\n);\n"
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp rewrite flush"
+		}
+	]
+}

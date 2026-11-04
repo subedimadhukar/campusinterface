@@ -18,4 +18,28 @@ with Mark complete, and dashboard (see [docs/CONTRACTS.md](docs/CONTRACTS.md), "
 - Theme Check (as CI runs it, on the `git archive` copy without dev files):
   `mkdir -p dist/campusinterface && git archive HEAD | tar -x -C dist/campusinterface && echo '{ "themes": [ "./dist/campusinterface" ] }' > .wp-env.override.json && npx --yes @wordpress/env@12 start && npx --yes @wordpress/env@12 run cli wp theme-check run campusinterface`
 
+## Try it in WordPress Playground
+
+`blueprint.json` builds a demo site: Public LMS and CampusInterface installed and active, ten demo courses
+from `wp publiclms seed`, an "Academy home" front page built from the theme's full-page pattern, a Courses and
+My learning menu, and the visitor logged in as admin. It declares `WP_ENVIRONMENT_TYPE` `local`, because the
+seed command refuses production sites.
+
+Both repositories are private for now, so the blueprint points at the URLs they will have once public:
+
+| Step | Source now | Swap to when |
+|---|---|---|
+| `installTheme` | `git:directory` of `https://github.com/wpinterface/campusinterface`, branch `main` (no build step, so the repository works as is) | The theme is on WordPress.org: `"themeData": { "resource": "wordpress.org/themes", "slug": "campusinterface" }` |
+| `installPlugin` | `url` `https://github.com/wpinterface/public-lms/releases/latest/download/public-lms.zip`. The plugin's `build/` and `vendor/` are not in git, so it needs the built zip; its release workflow must attach `public-lms.zip` to each GitHub release | The plugin is on WordPress.org: `"pluginData": { "resource": "wordpress.org/plugins", "slug": "public-lms" }`, or another URL to the built zip |
+
+Then open `https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/wpinterface/campusinterface/main/blueprint.json`.
+Check that link once the repositories are public: if Playground cannot fetch the release zip from GitHub in
+the browser, use the WordPress.org resource or a host that serves the zip with CORS headers.
+
+To test the blueprint before then, `bin/playground-local.sh` swaps both install steps for zips of the local
+working copies (this theme's `HEAD`, and a release-like copy of `../../plugins/public-lms` with production
+Composer packages; the plugin must be built) and serves the result with `@wp-playground/cli` 3.1.60 on
+http://127.0.0.1:9400. Tested 2026-11-04 on WordPress 7.1.4 and PHP 8.3: every step runs, and the academy
+home, course archive, a course, a lesson and the dashboard render with the plugin's blocks.
+
 Requires WordPress 6.7+ and PHP 7.4+. GPL-2.0-or-later. © WPInterface, https://wpinterface.com
