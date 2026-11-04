@@ -1,0 +1,470 @@
+# Copyright (C) 2026 WPInterface
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: CampusInterface 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/campusinterface\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-11-04T08:46:37+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: campusinterface\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "CampusInterface"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://wpinterface.com/themes/campusinterface/"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "CampusInterface is a full-site-editing block theme for schools, academies, online course creators and training companies. Everything is styled from theme.json: colour roles, fluid type with two bundled variable fonts, a spacing scale and responsive styles, with Campus and Studio colour variations and Editorial and Modern type sets. It pairs with the free Public LMS plugin, whose course, lesson and dashboard templates it styles, and works as a clean school website without it."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "WPInterface"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://wpinterface.com"
+msgstr ""
+
+#: functions.php:41
+msgid "Course card (16:9)"
+msgstr ""
+
+#: functions.php:56
+msgctxt "Block pattern category"
+msgid "Heroes"
+msgstr ""
+
+#: functions.php:57
+msgid "Page openers with a headline, text and calls to action."
+msgstr ""
+
+#: functions.php:60
+msgctxt "Block pattern category"
+msgid "Courses"
+msgstr ""
+
+#: functions.php:61
+msgid "Course grids, lists and featured courses."
+msgstr ""
+
+#: functions.php:64
+msgctxt "Block pattern category"
+msgid "Pricing"
+msgstr ""
+
+#: functions.php:65
+msgid "Pricing tables and plan comparisons."
+msgstr ""
+
+#: functions.php:68
+msgctxt "Block pattern category"
+msgid "Team and instructors"
+msgstr ""
+
+#: functions.php:69
+msgid "Instructor and staff profiles."
+msgstr ""
+
+#: functions.php:72
+msgctxt "Block pattern category"
+msgid "Testimonials"
+msgstr ""
+
+#: functions.php:73
+msgid "Learner quotes and reviews."
+msgstr ""
+
+#: functions.php:76
+msgctxt "Block pattern category"
+msgid "Calls to action"
+msgstr ""
+
+#: functions.php:77
+msgid "Enrolment, sign-up and contact prompts."
+msgstr ""
+
+#: functions.php:80
+msgctxt "Block pattern category"
+msgid "Events"
+msgstr ""
+
+#: functions.php:81
+msgid "Open days, webinars and cohort start dates."
+msgstr ""
+
+#: functions.php:84
+msgctxt "Block pattern category"
+msgid "FAQ"
+msgstr ""
+
+#: functions.php:85
+msgid "Frequently asked questions."
+msgstr ""
+
+#: functions.php:105
+msgid "Card"
+msgstr ""
+
+#: functions.php:133
+msgid "Pill"
+msgstr ""
+
+#: patterns/call-to-action.php
+msgctxt "Pattern title"
+msgid "Call to action"
+msgstr ""
+
+#: patterns/call-to-action.php
+msgctxt "Pattern description"
+msgid "A full-width band with a headline, a sentence and a button."
+msgstr ""
+
+#: patterns/call-to-action.php:18
+msgid "Start learning something new today"
+msgstr ""
+
+#: patterns/call-to-action.php:22
+msgid "Join a course at your own pace, with lessons, quizzes and a certificate when you finish."
+msgstr ""
+
+#: patterns/call-to-action.php:28
+msgid "Browse courses"
+msgstr ""
+
+#: patterns/course-grid.php
+msgctxt "Pattern title"
+msgid "Course grid"
+msgstr ""
+
+#: patterns/course-grid.php
+msgctxt "Pattern description"
+msgid "A heading and a three-column grid of the latest courses from the Public LMS plugin, with a link to the course catalogue."
+msgstr ""
+
+#: patterns/course-grid.php:23
+msgid "Popular courses"
+msgstr ""
+
+#: patterns/course-grid.php:35
+msgid "New courses are on their way. Check back soon."
+msgstr ""
+
+#: patterns/course-grid.php:44
+msgid "View all courses"
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Hero with image"
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid "A large headline, an introduction, two buttons and an illustration. The image loads with high fetch priority."
+msgstr ""
+
+#: patterns/hero.php:22
+msgid "Online courses and live classes"
+msgstr ""
+
+#: patterns/hero.php:26
+msgid "Learn the skills that move you forward"
+msgstr ""
+
+#: patterns/hero.php:30
+msgid "Practical courses taught by people who do the work. Learn at your own pace, track your progress and earn a certificate."
+msgstr ""
+
+#: patterns/hero.php:36
+msgid "Explore courses"
+msgstr ""
+
+#: patterns/hero.php:40
+msgid "How it works"
+msgstr ""
+
+#: patterns/hero.php:50
+msgid "Illustration of an open book, a laptop and a graduation cap"
+msgstr ""
+
+#: patterns/hidden-404.php
+msgctxt "Pattern title"
+msgid "404"
+msgstr ""
+
+#: patterns/hidden-404.php
+msgctxt "Pattern description"
+msgid "Content of the 404 template: a heading, a short explanation and a search form."
+msgstr ""
+
+#: patterns/hidden-404.php:14
+msgctxt "Heading for a page that does not exist"
+msgid "Page not found"
+msgstr ""
+
+#: patterns/hidden-404.php:18
+msgid "The page you were looking for does not exist or has moved. Try searching for it instead."
+msgstr ""
+
+#: patterns/hidden-404.php:21
+#: patterns/hidden-no-results.php:17
+msgctxt "search form label"
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-404.php:21
+#: patterns/hidden-no-results.php:17
+msgctxt "search form placeholder"
+msgid "Search courses, pages and posts"
+msgstr ""
+
+#: patterns/hidden-404.php:21
+#: patterns/hidden-no-results.php:17
+msgctxt "search button text"
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-comments.php
+msgctxt "Pattern title"
+msgid "Comments"
+msgstr ""
+
+#: patterns/hidden-comments.php
+msgctxt "Pattern description"
+msgid "The comments area of single posts: comment list, pagination and the reply form."
+msgstr ""
+
+#: patterns/hidden-no-results.php
+msgctxt "Pattern title"
+msgid "No results"
+msgstr ""
+
+#: patterns/hidden-no-results.php
+msgctxt "Pattern description"
+msgid "Shown by Query Loops that find nothing: a short message and a search form."
+msgstr ""
+
+#: patterns/hidden-no-results.php:14
+msgid "Nothing matched your search. Try different keywords."
+msgstr ""
+
+#: patterns/posts-grid.php
+msgctxt "Pattern title"
+msgid "Latest posts grid"
+msgstr ""
+
+#: patterns/posts-grid.php
+msgctxt "Pattern description"
+msgid "A heading and a three-column grid of the latest posts with image, title and date."
+msgstr ""
+
+#: patterns/posts-grid.php:19
+msgid "News and announcements"
+msgstr ""
+
+#: patterns/posts-grid.php:32
+msgid "No posts yet."
+msgstr ""
+
+#: patterns/text-and-image.php
+msgctxt "Pattern title"
+msgid "Text and image"
+msgstr ""
+
+#: patterns/text-and-image.php
+msgctxt "Pattern description"
+msgid "An image beside a heading, a paragraph and a link button."
+msgstr ""
+
+#: patterns/text-and-image.php:18
+msgid "A place to learn, at your own pace"
+msgstr ""
+
+#: patterns/text-and-image.php:22
+msgid "Tell visitors who you teach and why it works: small classes, practical projects, and teachers who answer questions."
+msgstr ""
+
+#: patterns/text-and-image.php:28
+msgid "About us"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Primary"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Primary Soft"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Secondary"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Surface"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Line"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Success"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Warning"
+msgstr ""
+
+#: theme.json
+#: styles/colors/campus.json
+#: styles/colors/studio.json
+msgctxt "Color name"
+msgid "Danger"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Card"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Fraunces"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Figtree"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "2X large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "3X large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "4X large"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Page without title"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: styles/colors/campus.json
+msgctxt "Style variation name"
+msgid "Campus"
+msgstr ""
+
+#: styles/colors/studio.json
+msgctxt "Style variation name"
+msgid "Studio"
+msgstr ""
+
+#: styles/typography/editorial.json
+msgctxt "Style variation name"
+msgid "Editorial"
+msgstr ""
+
+#: styles/typography/modern.json
+msgctxt "Style variation name"
+msgid "Modern"
+msgstr ""

@@ -1,0 +1,25 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Editorial",
+	"styles": {
+		"typography": {
+			"fontFamily": "var:preset|font-family|display",
+			"lineHeight": "1.7"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|display",
+					"fontWeight": "500",
+					"letterSpacing": "-0.02em"
+				}
+			},
+			"button": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|body"
+				}
+			}
+		}
+	}
+}

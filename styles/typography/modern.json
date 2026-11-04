@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Modern",
+	"styles": {
+		"typography": {
+			"fontFamily": "var:preset|font-family|body",
+			"lineHeight": "1.6"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var:preset|font-family|body",
+					"fontWeight": "800",
+					"letterSpacing": "-0.025em",
+					"lineHeight": "1.1"
+				}
+			}
+		}
+	}
+}

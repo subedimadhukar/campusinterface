@@ -1,0 +1,31 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  phpcs:
+    name: PHPCS and palette contrast
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+          tools: composer:v2, cs2pr
+      - uses: ramsey/composer-install@v3
+      - name: Run PHPCS
+        run: vendor/bin/phpcs -q --report=checkstyle | cs2pr
+      - name: Check WCAG AA contrast of every palette
+        run: composer contrast

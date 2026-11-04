@@ -1,0 +1,49 @@
+{
+	"name": "wpinterface/campusinterface",
+	"description": "CampusInterface: a full-site-editing block theme for schools, academies and online courses.",
+	"type": "wordpress-theme",
+	"license": "GPL-2.0-or-later",
+	"homepage": "https://wpinterface.com/themes/campusinterface/",
+	"authors": [
+		{
+			"name": "WPInterface",
+			"homepage": "https://wpinterface.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/wpinterface/campusinterface/issues",
+		"source": "https://github.com/wpinterface/campusinterface"
+	},
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"wp-coding-standards/wpcs": "^3.4"
+	},
+	"config": {
+		"platform": {
+			"php": "7.4.33"
+		},
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"lint:fix": "phpcbf",
+		"contrast": "@php bin/check-contrast.php",
+		"check": [
+			"@lint",
+			"@contrast"
+		]
+	},
+	"scripts-descriptions": {
+		"lint": "Check PHP against the WordPress coding standards and PHP 7.4 compatibility.",
+		"lint:fix": "Fix what PHPCS can fix automatically.",
+		"contrast": "Check every palette for WCAG AA contrast on the colour pairs in the token contract.",
+		"check": "Run lint and the contrast check."
+	}
+}

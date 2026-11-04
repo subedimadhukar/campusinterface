@@ -1,0 +1,39 @@
+name: Theme Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: theme-check-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  theme-check:
+    name: Theme Check via WP-CLI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      # Check the distributable theme: `git archive` drops the files marked
+      # export-ignore in .gitattributes (CI config, docs, dev tooling).
+      - name: Build the distributable copy
+        run: |
+          mkdir -p dist/campusinterface
+          git archive --format=tar HEAD | tar -x -C dist/campusinterface
+          echo '{ "themes": [ "./dist/campusinterface" ] }' > .wp-env.override.json
+
+      - name: Start wp-env with the Theme Check plugin
+        run: npx --yes @wordpress/env@12 start
+
+      - name: Run Theme Check
+        run: npx --yes @wordpress/env@12 run cli wp theme-check run campusinterface

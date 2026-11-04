@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schemas.wp.org/wp/7.1/theme.json",
+	"version": 3,
+	"title": "Campus",
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"color": "#fdfcf8",
+					"name": "Base",
+					"slug": "base"
+				},
+				{
+					"color": "#0b1f3a",
+					"name": "Contrast",
+					"slug": "contrast"
+				},
+				{
+					"color": "#1d3a6e",
+					"name": "Primary",
+					"slug": "primary"
+				},
+				{
+					"color": "#e8eef8",
+					"name": "Primary Soft",
+					"slug": "primary-soft"
+				},
+				{
+					"color": "#2f6b3a",
+					"name": "Secondary",
+					"slug": "secondary"
+				},
+				{
+					"color": "#d4a72c",
+					"name": "Accent",
+					"slug": "accent"
+				},
+				{
+					"color": "#f4f1e8",
+					"name": "Surface",
+					"slug": "surface"
+				},
+				{
+					"color": "#e3dccb",
+					"name": "Line",
+					"slug": "line"
+				},
+				{
+					"color": "#1f7a3d",
+					"name": "Success",
+					"slug": "success"
+				},
+				{
+					"color": "#9a5b06",
+					"name": "Warning",
+					"slug": "warning"
+				},
+				{
+					"color": "#b42318",
+					"name": "Danger",
+					"slug": "danger"
+				}
+			]
+		}
+	}
+}
