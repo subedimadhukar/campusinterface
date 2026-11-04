@@ -14,30 +14,33 @@ contract version **1.0.0**. A change to either side is a pull request on both re
 ## A. Templates and patterns
 
 **What the theme ships today (0.1.0):** none of the plugin's six template slugs. The plugin's own templates
-(`publiclms//single-course`, `archive-course`, `single-lesson`, `single-quiz`, `page-dashboard`,
-`page-instructor`) render inside CampusInterface's `header` and `footer` parts, which is the contract's
-default path.
+(`publiclms//single-plms_course`, `archive-plms_course`, `single-plms_lesson`, `single-plms_quiz`,
+`plms-dashboard`, `plms-instructor`) render inside CampusInterface's `header` and `footer` parts, which is
+the contract's default path.
 
 **Planned overrides** (phase 1, after the plugin's templates and patterns land, at least two weeks later):
 
 | Theme file | Overrides | Adds |
 |---|---|---|
-| `templates/single-course.html` | `publiclms//single-course` | Hero section style, sticky enrol card in a sidebar column |
-| `templates/archive-course.html` | `publiclms//archive-course` | Filters column, card section style |
-| `templates/single-lesson.html` | `publiclms//single-lesson` | Distraction-free layout at content width, `lesson-nav` part |
-| `templates/single-quiz.html` | `publiclms//single-quiz` | Narrow layout |
-| `templates/page-dashboard.html` | `publiclms//page-dashboard` | Theme header with account menu |
-| `templates/page-instructor.html` | `publiclms//page-instructor` | Same |
+| `templates/single-plms_course.html` | `publiclms//single-plms_course` | Hero section style, sticky enrol card in a sidebar column |
+| `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also used for course category, tag and level archives) | Filters column, card section style |
+| `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free layout at content width, `lesson-nav` part |
+| `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` | Narrow layout |
+| `templates/plms-dashboard.html` | `publiclms//plms-dashboard` | Theme header with account menu |
+| `templates/plms-instructor.html` | `publiclms//plms-instructor` | Same |
 
 Rules the theme follows (plugin contract A3 to A5):
 
 1. Overrides use exactly the plugin's slugs and compose plugin patterns (`publiclms/*`), core blocks,
    plugin blocks and the theme's own patterns (`campusinterface/*`).
-2. The theme never registers a pattern in the `publiclms/` namespace.
-3. When the theme ships its first override, `functions.php` gains the hierarchy guard from plugin contract
-   A5.6: if `post_type_exists( 'plms_course' )` is false, the six slugs are removed from the template
-   hierarchy so the theme's copies never render for another plugin's `course`, `lesson` or `quiz` types.
-4. Theme parts the overrides may use: `header`, `footer` now; `lesson-nav` and `sidebar` from phase 1.
+2. When the theme ships `plms-dashboard.html` or `plms-instructor.html`, `theme.json` gains matching
+   `customTemplates` entries (`"postTypes": [ "page" ]`, titles "Student Dashboard" and "Instructor
+   Dashboard") so they stay in the page template picker.
+3. The theme never registers a pattern in the `publiclms/` namespace.
+4. No hierarchy filtering is needed: the slugs are the plugin's post type keys or `plms-` prefixed, so the
+   theme's copies can never render for another plugin's `course`, `lesson` or `quiz` post types or for an
+   ordinary page named "Dashboard".
+5. Theme parts the overrides may use: `header`, `footer` now; `lesson-nav` and `sidebar` from phase 1.
 
 **Patterns that use plugin data today:**
 
