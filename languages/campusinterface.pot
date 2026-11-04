@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: CampusInterface 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/campusinterface\n"
+"Project-Id-Version: CampusInterface 0.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/wpinterface/campusinterface/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-04T08:46:37+00:00\n"
+"POT-Creation-Date: 2026-11-04T11:36:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: campusinterface\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #. Description of the theme
 #: style.css
-msgid "CampusInterface is a full-site-editing block theme for schools, academies, online course creators and training companies. Everything is styled from theme.json: colour roles, fluid type with two bundled variable fonts, a spacing scale and responsive styles, with Campus and Studio colour variations and Editorial and Modern type sets. It pairs with the free Public LMS plugin, whose course, lesson and dashboard templates it styles, and works as a clean school website without it."
+msgid "CampusInterface is a full-site-editing block theme for schools, academies, online course creators and training companies. Everything is styled from theme.json: colour roles, fluid type with two bundled variable fonts, a spacing scale and responsive styles, with Campus, Studio, Kids, Corporate and Dark colour variations, Editorial, Modern and System type sets, and section styles for bands and cards. It pairs with the free Public LMS plugin, whose course, lesson and dashboard templates it styles, and works as a clean school website without it."
 msgstr ""
 
 #. Author of the theme
@@ -115,22 +115,207 @@ msgstr ""
 msgid "Frequently asked questions."
 msgstr ""
 
-#: functions.php:105
-msgid "Card"
+#: functions.php:88
+msgctxt "Block pattern category"
+msgid "About and features"
 msgstr ""
 
-#: functions.php:133
+#: functions.php:89
+msgid "Statistics, features, steps, partner logos and sign-up panels."
+msgstr ""
+
+#: functions.php:92
+msgctxt "Block pattern category"
+msgid "Full pages"
+msgstr ""
+
+#: functions.php:93
+msgid "Complete page layouts assembled from the theme patterns."
+msgstr ""
+
+#: functions.php:123
+msgctxt "template part area"
+msgid "Sidebar"
+msgstr ""
+
+#: functions.php:124
+msgid "The sidebar of single course pages, which holds the enrol card."
+msgstr ""
+
+#: functions.php:130
+msgctxt "template part area"
+msgid "Lesson bar"
+msgstr ""
+
+#: functions.php:131
+msgid "The slim bar at the top of lessons and quizzes, without the main navigation."
+msgstr ""
+
+#: functions.php:137
+msgctxt "template part area"
+msgid "Navigation Overlay"
+msgstr ""
+
+#: functions.php:138
+msgid "The menu that opens over the page on small screens."
+msgstr ""
+
+#: functions.php:170
 msgid "Pill"
+msgstr ""
+
+#: functions.php:183
+msgid "Eyebrow"
+msgstr ""
+
+#: functions.php:199
+msgid "Badge"
+msgstr ""
+
+#: functions.php:231
+msgid "Step number"
+msgstr ""
+
+#: functions.php:250
+msgid "Date badge"
+msgstr ""
+
+#: functions.php:275
+msgid "Placeholder"
+msgstr ""
+
+#: functions.php:307
+msgid "Classic cards"
+msgstr ""
+
+#: functions.php:311
+msgid "Minimal cards"
+msgstr ""
+
+#: functions.php:315
+msgid "Overlay cards"
+msgstr ""
+
+#: functions.php:341
+msgid "List"
+msgstr ""
+
+#: functions.php:345
+msgid "Carousel"
+msgstr ""
+
+#: functions.php:365
+msgid "Checklist"
+msgstr ""
+
+#: patterns/accessibility-statement.php
+msgctxt "Pattern title"
+msgid "Accessibility statement"
+msgstr ""
+
+#: patterns/accessibility-statement.php
+msgctxt "Pattern description"
+msgid "A starting point for an accessibility statement: commitment, standard, measures, known limitations, feedback and the date of the last review. Edit every section to match your own site before publishing."
+msgstr ""
+
+#: patterns/accessibility-statement.php:17
+msgid "Our commitment"
+msgstr ""
+
+#: patterns/accessibility-statement.php:21
+msgid "We want everyone to be able to learn with us, whatever device they use and however they read, hear, move or think. This statement covers this website and the courses on it."
+msgstr ""
+
+#: patterns/accessibility-statement.php:25
+msgid "The standard we aim for"
+msgstr ""
+
+#: patterns/accessibility-statement.php:29
+msgid "We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. We check new pages and courses against it before they go live."
+msgstr ""
+
+#: patterns/accessibility-statement.php:33
+msgid "What we do"
+msgstr ""
+
+#: patterns/accessibility-statement.php:39
+msgid "Every page can be used with a keyboard alone, with a visible focus outline and a link to skip to the main content."
+msgstr ""
+
+#: patterns/accessibility-statement.php:43
+msgid "Text and buttons meet the AA contrast ratio in every colour scheme we offer, including the dark scheme."
+msgstr ""
+
+#: patterns/accessibility-statement.php:47
+msgid "Images that carry meaning have text alternatives, and form fields have visible labels."
+msgstr ""
+
+#: patterns/accessibility-statement.php:51
+msgid "Text resizes to 200% without loss of content, and nothing on the site moves or animates on its own."
+msgstr ""
+
+#: patterns/accessibility-statement.php:55
+msgid "Course videos have captions and transcripts."
+msgstr ""
+
+#: patterns/accessibility-statement.php:61
+msgid "Known limitations"
+msgstr ""
+
+#: patterns/accessibility-statement.php:65
+msgid "Some older course downloads (PDF worksheets) are not yet fully tagged for screen readers. We are replacing them course by course; ask us for an accessible copy of any file in the meantime."
+msgstr ""
+
+#: patterns/accessibility-statement.php:69
+msgid "Tell us about a problem"
+msgstr ""
+
+#: patterns/accessibility-statement.php:73
+msgid "If something on this site does not work for you, tell us what page you were on and what happened. We reply within five working days and will provide the content another way while we fix it."
+msgstr ""
+
+#: patterns/accessibility-statement.php:73
+msgid "Contact us about accessibility"
+msgstr ""
+
+#: patterns/accessibility-statement.php:77
+msgid "About this statement"
+msgstr ""
+
+#: patterns/accessibility-statement.php:81
+msgid "This statement was last reviewed on [date]. Replace this sentence with the date of your own review."
+msgstr ""
+
+#: patterns/blog-cards.php
+msgctxt "Pattern title"
+msgid "Blog cards"
+msgstr ""
+
+#: patterns/blog-cards.php
+msgctxt "Pattern description"
+msgid "A heading and the three latest posts as cards with image, category, title, excerpt and date."
+msgstr ""
+
+#: patterns/blog-cards.php:21
+msgid "From the blog"
+msgstr ""
+
+#: patterns/blog-cards.php:25
+msgid "Study tips, learner stories and news from the academy."
+msgstr ""
+
+#: patterns/blog-cards.php:46
+msgid "No posts yet."
 msgstr ""
 
 #: patterns/call-to-action.php
 msgctxt "Pattern title"
-msgid "Call to action"
+msgid "Call to action band"
 msgstr ""
 
 #: patterns/call-to-action.php
 msgctxt "Pattern description"
-msgid "A full-width band with a headline, a sentence and a button."
+msgid "A full-width primary band with a centred headline, a sentence and a button to the course catalogue."
 msgstr ""
 
 #: patterns/call-to-action.php:18
@@ -138,67 +323,689 @@ msgid "Start learning something new today"
 msgstr ""
 
 #: patterns/call-to-action.php:22
-msgid "Join a course at your own pace, with lessons, quizzes and a certificate when you finish."
+msgid "Join 4,800 learners on courses in data, code, design and communication. Your first three courses are free."
 msgstr ""
 
 #: patterns/call-to-action.php:28
+#: patterns/header.php:37
+#: patterns/navigation-overlay.php:31
+#: patterns/pricing-2-columns.php:72
 msgid "Browse courses"
+msgstr ""
+
+#: patterns/category-tiles.php
+msgctxt "Pattern title"
+msgid "Course categories"
+msgstr ""
+
+#: patterns/category-tiles.php
+msgctxt "Pattern description"
+msgid "Six linked tiles, one per course category, each with an icon, the category name and its number of courses."
+msgstr ""
+
+#: patterns/category-tiles.php:20
+msgid "Explore by subject"
+msgstr ""
+
+#: patterns/category-tiles.php:24
+msgid "Thirty-six courses across six subjects, from your first spreadsheet to your first conference talk."
+msgstr ""
+
+#: patterns/category-tiles.php:38
+#: patterns/footer-columns.php:39
+#: patterns/instructor-grid.php:42
+msgid "Data and analytics"
+msgstr ""
+
+#: patterns/category-tiles.php:42
+msgid "8 courses"
+msgstr ""
+
+#: patterns/category-tiles.php:54
+#: patterns/footer-columns.php:40
+#: patterns/instructor-grid.php:62
+msgid "Web development"
+msgstr ""
+
+#: patterns/category-tiles.php:58
+msgid "10 courses"
+msgstr ""
+
+#: patterns/category-tiles.php:70
+#: patterns/footer-columns.php:41
+msgid "Design"
+msgstr ""
+
+#: patterns/category-tiles.php:74
+msgid "6 courses"
+msgstr ""
+
+#: patterns/category-tiles.php:86
+#: patterns/footer-columns.php:42
+#: patterns/instructor-grid.php:102
+msgid "Communication"
+msgstr ""
+
+#: patterns/category-tiles.php:90
+msgid "5 courses"
+msgstr ""
+
+#: patterns/category-tiles.php:102
+msgid "Business and marketing"
+msgstr ""
+
+#: patterns/category-tiles.php:106
+msgid "4 courses"
+msgstr ""
+
+#: patterns/category-tiles.php:118
+msgid "Career skills"
+msgstr ""
+
+#: patterns/category-tiles.php:122
+msgid "3 courses"
+msgstr ""
+
+#: patterns/course-carousel.php
+msgctxt "Pattern title"
+msgid "Course carousel"
+msgstr ""
+
+#: patterns/course-carousel.php
+msgctxt "Pattern description"
+msgid "A horizontally scrolling row of Public LMS course cards that snaps card by card. Pure CSS scroll snap: no JavaScript, and it scrolls with touch, trackpad, mouse wheel and keyboard."
+msgstr ""
+
+#: patterns/course-carousel.php:21
+msgid "Starting soon"
+msgstr ""
+
+#: patterns/course-carousel.php:25
+msgid "Scroll sideways to see more courses."
+msgstr ""
+
+#: patterns/course-carousel.php:56
+#: patterns/course-grid-4.php:48
+#: patterns/course-grid.php:72
+msgid "New courses are on their way. Check back soon."
+msgstr ""
+
+#: patterns/course-grid-4.php
+msgctxt "Pattern title"
+msgid "Course grid, 4 columns"
+msgstr ""
+
+#: patterns/course-grid-4.php
+msgctxt "Pattern description"
+msgid "A compact four-column grid of eight Public LMS courses in the minimal card style, with level and lesson count under each title."
+msgstr ""
+
+#: patterns/course-grid-4.php:21
+msgid "New this term"
+msgstr ""
+
+#: patterns/course-grid-4.php:57
+msgid "See the full course catalogue"
 msgstr ""
 
 #: patterns/course-grid.php
 msgctxt "Pattern title"
-msgid "Course grid"
+msgid "Course grid, 3 columns"
 msgstr ""
 
 #: patterns/course-grid.php
 msgctxt "Pattern description"
-msgid "A heading and a three-column grid of the latest courses from the Public LMS plugin, with a link to the course catalogue."
+msgid "A heading, a link to the catalogue and a three-column grid of the latest Public LMS courses, as classic cards with level, lesson count, duration and price. The course title is the card's only link."
 msgstr ""
 
 #: patterns/course-grid.php:23
 msgid "Popular courses"
 msgstr ""
 
-#: patterns/course-grid.php:35
-msgid "New courses are on their way. Check back soon."
+#: patterns/course-grid.php:27
+msgid "Start with one of the courses our learners recommend most."
 msgstr ""
 
-#: patterns/course-grid.php:44
+#: patterns/course-grid.php:35
 msgid "View all courses"
 msgstr ""
 
-#: patterns/hero.php
+#: patterns/cta-split.php
 msgctxt "Pattern title"
-msgid "Hero with image"
+msgid "Call to action, split"
 msgstr ""
 
-#: patterns/hero.php
+#: patterns/cta-split.php
 msgctxt "Pattern description"
-msgid "A large headline, an introduction, two buttons and an illustration. The image loads with high fetch priority."
+msgid "A dark band with a headline and a sentence on the left and a contact button on the right, promoting the team plan."
 msgstr ""
 
-#: patterns/hero.php:22
+#: patterns/cta-split.php:22
+msgid "Bring your team along"
+msgstr ""
+
+#: patterns/cta-split.php:26
+msgid "The Team plan gives up to ten colleagues every course, with progress reports for managers and one invoice a month."
+msgstr ""
+
+#: patterns/cta-split.php:36
+#: patterns/pricing-3-columns.php:184
+msgid "Talk to us"
+msgstr ""
+
+#: patterns/events-list.php
+msgctxt "Pattern title"
+msgid "Events list"
+msgstr ""
+
+#: patterns/events-list.php
+msgctxt "Pattern description"
+msgid "Three upcoming events as cards, each with a date badge, title, time and place, a sentence and a button. Edit the dates by hand; no events plugin needed."
+msgstr ""
+
+#: patterns/events-list.php:20
+msgid "Upcoming events"
+msgstr ""
+
+#: patterns/events-list.php:24
+msgid "Open days, free webinars and cohort start dates. All events are free unless marked otherwise."
+msgstr ""
+
+#: patterns/events-list.php:36
+msgctxt "abbreviated month name"
+msgid "Nov"
+msgstr ""
+
+#: patterns/events-list.php:40
+msgctxt "day of the month"
+msgid "21"
+msgstr ""
+
+#: patterns/events-list.php:48
+msgid "Open day at the Lakeside campus"
+msgstr ""
+
+#: patterns/events-list.php:52
+msgid "Saturday, 10:00 to 14:00 · Lakeside campus, 14 College Road"
+msgstr ""
+
+#: patterns/events-list.php:56
+msgid "Meet the instructors, sit in on a live class and get advice on which course to take first."
+msgstr ""
+
+#: patterns/events-list.php:64
+msgid "Book a place"
+msgstr ""
+
+#: patterns/events-list.php:76
+msgctxt "abbreviated month name"
+msgid "Dec"
+msgstr ""
+
+#: patterns/events-list.php:80
+msgctxt "day of the month"
+msgid "3"
+msgstr ""
+
+#: patterns/events-list.php:88
+msgid "Free webinar: getting started with data analysis"
+msgstr ""
+
+#: patterns/events-list.php:92
+msgid "Thursday, 18:00 to 19:00 GMT · Online"
+msgstr ""
+
+#: patterns/events-list.php:96
+msgid "Dr. Asha Gurung walks through a real dataset and answers your questions live."
+msgstr ""
+
+#: patterns/events-list.php:104
+msgid "Register"
+msgstr ""
+
+#: patterns/events-list.php:116
+msgctxt "abbreviated month name"
+msgid "Jan"
+msgstr ""
+
+#: patterns/events-list.php:120
+msgctxt "day of the month"
+msgid "12"
+msgstr ""
+
+#: patterns/events-list.php:128
+msgid "UX Design Essentials: cohort 3 begins"
+msgstr ""
+
+#: patterns/events-list.php:132
+msgid "Tuesday, 18:30 GMT · Online"
+msgstr ""
+
+#: patterns/events-list.php:136
+msgid "Eight weeks of lessons with Elena Ortiz, and a live critique every Thursday."
+msgstr ""
+
+#: patterns/events-list.php:144
+#: patterns/hero-course-launch.php:56
+#: patterns/promo-bar.php:18
+msgid "Reserve your place"
+msgstr ""
+
+#: patterns/faq.php
+msgctxt "Pattern title"
+msgid "Frequently asked questions"
+msgstr ""
+
+#: patterns/faq.php
+msgctxt "Pattern description"
+msgid "A heading and a contact link beside five questions and answers built on the core Details block, so they open and close without JavaScript."
+msgstr ""
+
+#: patterns/faq.php:22
+msgid "Questions, answered"
+msgstr ""
+
+#: patterns/faq.php:26
+msgid "Cannot find what you are looking for? Our team replies within one working day."
+msgstr ""
+
+#: patterns/faq.php:30
+msgid "Contact us"
+msgstr ""
+
+#: patterns/faq.php:38
+msgid "Do I get a certificate?"
+msgstr ""
+
+#: patterns/faq.php:40
+msgid "Yes. Finish every lesson and pass the final quiz, and a certificate with your name and the course title appears in your dashboard, ready to download."
+msgstr ""
+
+#: patterns/faq.php:46
+msgid "How long can I access a course?"
+msgstr ""
+
+#: patterns/faq.php:48
+msgid "A course you buy on its own is yours for life, including updates. All-access members can take any course while their membership is active."
+msgstr ""
+
+#: patterns/faq.php:54
+msgid "Can I learn on my phone?"
+msgstr ""
+
+#: patterns/faq.php:56
+msgid "Yes. Lessons, quizzes and your progress work on any phone, tablet or computer with a modern browser."
+msgstr ""
+
+#: patterns/faq.php:62
+msgid "What if a course is not right for me?"
+msgstr ""
+
+#: patterns/faq.php:64
+msgid "Ask for a refund within 14 days of buying and we will refund you in full. No questions asked."
+msgstr ""
+
+#: patterns/faq.php:70
+msgid "Do you offer discounts for teams or schools?"
+msgstr ""
+
+#: patterns/faq.php:72
+msgid "Yes. The Team plan covers up to ten learners for $99 a month. For larger groups and schools, contact us for a quote."
+msgstr ""
+
+#: patterns/features-grid.php
+msgctxt "Pattern title"
+msgid "Features grid"
+msgstr ""
+
+#: patterns/features-grid.php
+msgctxt "Pattern description"
+msgid "Four benefits in a responsive grid, each with an icon, a short heading and a sentence."
+msgstr ""
+
+#: patterns/features-grid.php:20
+msgid "Why learners choose us"
+msgstr ""
+
+#: patterns/features-grid.php:34
+msgid "Certificates you can share"
+msgstr ""
+
+#: patterns/features-grid.php:38
+msgid "Finish a course and download a certificate with your name, the course title and the hours you studied."
+msgstr ""
+
+#: patterns/features-grid.php:50
+msgid "Learn at your own pace"
+msgstr ""
+
+#: patterns/features-grid.php:54
+msgid "Short lessons fit around work and family. Your place is saved, so you can stop and start whenever you like."
+msgstr ""
+
+#: patterns/features-grid.php:66
+msgid "Study on any device"
+msgstr ""
+
+#: patterns/features-grid.php:70
+msgid "Watch, read and take quizzes on your phone, tablet or laptop, and pick up where you left off."
+msgstr ""
+
+#: patterns/features-grid.php:82
+msgid "Feedback from instructors"
+msgstr ""
+
+#: patterns/features-grid.php:86
+msgid "Submit your projects and get written feedback from the instructor who wrote the course."
+msgstr ""
+
+#: patterns/footer-columns.php
+msgctxt "Pattern title"
+msgid "Footer with columns"
+msgstr ""
+
+#: patterns/footer-columns.php
+msgctxt "Pattern description"
+msgid "A four-column footer: the site title, tagline and a sentence, then link lists for courses, the academy and help, with the privacy policy link underneath."
+msgstr ""
+
+#: patterns/footer-columns.php:27
+msgid "Practical courses in data, web development, design and communication, taught by people who do the work."
+msgstr ""
+
+#: patterns/footer-columns.php:35
+#: patterns/footer.php:29
+#: patterns/header-minimal.php:31
+msgid "Courses"
+msgstr ""
+
+#: patterns/footer-columns.php:38
+msgctxt "navigation landmark label"
+msgid "Course categories"
+msgstr ""
+
+#: patterns/footer-columns.php:43
+#: patterns/lesson-nav.php:34
+msgid "All courses"
+msgstr ""
+
+#: patterns/footer-columns.php:51
+msgid "Academy"
+msgstr ""
+
+#: patterns/footer-columns.php:54
+msgctxt "navigation landmark label"
+msgid "Academy"
+msgstr ""
+
+#: patterns/footer-columns.php:55
+#: patterns/footer.php:32
+msgid "About"
+msgstr ""
+
+#: patterns/footer-columns.php:56
+#: patterns/footer.php:30
+msgid "Instructors"
+msgstr ""
+
+#: patterns/footer-columns.php:57
+#: patterns/footer.php:31
+msgid "Events"
+msgstr ""
+
+#: patterns/footer-columns.php:58
+msgid "Blog"
+msgstr ""
+
+#: patterns/footer-columns.php:66
+msgid "Help"
+msgstr ""
+
+#: patterns/footer-columns.php:69
+msgctxt "navigation landmark label"
+msgid "Help"
+msgstr ""
+
+#: patterns/footer-columns.php:70
+msgid "Questions and answers"
+msgstr ""
+
+#: patterns/footer-columns.php:71
+msgid "Pricing"
+msgstr ""
+
+#: patterns/footer-columns.php:72
+#: patterns/footer-minimal.php:23
+#: patterns/footer.php:44
+msgid "Contact"
+msgstr ""
+
+#: patterns/footer-columns.php:73
+#: patterns/footer-minimal.php:23
+#: patterns/footer.php:44
+msgid "Accessibility"
+msgstr ""
+
+#: patterns/footer-columns.php:89
+#: patterns/footer-minimal.php:23
+#: patterns/footer.php:44
+msgid "Privacy policy"
+msgstr ""
+
+#: patterns/footer-minimal.php
+msgctxt "Pattern title"
+msgid "Footer, minimal"
+msgstr ""
+
+#: patterns/footer-minimal.php
+msgctxt "Pattern description"
+msgid "One slim row with the site title and links to the accessibility statement, privacy policy and contact page. Used on the dashboard and lesson templates."
+msgstr ""
+
+#: patterns/footer.php
+msgctxt "Pattern title"
+msgid "Footer"
+msgstr ""
+
+#: patterns/footer.php
+msgctxt "Pattern description"
+msgid "Site title and tagline beside the footer navigation, with links to the accessibility statement, privacy policy and contact page underneath."
+msgstr ""
+
+#: patterns/footer.php:28
+msgctxt "navigation landmark label"
+msgid "Footer"
+msgstr ""
+
+#: patterns/header-centered.php
+msgctxt "Pattern title"
+msgid "Header, centred"
+msgstr ""
+
+#: patterns/header-centered.php
+msgctxt "Pattern description"
+msgid "Logo and site title centred above a centred navigation row, for schools and academies with a strong name."
+msgstr ""
+
+#: patterns/header-centered.php:28
+#: patterns/header-large-title.php:36
+#: patterns/header.php:30
+#: patterns/navigation-overlay.php:20
+msgctxt "navigation landmark label"
+msgid "Main"
+msgstr ""
+
+#: patterns/header-large-title.php
+msgctxt "Pattern title"
+msgid "Header with large title"
+msgstr ""
+
+#: patterns/header-large-title.php
+msgctxt "Pattern description"
+msgid "A masthead with a large site title and the tagline, and the navigation in its own row below a divider."
+msgstr ""
+
+#: patterns/header-minimal.php
+msgctxt "Pattern title"
+msgid "Header, minimal"
+msgstr ""
+
+#: patterns/header-minimal.php
+msgctxt "Pattern description"
+msgid "A slim bar with the site title and a log-in or log-out link, without the main navigation. Used on the student dashboard and log-in pages."
+msgstr ""
+
+#: patterns/header-promo.php
+msgctxt "Pattern title"
+msgid "Header with promo bar"
+msgstr ""
+
+#: patterns/header-promo.php
+msgctxt "Pattern description"
+msgid "The promo bar above the standard header, for launches, open days and enrolment deadlines."
+msgstr ""
+
+#: patterns/header.php
+msgctxt "Pattern title"
+msgid "Header"
+msgstr ""
+
+#: patterns/header.php
+msgctxt "Pattern description"
+msgid "Logo and site title on the left; navigation, a log-in link and a button to the course catalogue on the right. On phones the menu opens in the theme's navigation overlay."
+msgstr ""
+
+#: patterns/hero-academy.php
+msgctxt "Pattern title"
+msgid "Hero: academy"
+msgstr ""
+
+#: patterns/hero-academy.php
+msgctxt "Pattern description"
+msgid "A tinted band with a headline, an introduction, two buttons and a line of proof beside an illustration. The illustration loads with high fetch priority."
+msgstr ""
+
+#: patterns/hero-academy.php:22
 msgid "Online courses and live classes"
 msgstr ""
 
-#: patterns/hero.php:26
-msgid "Learn the skills that move you forward"
+#: patterns/hero-academy.php:26
+msgid "Learn the skills that move your career forward"
 msgstr ""
 
-#: patterns/hero.php:30
-msgid "Practical courses taught by people who do the work. Learn at your own pace, track your progress and earn a certificate."
+#: patterns/hero-academy.php:30
+msgid "Practical courses in data, web development, design and communication, taught by people who do the work every day. Study at your own pace, get feedback on real projects and earn a certificate."
 msgstr ""
 
-#: patterns/hero.php:36
+#: patterns/hero-academy.php:36
 msgid "Explore courses"
 msgstr ""
 
-#: patterns/hero.php:40
+#: patterns/hero-academy.php:40
+#: patterns/process-steps.php:20
 msgid "How it works"
 msgstr ""
 
-#: patterns/hero.php:50
-msgid "Illustration of an open book, a laptop and a graduation cap"
+#: patterns/hero-academy.php:46
+msgid "4,800+ learners · 36 courses · Rated 4.8 out of 5"
+msgstr ""
+
+#: patterns/hero-academy.php:54
+#: patterns/hidden-login-aside.php:30
+#: patterns/text-and-image.php:18
+msgid "Illustration of a laptop showing a lesson, an open book and a graduation cap"
+msgstr ""
+
+#: patterns/hero-coaching.php
+msgctxt "Pattern title"
+msgid "Hero: coaching"
+msgstr ""
+
+#: patterns/hero-coaching.php
+msgctxt "Pattern description"
+msgid "An illustration of an online coaching session beside a headline, three benefits and buttons to book a consultation or meet the coaches."
+msgstr ""
+
+#: patterns/hero-coaching.php:22
+msgid "Illustration of a video call between a coach and a learner, beside a checklist of goals"
+msgstr ""
+
+#: patterns/hero-coaching.php:30
+msgid "One-to-one coaching"
+msgstr ""
+
+#: patterns/hero-coaching.php:34
+msgid "Personal coaching for exams, interviews and career changes"
+msgstr ""
+
+#: patterns/hero-coaching.php:38
+msgid "Work with a coach who knows your field. Set your goals in the first session, practise with feedback every week and see your progress in one place."
+msgstr ""
+
+#: patterns/hero-coaching.php:44
+msgid "A free 20-minute consultation to plan your goals"
+msgstr ""
+
+#: patterns/hero-coaching.php:48
+msgid "Weekly 45-minute sessions online, at times that suit you"
+msgstr ""
+
+#: patterns/hero-coaching.php:52
+msgid "Practice tasks and written feedback between sessions"
+msgstr ""
+
+#: patterns/hero-coaching.php:60
+msgid "Book a free consultation"
+msgstr ""
+
+#: patterns/hero-coaching.php:64
+msgid "Meet our coaches"
+msgstr ""
+
+#: patterns/hero-course-launch.php
+msgctxt "Pattern title"
+msgid "Hero: course launch"
+msgstr ""
+
+#: patterns/hero-course-launch.php
+msgctxt "Pattern description"
+msgid "A dark band announcing a new course cohort: start date badge, course title, summary, key facts, a button and a wide course illustration."
+msgstr ""
+
+#: patterns/hero-course-launch.php:20
+msgid "New cohort · Starts 12 January"
+msgstr ""
+
+#: patterns/hero-course-launch.php:26
+msgid "UX Design Essentials"
+msgstr ""
+
+#: patterns/hero-course-launch.php:30
+msgid "An eight-week, project-based course with Elena Ortiz. Research a real problem, sketch and test your ideas, and finish with a case study you can show employers."
+msgstr ""
+
+#: patterns/hero-course-launch.php:36
+msgid "8 weeks"
+msgstr ""
+
+#: patterns/hero-course-launch.php:40
+msgid "18 lessons"
+msgstr ""
+
+#: patterns/hero-course-launch.php:44
+msgid "Live critique every Thursday"
+msgstr ""
+
+#: patterns/hero-course-launch.php:48
+msgid "Certificate on completion"
+msgstr ""
+
+#: patterns/hero-course-launch.php:62
+msgid "See what you will learn each week"
+msgstr ""
+
+#: patterns/hero-course-launch.php:66
+msgid "Illustration of a phone wireframe, a moodboard and colour swatches from the UX Design Essentials course"
 msgstr ""
 
 #: patterns/hidden-404.php
@@ -248,6 +1055,90 @@ msgctxt "Pattern description"
 msgid "The comments area of single posts: comment list, pagination and the reply form."
 msgstr ""
 
+#: patterns/hidden-course-filters.php
+msgctxt "Pattern title"
+msgid "Course filters"
+msgstr ""
+
+#: patterns/hidden-course-filters.php
+msgctxt "Pattern description"
+msgid "The filters column of the course archive: a course search and links to subjects and levels. Public LMS can replace or extend this region with its own filter blocks."
+msgstr ""
+
+#: patterns/hidden-course-filters.php:13
+msgid "Course filters"
+msgstr ""
+
+#: patterns/hidden-course-filters.php:16
+msgid "Find a course"
+msgstr ""
+
+#: patterns/hidden-course-filters.php:19
+msgid "Search courses"
+msgstr ""
+
+#: patterns/hidden-course-filters.php:19
+msgid "For example: Python"
+msgstr ""
+
+#: patterns/hidden-course-filters.php:19
+msgid "Search"
+msgstr ""
+
+#: patterns/hidden-course-filters.php:21
+msgid "Subjects"
+msgstr ""
+
+#: patterns/hidden-course-filters.php:23
+msgid "Levels"
+msgstr ""
+
+#: patterns/hidden-course-hero.php
+msgctxt "Pattern title"
+msgid "Single course hero"
+msgstr ""
+
+#: patterns/hidden-course-hero.php
+msgctxt "Pattern description"
+msgid "Top of the single course template: subject, title, summary, a meta row bound to publiclms/course-field, the enrol button and the featured image."
+msgstr ""
+
+#: patterns/hidden-course-hero.php:52
+msgid "Enrol now"
+msgstr ""
+
+#: patterns/hidden-lesson-contents.php
+msgctxt "Pattern title"
+msgid "Lesson course contents"
+msgstr ""
+
+#: patterns/hidden-lesson-contents.php
+msgctxt "Pattern description"
+msgid "A closed Details block on lessons that opens the course curriculum, so the lesson stays distraction-free until the learner asks for the outline."
+msgstr ""
+
+#: patterns/hidden-lesson-contents.php:14
+msgid "Course contents"
+msgstr ""
+
+#: patterns/hidden-login-aside.php
+msgctxt "Pattern title"
+msgid "Log-in page aside"
+msgstr ""
+
+#: patterns/hidden-login-aside.php
+msgctxt "Pattern description"
+msgid "The coloured half of the split log-in template: site title, a welcome line and an illustration."
+msgstr ""
+
+#: patterns/hidden-login-aside.php:20
+msgid "Your courses are waiting"
+msgstr ""
+
+#: patterns/hidden-login-aside.php:24
+msgid "Pick up where you left off, check your progress and download your certificates."
+msgstr ""
+
 #: patterns/hidden-no-results.php
 msgctxt "Pattern title"
 msgid "No results"
@@ -262,22 +1153,695 @@ msgstr ""
 msgid "Nothing matched your search. Try different keywords."
 msgstr ""
 
-#: patterns/posts-grid.php
+#: patterns/hidden-related-courses.php
 msgctxt "Pattern title"
-msgid "Latest posts grid"
+msgid "Related courses"
 msgstr ""
 
-#: patterns/posts-grid.php
+#: patterns/hidden-related-courses.php
 msgctxt "Pattern description"
-msgid "A heading and a three-column grid of the latest posts with image, title and date."
+msgid "Bottom of the single course template: three more courses as classic cards."
 msgstr ""
 
-#: patterns/posts-grid.php:19
-msgid "News and announcements"
+#: patterns/hidden-related-courses.php:18
+msgid "You might also like"
 msgstr ""
 
-#: patterns/posts-grid.php:32
-msgid "No posts yet."
+#: patterns/instructor-grid.php
+msgctxt "Pattern title"
+msgid "Instructor grid"
+msgstr ""
+
+#: patterns/instructor-grid.php
+msgctxt "Pattern description"
+msgid "Four instructor profiles with a portrait, name, subject and a one-line biography."
+msgstr ""
+
+#: patterns/instructor-grid.php:20
+msgid "Learn from people who do the work"
+msgstr ""
+
+#: patterns/instructor-grid.php:24
+msgid "Every instructor works in the field they teach and answers questions within one working day."
+msgstr ""
+
+#: patterns/instructor-grid.php:34
+msgctxt "image alt text"
+msgid "Portrait illustration of Dr. Asha Gurung"
+msgstr ""
+
+#: patterns/instructor-grid.php:38
+msgctxt "person name"
+msgid "Dr. Asha Gurung"
+msgstr ""
+
+#: patterns/instructor-grid.php:46
+msgid "A former public health analyst who has taught Python and SQL to more than 1,500 learners."
+msgstr ""
+
+#: patterns/instructor-grid.php:54
+msgctxt "image alt text"
+msgid "Portrait illustration of Marcus Bell"
+msgstr ""
+
+#: patterns/instructor-grid.php:58
+msgctxt "person name"
+msgid "Marcus Bell"
+msgstr ""
+
+#: patterns/instructor-grid.php:66
+msgid "A front-end engineer for twelve years who teaches HTML, CSS and JavaScript from first principles."
+msgstr ""
+
+#: patterns/instructor-grid.php:74
+#: patterns/page-course-launch.php:110
+msgctxt "image alt text"
+msgid "Portrait illustration of Elena Ortiz"
+msgstr ""
+
+#: patterns/instructor-grid.php:78
+#: patterns/page-course-launch.php:122
+msgctxt "person name"
+msgid "Elena Ortiz"
+msgstr ""
+
+#: patterns/instructor-grid.php:82
+msgid "UX and product design"
+msgstr ""
+
+#: patterns/instructor-grid.php:86
+msgid "A product designer who has led research and design teams at two start-ups."
+msgstr ""
+
+#: patterns/instructor-grid.php:94
+msgctxt "image alt text"
+msgid "Portrait illustration of Daniel Okafor"
+msgstr ""
+
+#: patterns/instructor-grid.php:98
+msgctxt "person name"
+msgid "Daniel Okafor"
+msgstr ""
+
+#: patterns/instructor-grid.php:106
+msgid "A speaker coach and former radio presenter who helps learners speak with confidence."
+msgstr ""
+
+#: patterns/lesson-nav.php
+msgctxt "Pattern title"
+msgid "Lesson bar"
+msgstr ""
+
+#: patterns/lesson-nav.php
+msgctxt "Pattern description"
+msgid "A slim bar for lessons and quizzes: the site title on the left, and links to the learner's dashboard and the course catalogue with a log-out link on the right. No main navigation, so learners stay on the lesson."
+msgstr ""
+
+#: patterns/lesson-nav.php:30
+msgid "My dashboard"
+msgstr ""
+
+#: patterns/login-panel.php
+msgctxt "Pattern title"
+msgid "Log-in panel"
+msgstr ""
+
+#: patterns/login-panel.php
+msgctxt "Pattern description"
+msgid "A welcome message and a link to create an account beside a card with the core Login/out block shown as a form."
+msgstr ""
+
+#: patterns/login-panel.php:22
+msgid "Welcome back"
+msgstr ""
+
+#: patterns/login-panel.php:26
+msgid "Log in to continue your courses, check your progress and download your certificates."
+msgstr ""
+
+#: patterns/login-panel.php:30
+msgid "New here?"
+msgstr ""
+
+#: patterns/login-panel.php:30
+msgid "Create a free account"
+msgstr ""
+
+#: patterns/logos-strip.php
+msgctxt "Pattern title"
+msgid "Logos strip"
+msgstr ""
+
+#: patterns/logos-strip.php
+msgctxt "Pattern description"
+msgid "A short line and a row of five partner logos that wraps on small screens. The logos are fictional placeholders drawn for the theme."
+msgstr ""
+
+#: patterns/logos-strip.php:18
+msgid "Learners from these organisations study with us"
+msgstr ""
+
+#: patterns/logos-strip.php:24
+msgctxt "partner organisation name"
+msgid "Northfield College"
+msgstr ""
+
+#: patterns/logos-strip.php:28
+msgctxt "partner organisation name"
+msgid "Bluegate Labs"
+msgstr ""
+
+#: patterns/logos-strip.php:32
+msgctxt "partner organisation name"
+msgid "Harbor & Pine"
+msgstr ""
+
+#: patterns/logos-strip.php:36
+msgctxt "partner organisation name"
+msgid "Meridian Trust"
+msgstr ""
+
+#: patterns/logos-strip.php:40
+msgctxt "partner organisation name"
+msgid "Openfield School"
+msgstr ""
+
+#: patterns/navigation-overlay.php
+msgctxt "Pattern title"
+msgid "Navigation overlay"
+msgstr ""
+
+#: patterns/navigation-overlay.php
+msgctxt "Pattern description"
+msgid "The full-screen menu that opens from the header on phones (WordPress 7.0 and later): site title, the main menu in large type, a log-in link and a button to the course catalogue. WordPress adds the close button."
+msgstr ""
+
+#: patterns/newsletter.php
+msgctxt "Pattern title"
+msgid "Newsletter sign-up"
+msgstr ""
+
+#: patterns/newsletter.php
+msgctxt "Pattern description"
+msgid "A tinted band with a heading and a sentence, and a marked spot for the sign-up form block from your newsletter or forms plugin. The theme ships no form of its own."
+msgstr ""
+
+#: patterns/newsletter.php:18
+msgid "Get new courses and events in your inbox"
+msgstr ""
+
+#: patterns/newsletter.php:22
+msgid "One email a month with new courses, free webinars and study tips. Unsubscribe any time."
+msgstr ""
+
+#: patterns/newsletter.php:28
+msgid "Sign-up form goes here. Replace this paragraph with the form block from your newsletter or forms plugin."
+msgstr ""
+
+#: patterns/page-academy-home.php
+msgctxt "Pattern title"
+msgid "Academy home"
+msgstr ""
+
+#: patterns/page-academy-home.php
+msgctxt "Pattern description"
+msgid "A complete academy home page: hero, partner logos, subjects, popular courses, benefits, how it works, statistics, instructors, testimonials, events, questions and a closing call to action. Use it with the \"Page without title\" template."
+msgstr ""
+
+#: patterns/page-course-launch.php
+msgctxt "Pattern title"
+msgid "Course launch landing"
+msgstr ""
+
+#: patterns/page-course-launch.php
+msgctxt "Pattern description"
+msgid "A landing page for a new course cohort: launch hero, week-by-week curriculum, the instructor, learner testimonials, pricing, questions and a closing call to action. Use it with the \"Landing page\" template."
+msgstr ""
+
+#: patterns/page-course-launch.php:24
+msgid "What you will learn"
+msgstr ""
+
+#: patterns/page-course-launch.php:28
+msgid "Eighteen lessons over eight weeks, about three hours a week, with a live critique every Thursday evening."
+msgstr ""
+
+#: patterns/page-course-launch.php:38
+msgid "Weeks 1 and 2"
+msgstr ""
+
+#: patterns/page-course-launch.php:42
+msgid "Research"
+msgstr ""
+
+#: patterns/page-course-launch.php:46
+msgid "Plan and run five user interviews, then turn your notes into clear findings."
+msgstr ""
+
+#: patterns/page-course-launch.php:54
+msgid "Weeks 3 and 4"
+msgstr ""
+
+#: patterns/page-course-launch.php:58
+msgid "Define and sketch"
+msgstr ""
+
+#: patterns/page-course-launch.php:62
+msgid "Write a problem statement, map the user journey and sketch three directions."
+msgstr ""
+
+#: patterns/page-course-launch.php:70
+msgid "Weeks 5 and 6"
+msgstr ""
+
+#: patterns/page-course-launch.php:74
+msgid "Prototype and test"
+msgstr ""
+
+#: patterns/page-course-launch.php:78
+msgid "Build a clickable prototype and test it with real people, twice."
+msgstr ""
+
+#: patterns/page-course-launch.php:86
+msgid "Weeks 7 and 8"
+msgstr ""
+
+#: patterns/page-course-launch.php:90
+msgid "Case study"
+msgstr ""
+
+#: patterns/page-course-launch.php:94
+msgid "Present your work at the final critique and publish a portfolio case study."
+msgstr ""
+
+#: patterns/page-course-launch.php:118
+msgid "Your instructor"
+msgstr ""
+
+#: patterns/page-course-launch.php:126
+msgid "Elena is a product designer who has led research and design teams at two start-ups. She has run the Thursday critiques for every cohort of UX Design Essentials and reviews each final case study herself."
+msgstr ""
+
+#: patterns/pricing-2-columns.php
+msgctxt "Pattern title"
+msgid "Pricing, 2 columns"
+msgstr ""
+
+#: patterns/pricing-2-columns.php
+msgctxt "Pattern description"
+msgid "Two plans side by side: a single course and all-access, with the all-access plan highlighted as the most popular."
+msgstr ""
+
+#: patterns/pricing-2-columns.php:20
+msgid "Choose how you learn"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:24
+msgid "Buy one course and keep it, or learn everything with all-access. Both come with a 14-day refund."
+msgstr ""
+
+#: patterns/pricing-2-columns.php:34
+msgid "Single course"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:40
+msgctxt "price"
+msgid "$49"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:44
+msgid "one payment"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:50
+msgid "Pick any one course and keep it for life."
+msgstr ""
+
+#: patterns/pricing-2-columns.php:56
+msgid "Lifetime access to one course, with updates"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:60
+msgid "Certificate of completion"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:64
+msgid "Questions answered by the instructor"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:84
+#: patterns/pricing-3-columns.php:84
+msgid "Most popular"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:90
+#: patterns/pricing-3-columns.php:90
+msgid "All-access"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:96
+#: patterns/pricing-3-columns.php:96
+msgctxt "price"
+msgid "$19"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:100
+#: patterns/pricing-3-columns.php:100
+#: patterns/pricing-3-columns.php:152
+msgid "per month"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:106
+#: patterns/pricing-3-columns.php:106
+msgid "Every course, every new release and a certificate for each one."
+msgstr ""
+
+#: patterns/pricing-2-columns.php:112
+#: patterns/pricing-3-columns.php:112
+msgid "All 36 courses and every new release"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:116
+#: patterns/pricing-3-columns.php:116
+msgid "Certificates of completion"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:120
+#: patterns/pricing-3-columns.php:120
+msgid "Project feedback from instructors"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:124
+#: patterns/pricing-3-columns.php:124
+msgid "Cancel any time"
+msgstr ""
+
+#: patterns/pricing-2-columns.php:132
+#: patterns/pricing-3-columns.php:132
+msgid "Get all-access"
+msgstr ""
+
+#: patterns/pricing-3-columns.php
+msgctxt "Pattern title"
+msgid "Pricing, 3 columns"
+msgstr ""
+
+#: patterns/pricing-3-columns.php
+msgctxt "Pattern description"
+msgid "Three plans on a surface band: a free starter plan, all-access highlighted as the most popular, and a team plan."
+msgstr ""
+
+#: patterns/pricing-3-columns.php:20
+msgid "Simple pricing"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:24
+msgid "Start free, buy a single course, or learn everything with all-access. Every paid plan has a 14-day refund."
+msgstr ""
+
+#: patterns/pricing-3-columns.php:34
+msgid "Starter"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:40
+msgctxt "price"
+msgid "Free"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:44
+msgid "no card needed"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:50
+msgid "Try the academy with three free starter courses."
+msgstr ""
+
+#: patterns/pricing-3-columns.php:56
+msgid "Three free starter courses"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:60
+msgid "Quizzes and progress tracking"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:64
+msgid "Learner community forum"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:72
+msgid "Start for free"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:142
+msgid "Team"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:148
+msgctxt "price"
+msgid "$99"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:158
+msgid "All-access for up to ten learners, with reports for managers."
+msgstr ""
+
+#: patterns/pricing-3-columns.php:164
+msgid "All-access for up to ten learners"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:168
+msgid "Progress reports for managers"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:172
+msgid "One onboarding call"
+msgstr ""
+
+#: patterns/pricing-3-columns.php:176
+msgid "Invoice billing"
+msgstr ""
+
+#: patterns/process-steps.php
+msgctxt "Pattern title"
+msgid "Process steps"
+msgstr ""
+
+#: patterns/process-steps.php
+msgctxt "Pattern description"
+msgid "Four numbered steps that explain how learning works, from choosing a course to earning a certificate. The section has the anchor \"how-it-works\"."
+msgstr ""
+
+#: patterns/process-steps.php:30
+msgctxt "step number"
+msgid "1"
+msgstr ""
+
+#: patterns/process-steps.php:34
+msgid "Choose a course"
+msgstr ""
+
+#: patterns/process-steps.php:38
+msgid "Browse 36 courses by subject and level, or start with one of the three free courses."
+msgstr ""
+
+#: patterns/process-steps.php:46
+msgctxt "step number"
+msgid "2"
+msgstr ""
+
+#: patterns/process-steps.php:50
+msgid "Learn in short lessons"
+msgstr ""
+
+#: patterns/process-steps.php:54
+msgid "Watch, read and practise in lessons of ten to fifteen minutes."
+msgstr ""
+
+#: patterns/process-steps.php:62
+msgctxt "step number"
+msgid "3"
+msgstr ""
+
+#: patterns/process-steps.php:66
+msgid "Practise and get feedback"
+msgstr ""
+
+#: patterns/process-steps.php:70
+msgid "Check your understanding with quizzes and send your projects to the instructor for review."
+msgstr ""
+
+#: patterns/process-steps.php:78
+msgctxt "step number"
+msgid "4"
+msgstr ""
+
+#: patterns/process-steps.php:82
+msgid "Earn your certificate"
+msgstr ""
+
+#: patterns/process-steps.php:86
+msgid "Finish every lesson, pass the final quiz and download your certificate."
+msgstr ""
+
+#: patterns/promo-bar.php
+msgctxt "Pattern title"
+msgid "Promo bar"
+msgstr ""
+
+#: patterns/promo-bar.php
+msgctxt "Pattern description"
+msgid "A slim dark bar with a one-line announcement and a link, for the top of the header or any page."
+msgstr ""
+
+#: patterns/promo-bar.php:18
+msgid "UX Design Essentials, cohort 3, starts 12 January."
+msgstr ""
+
+#: patterns/sidebar-course.php
+msgctxt "Pattern title"
+msgid "Course sidebar"
+msgstr ""
+
+#: patterns/sidebar-course.php
+msgctxt "Pattern description"
+msgid "The single course sidebar: the Public LMS enrol card (price, enrol button, what the course includes), then a card that points undecided learners to a person."
+msgstr ""
+
+#: patterns/sidebar-course.php:23
+msgid "Not sure this is the right course?"
+msgstr ""
+
+#: patterns/sidebar-course.php:27
+msgid "Tell us what you want to learn and an adviser will suggest where to start, usually within one working day."
+msgstr ""
+
+#: patterns/sidebar-course.php:31
+msgid "Ask an adviser"
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern title"
+msgid "Statistics"
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern description"
+msgid "Four large figures on a dark band: learners, courses, instructors and average rating. Static numbers, no animation."
+msgstr ""
+
+#: patterns/stats.php:20
+msgid "The academy in numbers"
+msgstr ""
+
+#: patterns/stats.php:30
+msgctxt "statistic"
+msgid "4,800+"
+msgstr ""
+
+#: patterns/stats.php:34
+msgid "learners enrolled"
+msgstr ""
+
+#: patterns/stats.php:42
+msgctxt "statistic"
+msgid "36"
+msgstr ""
+
+#: patterns/stats.php:46
+msgid "courses in six subjects"
+msgstr ""
+
+#: patterns/stats.php:54
+msgctxt "statistic"
+msgid "18"
+msgstr ""
+
+#: patterns/stats.php:58
+msgid "working instructors"
+msgstr ""
+
+#: patterns/stats.php:66
+msgctxt "statistic"
+msgid "4.8/5"
+msgstr ""
+
+#: patterns/stats.php:70
+msgid "average rating from 1,200 reviews"
+msgstr ""
+
+#: patterns/testimonials-grid.php
+msgctxt "Pattern title"
+msgid "Testimonials grid"
+msgstr ""
+
+#: patterns/testimonials-grid.php
+msgctxt "Pattern description"
+msgid "Three learner quotes in cards on a surface band, each with a portrait, a name, a role and the course they took."
+msgstr ""
+
+#: patterns/testimonials-grid.php:20
+msgid "What our learners say"
+msgstr ""
+
+#: patterns/testimonials-grid.php:24
+msgid "Learners rate their courses 4.8 out of 5 on average. Here are three of them in their own words."
+msgstr ""
+
+#: patterns/testimonials-grid.php:36
+msgctxt "testimonial"
+msgid "I had never written a line of code. Eight weeks later I was cleaning real datasets at work, and Asha’s feedback on my final project helped me land my first analyst role."
+msgstr ""
+
+#: patterns/testimonials-grid.php:44
+msgctxt "image alt text"
+msgid "Portrait illustration of Sanjana Shrestha"
+msgstr ""
+
+#: patterns/testimonials-grid.php:50
+msgctxt "person name"
+msgid "Sanjana Shrestha"
+msgstr ""
+
+#: patterns/testimonials-grid.php:54
+msgid "Junior data analyst · Data Analysis with Python"
+msgstr ""
+
+#: patterns/testimonials-grid.php:68
+msgctxt "testimonial"
+msgid "Marcus explains things the way you would want a colleague to. The weekly projects were hard enough to stretch me and small enough to finish after work."
+msgstr ""
+
+#: patterns/testimonials-grid.php:76
+msgctxt "image alt text"
+msgid "Portrait illustration of Tom Whitaker"
+msgstr ""
+
+#: patterns/testimonials-grid.php:82
+msgctxt "person name"
+msgid "Tom Whitaker"
+msgstr ""
+
+#: patterns/testimonials-grid.php:86
+msgid "Front-end developer · Web Development Foundations"
+msgstr ""
+
+#: patterns/testimonials-grid.php:100
+msgctxt "testimonial"
+msgid "The Thursday critiques with Elena changed how I present my work. I finished with a case study that I still use in interviews."
+msgstr ""
+
+#: patterns/testimonials-grid.php:108
+msgctxt "image alt text"
+msgid "Portrait illustration of Grace Mwangi"
+msgstr ""
+
+#: patterns/testimonials-grid.php:114
+msgctxt "person name"
+msgid "Grace Mwangi"
+msgstr ""
+
+#: patterns/testimonials-grid.php:118
+msgid "Product designer · UX Design Essentials"
 msgstr ""
 
 #: patterns/text-and-image.php
@@ -287,23 +1851,26 @@ msgstr ""
 
 #: patterns/text-and-image.php
 msgctxt "Pattern description"
-msgid "An image beside a heading, a paragraph and a link button."
+msgid "An illustration beside a heading, a paragraph and a link button, for an \"about us\" or mission section."
 msgstr ""
 
-#: patterns/text-and-image.php:18
-msgid "A place to learn, at your own pace"
+#: patterns/text-and-image.php:20
+msgid "Learn with people who do the work"
 msgstr ""
 
-#: patterns/text-and-image.php:22
-msgid "Tell visitors who you teach and why it works: small classes, practical projects, and teachers who answer questions."
+#: patterns/text-and-image.php:24
+msgid "Every instructor works in the field they teach. Classes stay small, projects come from real jobs, and questions get an answer within one working day."
 msgstr ""
 
-#: patterns/text-and-image.php:28
-msgid "About us"
+#: patterns/text-and-image.php:30
+msgid "About the academy"
 msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Base"
@@ -311,6 +1878,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Contrast"
@@ -318,6 +1888,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Primary"
@@ -325,6 +1898,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Primary Soft"
@@ -332,6 +1908,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Secondary"
@@ -339,6 +1918,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Accent"
@@ -346,6 +1928,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Surface"
@@ -353,6 +1938,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Line"
@@ -360,6 +1948,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Success"
@@ -367,6 +1958,9 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Warning"
@@ -374,12 +1968,16 @@ msgstr ""
 
 #: theme.json
 #: styles/colors/campus.json
+#: styles/colors/corporate.json
+#: styles/colors/dark.json
+#: styles/colors/kids.json
 #: styles/colors/studio.json
 msgctxt "Color name"
 msgid "Danger"
 msgstr ""
 
 #: theme.json
+#: styles/colors/dark.json
 msgctxt "Shadow name"
 msgid "Card"
 msgstr ""
@@ -392,6 +1990,16 @@ msgstr ""
 #: theme.json
 msgctxt "Font family name"
 msgid "Figtree"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System serif"
 msgstr ""
 
 #: theme.json
@@ -440,8 +2048,43 @@ msgid "Page without title"
 msgstr ""
 
 #: theme.json
+msgctxt "Custom template name"
+msgid "Landing page (no header or footer)"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Log-in page (split)"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Student Dashboard"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Instructor Dashboard"
+msgstr ""
+
+#: theme.json
 msgctxt "Template part name"
 msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header, centred"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header with large title"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header, minimal"
 msgstr ""
 
 #: theme.json
@@ -449,9 +2092,84 @@ msgctxt "Template part name"
 msgid "Footer"
 msgstr ""
 
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer with columns"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer, minimal"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Course sidebar"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Lesson bar"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Navigation overlay"
+msgstr ""
+
+#: styles/blocks/band-dark.json
+msgctxt "Style variation name"
+msgid "Dark band"
+msgstr ""
+
+#: styles/blocks/band-primary.json
+msgctxt "Style variation name"
+msgid "Primary band"
+msgstr ""
+
+#: styles/blocks/band-tint.json
+msgctxt "Style variation name"
+msgid "Tinted band"
+msgstr ""
+
+#: styles/blocks/card.json
+msgctxt "Style variation name"
+msgid "Card"
+msgstr ""
+
+#: styles/blocks/footer-bar.json
+msgctxt "Style variation name"
+msgid "Footer bar"
+msgstr ""
+
+#: styles/blocks/header-bar.json
+msgctxt "Style variation name"
+msgid "Header bar"
+msgstr ""
+
+#: styles/blocks/highlight.json
+msgctxt "Style variation name"
+msgid "Most popular"
+msgstr ""
+
 #: styles/colors/campus.json
 msgctxt "Style variation name"
 msgid "Campus"
+msgstr ""
+
+#: styles/colors/corporate.json
+msgctxt "Style variation name"
+msgid "Corporate"
+msgstr ""
+
+#: styles/colors/dark.json
+msgctxt "Style variation name"
+msgid "Dark"
+msgstr ""
+
+#: styles/colors/kids.json
+msgctxt "Style variation name"
+msgid "Kids"
 msgstr ""
 
 #: styles/colors/studio.json
@@ -467,4 +2185,9 @@ msgstr ""
 #: styles/typography/modern.json
 msgctxt "Style variation name"
 msgid "Modern"
+msgstr ""
+
+#: styles/typography/system.json
+msgctxt "Style variation name"
+msgid "System"
 msgstr ""
