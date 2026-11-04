@@ -27,7 +27,7 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-certificate.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-certificate.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -43,7 +43,7 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-clock.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-clock.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -59,7 +59,7 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-mobile.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-mobile.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -75,7 +75,7 @@
 		<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-mentor.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-mentor.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->

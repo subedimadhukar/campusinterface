@@ -41,7 +41,7 @@
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
 				<!-- wp:image {"width":"3.5rem","aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
-				<figure class="wp-block-image size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learner-sanjana-shrestha.svg' ) ); ?>" alt="<?php echo esc_attr_x( 'Portrait illustration of Sanjana Shrestha', 'image alt text', 'campusinterface' ); ?>" style="aspect-ratio:1;object-fit:cover;width:3.5rem;height:auto"/></figure>
+				<figure class="wp-block-image size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learner-sanjana-shrestha.svg' ) ); ?>" alt="<?php echo esc_attr_x( 'Portrait illustration of Sanjana Shrestha', 'image alt text', 'campusinterface' ); ?>" style="aspect-ratio:1;object-fit:cover;width:3.5rem"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
@@ -73,7 +73,7 @@
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
 				<!-- wp:image {"width":"3.5rem","aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
-				<figure class="wp-block-image size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learner-tom-whitaker.svg' ) ); ?>" alt="<?php echo esc_attr_x( 'Portrait illustration of Tom Whitaker', 'image alt text', 'campusinterface' ); ?>" style="aspect-ratio:1;object-fit:cover;width:3.5rem;height:auto"/></figure>
+				<figure class="wp-block-image size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learner-tom-whitaker.svg' ) ); ?>" alt="<?php echo esc_attr_x( 'Portrait illustration of Tom Whitaker', 'image alt text', 'campusinterface' ); ?>" style="aspect-ratio:1;object-fit:cover;width:3.5rem"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->
@@ -105,7 +105,7 @@
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|40"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 			<div class="wp-block-group">
 				<!-- wp:image {"width":"3.5rem","aspectRatio":"1","scale":"cover","sizeSlug":"full","linkDestination":"none","className":"is-style-rounded"} -->
-				<figure class="wp-block-image size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learner-grace-mwangi.svg' ) ); ?>" alt="<?php echo esc_attr_x( 'Portrait illustration of Grace Mwangi', 'image alt text', 'campusinterface' ); ?>" style="aspect-ratio:1;object-fit:cover;width:3.5rem;height:auto"/></figure>
+				<figure class="wp-block-image size-full is-resized is-style-rounded"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/learner-grace-mwangi.svg' ) ); ?>" alt="<?php echo esc_attr_x( 'Portrait illustration of Grace Mwangi', 'image alt text', 'campusinterface' ); ?>" style="aspect-ratio:1;object-fit:cover;width:3.5rem"/></figure>
 				<!-- /wp:image -->
 
 				<!-- wp:group {"style":{"spacing":{"blockGap":"0"}},"layout":{"type":"flex","orientation":"vertical"}} -->

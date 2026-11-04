@@ -7,6 +7,12 @@
  * front end and in the editor; small enough that WordPress inlines it.
  */
 
+/* Form fields follow the palette (dark variation included); theme.json has no element for them. */
+:where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"]), select, textarea) {
+	background-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--contrast);
+}
+
 /* Visible focus on every interactive element theme.json does not reach. */
 :where(input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible,
 :where(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close):focus-visible {

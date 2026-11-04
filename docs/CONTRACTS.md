@@ -10,7 +10,7 @@ contract version **1.0.0**. A change to either side is a pull request on both re
 | CampusInterface | Public LMS | Contract |
 |---|---|---|
 | 0.1.0 | 0.1.0 | 1.0.0 |
-| 0.2.0 (phase 1, in progress) | 0.1.0 (phase 1 not yet merged) | 1.0.0 |
+| 0.2.0 (phase 1) | Not yet: the plugin's phase 1 blocks, patterns and seed command were not committed at the theme's phase 1 gate (plugin HEAD 37bdd68). Token parity checked instead, see below | 1.0.0 |
 
 ## A. Templates and patterns
 
@@ -90,6 +90,37 @@ Other theme decisions that plugin blocks inherit but do not depend on: `layout.c
 `layout.wideSize` 1240px, root padding aware alignments, viewport breakpoints at 30rem (mobile) and 45rem
 (tablet), and button `:hover`, `:focus` and `:active` styles on `core/button`.
 
+## Phase 1 integration status
+
+**Pending.** At the theme's phase 1 gate (2026-11-04) Public LMS had committed its data layer, REST API and
+admin app but not its blocks, patterns, bindings source or seed command, so the planned check (activate both,
+seed ten courses, inspect the single course, archive, lesson and dashboard) could not run. It is the first task
+of phase 2, or of a follow-up as soon as the plugin's blocks land.
+
+**What was checked instead (Twenty Twenty-Five parity with core blocks).** A page of core blocks the plugin's
+UI will sit next to (buttons, outline buttons, a striped table, Details with a list, Search, Quote, Separator)
+plus a Group with the class `wp-block-publiclms-probe`, on CampusInterface and on Twenty Twenty-Five, in
+wp-env (WordPress 7.1.4). The B5 alias layer was injected exactly as the contract writes it
+(`:where([class*="wp-block-publiclms-"]) { --publiclms-…: var(--wp--preset--…, fallback) }`) and every alias
+was read back from the probe:
+
+| Theme | Contract tokens supplied by the theme | Plugin fallbacks used |
+|---|---|---|
+| CampusInterface 0.2.0 (default palette, and Dark) | 31 of 31: 11 colours, 8 font sizes, 7 spaces, 4 radii, `shadow--card` | none |
+| Twenty Twenty-Five 1.5 | 9 of 31: `base`, `contrast`, spacing `20`–`80` | 22 (9 colours, 8 font sizes, 4 radii, the shadow) |
+
+The probe inherits CampusInterface's body colour, font family (Figtree) and size, as B2 and B6 expect (plugin
+blocks never set `font-family`). No theme stylesheet, `theme.json` entry or PHP filter targets a plugin class
+(`grep -r publiclms assets styles theme.json style.css` finds nothing).
+
+Theme-side fixes this turned up, all made in the theme:
+
+- Core's Table "Stripes" style tints rows with a fixed `#f0f0f0`, which put light text on light rows in the
+  Dark variation; `assets/css/blocks/table.css` now uses `surface` and `line`.
+- Form fields kept the browser's white background in the Dark variation; `assets/css/global.css` gives
+  `:where(input, select, textarea)` the `base` background and `contrast` text at zero specificity. Plugin form
+  fields inherit this on CampusInterface, but see open item 4 for other themes.
+
 ## Open items for the plugin
 
 Gaps the theme found while building against contract 1.0.0. Each is an addition (minor bump) unless noted.
@@ -108,3 +139,18 @@ The theme works around every one today; none blocks the phase 1 gate.
    `plms_course` and Terms Lists of `plms_course_category` and `plms_level`. Request: a `publiclms/course-filters`
    block (level, price, duration) that the theme can place in that Group, documented in A6; until then the
    plugin should not inject into it.
+4. **Form fields on other themes.** Quiz answers, dashboard filters and the checkout form should not rely on
+   browser defaults for field colours: in a dark palette a white field with inherited light text is unreadable.
+   Request: in the plugin's block CSS, `:where([class*="wp-block-publiclms-"]) :where(input, select, textarea)
+   { background-color: var(--publiclms-color-base); color: var(--publiclms-color-contrast); border-color:
+   var(--publiclms-color-contrast); }`. CampusInterface already does this globally, so it is not urgent here.
+5. **Font size slugs in `theme.json` references (contract wording, patch).** B2 lists the slugs `2xl`, `3xl`,
+   `4xl` and correctly gives the custom properties as `--2-xl` and so on, but a `theme.json` value written
+   `var:preset|font-size|2xl` resolves to the undefined `--wp--preset--font-size--2xl`. CampusInterface had this
+   bug from phase 0 to phase 1. Request: B2 should add that `theme.json` and block style references must use
+   `var:preset|font-size|2-xl` (and `3-xl`, `4-xl`), including any `styles.blocks["publiclms/*"]` defaults the
+   plugin ships.
+6. **Query variation detection.** The theme's course grids, carousel, related courses and archive set
+   `"namespace":"publiclms/course-query"` on the Query block. Request: the variation's `isActive` should match
+   on `namespace` (not on `postType` alone), so the archive's inherited query and the theme's grids keep the
+   variation's controls in the editor.

@@ -15,8 +15,9 @@ WPInterface before submission).
 | Theme Check | `mkdir -p dist/campusinterface && git archive HEAD \| tar -x -C dist/campusinterface`, then wp-env with `"themes": [ "./dist/campusinterface" ]` in `.wp-env.override.json`, then `npx @wordpress/env@12 run cli wp theme-check run campusinterface` | No REQUIRED, WARNING or RECOMMENDED results; two INFO notes (accessibility-ready tag triggers an accessibility review; one text domain, `campusinterface`) |
 | PHPCS (WordPress-Extra, WordPress-Docs, PHPCompatibilityWP 7.4+) | `composer lint` | Clean |
 | Palette contrast, six palettes × 16 pairs | `composer contrast` | 96 of 96 pass AA; lowest 4.63:1 (Kids, `success` on `surface`) |
-| Block validity | Editor on WordPress 7.1.4: `wp.blocks.parse()` over every theme pattern, template and part | 46 patterns, 16 templates, 10 parts: no invalid or missing blocks |
-| PHP notices | `WP_DEBUG` and `WP_DEBUG_LOG` on; front page, pages on each page template, single post, category, date and search archives, 404 | Nothing logged |
+| Block validity | Editor on WordPress 7.1.4 and on 6.7.2 (the minimum; second wp-env with `"core": "https://wordpress.org/wordpress-6.7.2.zip"`): `wp.blocks.parse()` over every theme pattern, template and part | 46 patterns, 16 templates, 10 parts: no invalid or missing blocks on either version. Markup follows 6.7 where the versions differ (resized images without `height:auto`, legacy text alignment); 7.1 accepts it through core deprecations |
+| PHP notices | `WP_DEBUG` and `WP_DEBUG_LOG` on; front page, pages on each page template, single post, category, date and search archives, 404; on 7.1.4 and 6.7.2 | Nothing logged |
+| Lighthouse 12.8.2, accessibility only, five more pages (log-in template, landing page, card styles, core block page, pattern sampler) | `npx lighthouse@12 <url> --only-categories=accessibility` | 100 on each |
 | Lighthouse 12.8.2, academy home | `npx lighthouse@12 http://localhost:8930/academy-home/` (mobile) and `--preset=desktop` | Mobile: performance 99, accessibility 100, best practices 100, SEO 92. Desktop: 100, 100, 100, 92. The SEO point lost is "no meta description", which is SEO-plugin territory (guideline 6) |
 
 ## 1. Licensing and copyright

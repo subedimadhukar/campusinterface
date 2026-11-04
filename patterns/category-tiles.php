@@ -31,7 +31,7 @@
 		<!-- wp:group {"className":"is-style-campusinterface-card","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group is-style-campusinterface-card">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-data.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-data.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -47,7 +47,7 @@
 		<!-- wp:group {"className":"is-style-campusinterface-card","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group is-style-campusinterface-card">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-code.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-code.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -63,7 +63,7 @@
 		<!-- wp:group {"className":"is-style-campusinterface-card","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group is-style-campusinterface-card">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-design.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-design.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -79,7 +79,7 @@
 		<!-- wp:group {"className":"is-style-campusinterface-card","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group is-style-campusinterface-card">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-speaking.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-speaking.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -95,7 +95,7 @@
 		<!-- wp:group {"className":"is-style-campusinterface-card","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group is-style-campusinterface-card">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-business.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-business.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
@@ -111,7 +111,7 @@
 		<!-- wp:group {"className":"is-style-campusinterface-card","style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"flex","orientation":"vertical"}} -->
 		<div class="wp-block-group is-style-campusinterface-card">
 			<!-- wp:image {"width":"3rem","sizeSlug":"full","linkDestination":"none"} -->
-			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-career.svg' ) ); ?>" alt="" style="width:3rem;height:auto"/></figure>
+			<figure class="wp-block-image size-full is-resized"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/icon-career.svg' ) ); ?>" alt="" style="width:3rem"/></figure>
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
