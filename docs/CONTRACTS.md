@@ -3,7 +3,7 @@
 The contracts themselves live in the plugin repository:
 **[`plugins/public-lms/docs/CONTRACTS.md`](../../../plugins/public-lms/docs/CONTRACTS.md)**
 (on GitHub: [`subedimadhukar/public-lms`](https://github.com/subedimadhukar/public-lms/blob/main/docs/CONTRACTS.md), `docs/CONTRACTS.md`). This file records the theme's side of
-contract version **1.4.0**. A change to either side is a pull request on both repositories.
+contract version **1.5.0**. A change to either side is a pull request on both repositories.
 
 Plugin commit hashes from `9a19222` on are the ones after the plugin's history rewrite of 2026-11-05
 (`6661424` became `9a19222`, `9ec3484` became `7d72e4b`; earlier commits kept theirs).
@@ -17,6 +17,7 @@ Plugin commit hashes from `9a19222` on are the ones after the plugin's history r
 | 0.2.0 (phase 1 gate) | 0.1.0 at commit dd43e36 (seed command, contract 1.2.0). Full journey run with seeded data, see "Phase 1 integration status" | 1.2.0 |
 | 0.3.0 (phase 2, part A) | 0.2.0 at 87af6a7 (quizzes) and 9a19222 (assignments, certificates), then 0.3.0 at 7d72e4b (the same code with quizzes, assignments and a certificate in the seed), contract 1.3.0; clean builds of those commits. Seeded journey, see "Phase 2 integration status" | 1.3.0 |
 | 0.3.0 (phase 2, fix batch and commerce) | 0.3.0 at 8d055b6 (findings 4 to 11 fixed, checkout and orders, global seed, mPDF certificates), the plugin folder as built by the plugin session. Rerun in English, Arabic and Japanese, see "Phase 2 fix batch rerun" | 1.4.0 |
+| 0.3.0 (UI foundation) | 0.3.0 at 97352aa (Stage 0: the `publiclms-ui` primitives, the dashboard's sections and router), a pinned `git worktree` of that commit outside `wp-content/plugins`, built with `npm ci && npm run build` and the plugin folder's `vendor-prefixed/`. See "Contract 1.5.0 rerun" | 1.5.0 |
 
 ## A. Templates and patterns
 
@@ -119,6 +120,15 @@ choices) take the theme's generic `accent-color: primary` rule in `global.css`. 
 `composer contrast` already checks in every palette; the assignment's "Waiting for a grade" is `warning` on
 `surface`, a pair B1 does not list, so the theme added it to its check (4.69:1 or better in all six palettes).
 
+**UI primitives (B7, 1.5.0).** The theme styles the eight primitives through its tokens alone and adds no CSS on
+`.publiclms-*` classes. Every primitive reads only the B5 aliases, which resolve to CampusInterface's presets
+(checked element by element: cards `base` on a `line` border at `radius-md` 8px; panels `surface` at
+`radius-lg` 16px; notices a tone-coloured start bar on `surface` at `radius-sm` 4px; badges pill-shaped at `xs`
+in `primary-soft`, `accent` or the tone colour; tables and fields with `contrast` rules and borders; the empty
+state a dashed `line` frame). The theme had no per-block plugin overrides left to drop, and its own focus rule
+already skips `tabindex="-1"`, matching B7's script-focused headings. Two places where a theme's global element
+styles still beat a zero-specificity primitive are findings 14 and 16.
+
 Other theme decisions that plugin blocks inherit but do not depend on: `layout.contentSize` 720px,
 `layout.wideSize` 1240px, root padding aware alignments, viewport breakpoints at 30rem (mobile) and 45rem
 (tablet), and button `:hover`, `:focus` and `:active` styles on `core/button`.
@@ -155,6 +165,26 @@ seeded quiz and assignment (visitor and learner), the dashboard and the course.
 (`publiclms/course-reviews`, still behind `hidden-course-reviews`), Q&A, announcements, the instructor dashboard
 and `plms-instructor` (still behind `hidden-instructor-dashboard`), and `publiclms/course-filters` (the archive
 keeps the theme's own filters). Checkout landed in 1.4.0, see below.
+
+## Contract 1.5.0 rerun (UI primitives)
+
+**2026-11-05, Public LMS 97352aa** (Stage 0, the UI foundation), on the theme's wp-env (8930, WordPress 7.1.4)
+pointed through its gitignored `.wp-env.override.json` at a **pinned `git worktree` of 97352aa** outside
+`wp-content/plugins`. It was built with `npm ci && npm run build`, Composer's production packages
+(`--no-scripts`), and a copy of the plugin folder's `vendor-prefixed/`, so live Stage 1 edits in the plugin
+folder could not leak in (the 1.4.0 run was disturbed by them). Re-seeded with `wp publiclms seed --courses=10`;
+Polylang with English, Arabic (right to left) and Japanese, set up as in the 1.4.0 run. The worktree was removed
+afterwards and the env pointed back at the plugin folder.
+
+| Check | Result |
+|---|---|
+| Primitives in the theme | On the lesson, quiz, assignment, checkout, order view, course page and dashboard sections, every card, panel, notice, badge, progress bar, tab strip, table, field and empty state resolves to the theme's tokens and radii (see "UI primitives" under B). No uppercase or letter-spacing on plugin text. Stat tiles don't appear on any learner page yet |
+| Dashboard sections (A6) | `/my-learning/`, `/my-learning/completed/`, `/quiz-results/`, `/certificates/` and `/orders/` each answer 200 with only the open section rendered; on the Arabic and Japanese dashboard pages the links use `?section=`. By keyboard, a section link loads through the router without a reload, updates the URL and `aria-current`, and focus lands on the section's `h2` (`tabindex="-1"`, no ring). On phones the strip sticks to the top and scrolls sideways with the current section in view, from the right in Arabic; the page itself never scrolls sideways. Data tables stack into labelled rows under 600px. The theme's `plms-dashboard` template wraps it unchanged; the dashboard's look is left to the redesign |
+| Focus | Mark complete keeps focus, quiz Start moves to "Questions", Hand in lands on "Your hand-in". Enrol still drops focus to `<body>` (finding 12) |
+| Accessibility | axe (WCAG 2.2 AA and best practices) on 19 views at 1280 and 375 px, as a visitor and the learner, in English, Arabic and Japanese, then 7 again in the Dark variation: clean except the Certificates section's empty column header (finding 15). Keyboard pass clean on 12 pages at both widths |
+| RTL | On Arabic pages every stylesheet is its `-rtl.css` copy, `build/ui/style-index-rtl.css` included (5 of 5 on the dashboard, 10 of 10 on the quiz); none on English pages |
+| Lighthouse budgets | All pass against 97352aa: performance 98–99, accessibility 100, LCP 1.7–2.2 s, CLS 0, at most 50 KB script and 11.5 KB CSS per page |
+| Open findings | 12 (focus after Enrol), 13 (order view "Price" header) and 14 (dashboard card titles at the theme's `h3` size) are unchanged at 97352aa; 15 and 16 are new |
 
 ## Phase 2 fix batch rerun (contract 1.4.0)
 
@@ -288,7 +318,7 @@ reads 7.9:1, seeded lessons use `h2`, and 1 of 6 shows 17%.
 Numbering continues from the 1.2.0 run above. **Status at 8d055b6 (rechecked by the theme, see "Phase 2 fix
 batch rerun"):** 4 to 11 are fixed: 4 in `f664c4c`, 5 in `6920b55`, 6 in `c713cc3`, 7 and 10 (focus) in `d7c35a7`,
 8 in `529a160` (the zip is attached to published releases; none is published yet, so the Playground link still
-waits), 9 and 10 (B1) in `d24dba7`, 11 in `af30cba`. Open: 12 to 14 below.
+waits), 9 and 10 (B1) in `d24dba7`, 11 in `af30cba`. **Open at 97352aa:** 12 to 16 below.
 
 4. **Progress bars fill from the left in right-to-left languages (RTL, medium).** Found in the theme's RTL pass
    (site language Arabic, `<html dir="rtl">`, Public LMS at 40f9aed). `publiclms/course-progress` and the
@@ -379,3 +409,15 @@ waits), 9 and 10 (B1) in `d24dba7`, 11 in `af30cba`. Open: 12 to 14 below.
     plugin asks for `--publiclms-font-size-lg` at zero specificity; a block theme's `h3` element size wins (30px on
     CampusInterface), so long course names wrap onto four lines in a dashboard card. Suggested fix: add
     `has-lg-font-size`, as finding 9 did for the plugin's `h2` headings.
+15. **Certificates section: the download column has an empty header (accessibility, low).** Found in the 1.5.0
+    rerun at 97352aa. The table's fourth `th scope="col"` has no text, so axe reports `empty-table-header` on
+    `/my-learning/certificates/`, and under 600px, where rows stack and each cell is labelled from its column, the
+    download link's cell gets no label. In 1.4.0 the column was headed "Download". Suggested fix: give the header
+    text (visually hidden if the design wants it blank), as the Orders and Quiz results tables do.
+16. **Tab links take the theme's link colour and underline (design, low; B7).** The tabs primitive sets
+    `color: inherit` and `text-decoration: none` on `.publiclms-tabs__tab` inside `:where()`. A block theme's
+    global link style (`a:where(:not(.wp-element-button))`, specificity 0,0,1) beats it, so on CampusInterface every
+    section link in the dashboard strip is primary and underlined, and the current one gets both the text underline
+    and the 3px bar. The same zero-specificity pattern as findings 1 and 9. Suggested fix: give the tab link's
+    colour and decoration class specificity, for example `.publiclms-tabs .publiclms-tabs__tab`, as finding 1's fix
+    did; a theme can still restyle it with one class rule.
