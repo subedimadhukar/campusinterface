@@ -600,24 +600,6 @@
 						}
 					}
 				}
-			},
-			"publiclms/assignment": {
-				"elements": {
-					"h2": {
-						"typography": {
-							"fontSize": "var:preset|font-size|xl"
-						}
-					}
-				}
-			},
-			"publiclms/quiz": {
-				"elements": {
-					"h2": {
-						"typography": {
-							"fontSize": "var:preset|font-size|xl"
-						}
-					}
-				}
 			}
 		}
 	},

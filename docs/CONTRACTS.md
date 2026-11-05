@@ -3,7 +3,10 @@
 The contracts themselves live in the plugin repository:
 **[`plugins/public-lms/docs/CONTRACTS.md`](../../../plugins/public-lms/docs/CONTRACTS.md)**
 (on GitHub: [`subedimadhukar/public-lms`](https://github.com/subedimadhukar/public-lms/blob/main/docs/CONTRACTS.md), `docs/CONTRACTS.md`). This file records the theme's side of
-contract version **1.3.0**. A change to either side is a pull request on both repositories.
+contract version **1.4.0**. A change to either side is a pull request on both repositories.
+
+Plugin commit hashes from `9a19222` on are the ones after the plugin's history rewrite of 2026-11-05
+(`6661424` became `9a19222`, `9ec3484` became `7d72e4b`; earlier commits kept theirs).
 
 ## Tested with
 
@@ -12,7 +15,8 @@ contract version **1.3.0**. A change to either side is a pull request on both re
 | 0.1.0 | 0.1.0 | 1.0.0 |
 | 0.2.0 (phase 1, first pass) | 0.1.0 at commit 9b29002 (blocks, bindings, 12 of 16 patterns, no seed command) | 1.0.0 |
 | 0.2.0 (phase 1 gate) | 0.1.0 at commit dd43e36 (seed command, contract 1.2.0). Full journey run with seeded data, see "Phase 1 integration status" | 1.2.0 |
-| 0.3.0 (phase 2, part A) | 0.2.0 at 87af6a7 (quizzes) and 6661424 (assignments, certificates), then 0.3.0 at 9ec3484 (the same code with quizzes, assignments and a certificate in the seed), contract 1.3.0; clean builds of those commits. Seeded journey, see "Phase 2 integration status" | 1.3.0 |
+| 0.3.0 (phase 2, part A) | 0.2.0 at 87af6a7 (quizzes) and 9a19222 (assignments, certificates), then 0.3.0 at 7d72e4b (the same code with quizzes, assignments and a certificate in the seed), contract 1.3.0; clean builds of those commits. Seeded journey, see "Phase 2 integration status" | 1.3.0 |
+| 0.3.0 (phase 2, fix batch and commerce) | 0.3.0 at 8d055b6 (findings 4 to 11 fixed, checkout and orders, global seed, mPDF certificates), the plugin folder as built by the plugin session. Rerun in English, Arabic and Japanese, see "Phase 2 fix batch rerun" | 1.4.0 |
 
 ## A. Templates and patterns
 
@@ -107,10 +111,11 @@ styles on `core/post-template` (Classic cards, Minimal cards, Overlay cards, Lis
 `assets/css/blocks/post-template.css`) instead of a section style on a plugin block. If the plugin ever adds a
 card block, add its name to `blockTypes` in `styles/blocks/card.json` and it picks up the Card section style.
 
-**Block styles in `theme.json` (B5).** `styles.blocks["publiclms/quiz"]` and `["publiclms/assignment"]` set
-those blocks' own `h2` headings ("Questions", "Your result", "Your hand-in", "Hand in your work") to `xl`, the
-size the plugin asks for. The plugin sets it at zero specificity, so without this the theme's global `h2`
-(`3xl`) would win. The quiz's results use `success` and `danger` on `base` and `surface`, pairs
+**Block styles in `theme.json` (B5).** None are needed at 1.4.0. Under 1.3.0 the theme set the quiz's and the
+assignment's own `h2` headings to `xl` through `styles.blocks`, because the plugin's zero-specificity size lost
+to the theme's global `h2` (`3xl`); since 1.4.0 the plugin prints preset size classes on its headings
+(finding 9), so those entries are gone. Form controls inside plugin blocks (the checkout's payment methods, quiz
+choices) take the theme's generic `accent-color: primary` rule in `global.css`. The quiz's results use `success` and `danger` on `base` and `surface`, pairs
 `composer contrast` already checks in every palette; the assignment's "Waiting for a grade" is `warning` on
 `surface`, a pair B1 does not list, so the theme added it to its check (4.69:1 or better in all six palettes).
 
@@ -136,20 +141,55 @@ file on the preview lesson.
 | Curriculum types | Quiz item in the outline (course page and the lesson's Details block); section count "3 lessons, 1 quiz" |
 | Accessibility | axe (WCAG 2.2 AA and best practices): quiz as a visitor, before start, running, failed and passed results, and the Quiz results tab, at 1280 and 375 px and again in the Dark variation: no violations. Keyboard pass on course, lesson, quiz and dashboard as the learner: no issues |
 | Lighthouse budgets (`lighthouserc.json`) | All pass against 87af6a7: performance 99–100, accessibility 100, LCP 1.7–1.8 s, at most 49 KB script |
-| Assignment template (6661424: `single-plms_assignment`, `assignment-submission`) | New theme override, laid out like the lesson. Brief, "Hand in your work" with text and file fields and the accepted types; by keyboard: type the answer, attach a file, Hand in. The page reloads with "Your hand-in", "Waiting for a grade" in `warning`, the file and the answer in a closed Details block, and "Hand in again"; course progress counts the hand-in (7 / 8). Focus starts at the top after the reload (finding 10) |
-| Certificates (6661424) | Dashboard "Certificates" tab: course, completion date, certificate ID, "Download PDF". The enrol card in the theme's `sidebar` part shows "Download your certificate" to the learner who completed the course. The certificate itself is a PDF from the plugin's own template, so the theme has no certificate template to ship (contract 1.3.0 item 11) |
+| Assignment template (9a19222: `single-plms_assignment`, `assignment-submission`) | New theme override, laid out like the lesson. Brief, "Hand in your work" with text and file fields and the accepted types; by keyboard: type the answer, attach a file, Hand in. The page reloads with "Your hand-in", "Waiting for a grade" in `warning`, the file and the answer in a closed Details block, and "Hand in again"; course progress counts the hand-in (7 / 8). Focus starts at the top after the reload (finding 10) |
+| Certificates (9a19222) | Dashboard "Certificates" tab: course, completion date, certificate ID, "Download PDF". The enrol card in the theme's `sidebar` part shows "Download your certificate" to the learner who completed the course. The certificate itself is a PDF from the plugin's own template, so the theme has no certificate template to ship (contract 1.3.0 item 11) |
 | Accessibility, assignments and certificates | axe on the assignment (visitor, and learner after a hand-in), the dashboard with the Certificates tab and the course with the certificate button, in all five colour variations: no violations from the theme or the plugin. Keyboard pass on the assignment at 1280 and 375 px: no issues |
 
-Assignments and certificates were checked the same way against a clean build of 6661424, with the quiz above
+Assignments and certificates were checked the same way against a clean build of 9a19222, with the quiz above
 and an assignment after it in the Bookkeeping course's first section (the seed had neither then). Public LMS
-9ec3484 (0.3.0) then put quizzes, assignments and a certificate in `wp publiclms seed` with no contract or
+7d72e4b (0.3.0) then put quizzes, assignments and a certificate in `wp publiclms seed` with no contract or
 source change: on that seed the Lighthouse URLs still exist and the budgets pass, and axe finds nothing on a
 seeded quiz and assignment (visitor and learner), the dashboard and the course.
 
-**Still waiting on the plugin (not in 6661424):** course reviews (`publiclms/course-reviews`,
-still behind `hidden-course-reviews`), Q&A, announcements, the instructor dashboard and `plms-instructor`
-(still behind `hidden-instructor-dashboard`), `publiclms/course-filters` (the archive keeps the theme's own
-filters), and checkout.
+**Still waiting on the plugin (not in 8d055b6; paused until a UI plan is settled):** course reviews
+(`publiclms/course-reviews`, still behind `hidden-course-reviews`), Q&A, announcements, the instructor dashboard
+and `plms-instructor` (still behind `hidden-instructor-dashboard`), and `publiclms/course-filters` (the archive
+keeps the theme's own filters). Checkout landed in 1.4.0, see below.
+
+## Phase 2 fix batch rerun (contract 1.4.0)
+
+**2026-11-05, Public LMS 8d055b6, on the theme's own wp-env (8930, WordPress 7.1.4)** with the plugin folder as
+the plugin session built it (`vendor-prefixed/` and `build/` already there). Re-seeded with `wp publiclms seed
+--courses=10` (the global cast below, a paid course on sale, coupon `WELCOME10`, a checkout page). Polylang 3.9.1
+with English, Arabic (`ar`, the real core language pack, right to left) and Japanese (`ja`); Climate Science
+for Everyone and all its steps in Arabic, the paid Introduction to Python Programming in Japanese.
+
+**Caveat.** During the run the plugin folder also held a large uncommitted change on top of 8d055b6 (41 files:
+a shared UI layer, `src/interactivity/lib/focus.js`, new checkout and order view classes), and the order view's
+markup changed while I tested. Results below were taken on that folder; each new finding was then checked
+against the committed source of 8d055b6 with `git show`, read only.
+
+**Logins (seed password, documented in the plugin's CONTRIBUTING):** learners `learner` (ليلى حداد, holds the
+Arabic-script certificate), `learner.sharma` (प्रिया शर्मा), `learner.fernandez` (Lucía Fernández),
+`learner.sato` (佐藤 健), `learner.kim` (김지우), `learner.walsh` (Liam Walsh); instructors `instructor`
+(Amara Okafor), `instructor.wang` (王芳), `instructor.ivanov` (Дмитрий Иванов). Earlier sections of this file
+mention the phase 1 cast (`sita.gurung`, `anita.shrestha`), which the seed no longer creates.
+
+| Check | Result |
+|---|---|
+| Fix 4, RTL progress bars | Arabic course and dashboard: every partial bar (13%, 25%) fills from the right edge (0px from the inline start). With core's inline limit at 0, all theme and plugin sheets on Arabic pages are `-rtl.css` (8 of 8 on the course, 5 of 5 on the dashboard, including `tokens-rtl.css` and the blocks'), none on English pages |
+| Fix 5, counts under Polylang | The learner's dashboard in English, Arabic and Japanese shows the same counts for every course in every language ("1 of 8 steps · 13%" for the Arabic course, "8 of 8 · 100%" for Bookkeeping) |
+| Fix 6, editor warning | Editor load with `debug.log` cleared: nothing logged |
+| Fixes 7 and 10, focus | By keyboard on the Arabic course as the learner: Mark complete keeps focus on its button ("Completed"); quiz Start moves focus to "Questions"; Hand in reloads onto `#publiclms-handin-…` with focus on "Your hand-in". Enrol still loses focus (finding 12) |
+| Fix 9, heading sizes | "Lesson files" `has-lg-font-size` (20px); quiz "Questions" and "Your result", assignment "Your hand-in" and "Hand in again", checkout "Your order" `has-xl-font-size` (24px); dashboard greeting `has-2-xl-font-size` (30px). The theme's two `styles.blocks` overrides were removed with no change. The dashboard's course-card titles still take the theme's `h3` size (finding 14) |
+| Fix 10, B1 pair | `warning` on `surface` is in B1 at 1.4.0; the theme's contrast check has covered it since 1.3.0 (4.69:1 or better) |
+| Fix 11, course query | Related courses leave out the current course and put shared-subject courses first (Bookkeeping → Personal Finance Fundamentals first); on the Arabic and Japanese courses, the only course in their language, the row is empty instead of listing the course itself. A test grid with `publiclmsHideEnrolled` leaves out the learner's three courses |
+| Certificates | The learner's certificate from the Arabic dashboard (`/wp-json/publiclms/v1/certificates/{id}`, `application/pdf`): "ليلى حداد" is joined and right to left in Noto Sans Arabic Bold; the rest in DejaVu |
+| Checkout (`publiclms/checkout`, 1.4.0) | On its page with the theme's default page template: order summary on a `surface` card with the total at `lg`, coupon field and Apply button, "Your details" for guests, payment methods and Place order, all from tokens; `WELCOME10` gives "Discount −$3.90, Total $35.10"; the order view shows the on-hold notice with a `warning` start border on `surface`. The theme adds no styles for it beyond the generic `accent-color` rule. One plugin detail: finding 13 |
+| Paid enrol state (`is-state-paid`) | Enrol card and hero both read "Buy for $39" and link to the checkout page; course cards show the sale price |
+| Dashboard Orders tab | Order number linking to the order, date, courses, total, status; same table style as the other tabs |
+| Prices | Locale-formatted prices never overflow or clip, on the course page and the archive cards at 1280 and 375 px: Arabic "‏999.50 €", Persian "‎€۹۹۹٫۵۰", Egyptian Arabic "‏٩٩٩٫٥٠ €", Bengali "৯৯৯.৫০€", Marathi "€९९९.५०", German "999,50 €", Japanese "€39" (tested with a temporary locale override in the env) |
+| Accessibility | axe clean on the paid course (visitor, Arabic and Japanese), checkout (visitor and learner), order view, dashboard with the Orders tab open, Arabic course and dashboard, and again in the Dark variation. Keyboard pass clean on checkout (learner at 1280, guest at 375), order view and dashboard |
 
 ## Phase 1 integration status
 
@@ -224,7 +264,7 @@ All nine items the theme raised at 1.0.0 are settled (plugin `docs/CONTRACTS.md`
 
 ## Plugin findings from the 1.2.0 run (for the plugin; nothing changed in the plugin folder)
 
-**Status at 87af6a7:** 1 to 3 are fixed (commit 40f9aed) and checked in the theme: the filled next-lesson link
+**Status:** 1 to 3 are fixed (commit 40f9aed) and checked in the theme: the filled next-lesson link
 reads 7.9:1, seeded lessons use `h2`, and 1 of 6 shows 17%.
 
 1. **Next-lesson link text disappears once a lesson is complete (accessibility, high).** After Mark complete,
@@ -245,9 +285,10 @@ reads 7.9:1, seeded lessons use `h2`, and 1 of 6 shows 17%.
 
 ## Plugin findings from the theme's phase 2 work (for the plugin; nothing changed in the plugin folder)
 
-Numbering continues from the 1.2.0 run above. **Status at 6661424:** 4 to 9 are all still open (checked in the
-source of that commit; for 7, the new quiz runner moves focus to its headings itself, but Mark complete still
-loses it).
+Numbering continues from the 1.2.0 run above. **Status at 8d055b6 (rechecked by the theme, see "Phase 2 fix
+batch rerun"):** 4 to 11 are fixed: 4 in `f664c4c`, 5 in `6920b55`, 6 in `c713cc3`, 7 and 10 (focus) in `d7c35a7`,
+8 in `529a160` (the zip is attached to published releases; none is published yet, so the Playground link still
+waits), 9 and 10 (B1) in `d24dba7`, 11 in `af30cba`. Open: 12 to 14 below.
 
 4. **Progress bars fill from the left in right-to-left languages (RTL, medium).** Found in the theme's RTL pass
    (site language Arabic, `<html dir="rtl">`, Public LMS at 40f9aed). `publiclms/course-progress` and the
@@ -260,7 +301,7 @@ loses it).
 5. **Lesson counts and progress drop to "0 of 0" under a translation plugin (multilingual, medium).** Found in the
    theme's multilingual passes (Polylang 3.9.1 with `plms_course`, `plms_lesson`, `plms_quiz` and
    `plms_assignment` set as translatable; seen with English plus a Devanagari-script language, and again with
-   English, Arabic and Japanese on 0.3.0 at 9ec3484, where every dashboard, English included, shows the courses of
+   English, Arabic and Japanese on 0.3.0 at 7d72e4b, where every dashboard, English included, shows the courses of
    the other languages as "0 of 0 steps"). `CourseStructureRepository` loads sections and items with `get_posts()` and
    `suppress_filters => true`, but Polylang adds its language condition on `parse_query`, which
    `suppress_filters` does not skip. On the learner's dashboard every course whose lessons are in another
@@ -313,7 +354,7 @@ loses it).
 11. **`publiclmsRelated` and `publiclmsHideEnrolled` never apply on the front end (high).** `CourseQuery::query_vars()`
     returns early unless `$block->context['query']['namespace']` is `publiclms/course-query`, but core passes the
     Query block's `query` attribute as context, and A5.5 (rightly) puts `namespace` beside it as a separate block
-    attribute, as both the theme's `hidden-related-courses` and the plugin's own `course-grid` do. Logged on 9ec3484:
+    attribute, as both the theme's `hidden-related-courses` and the plugin's own `course-grid` do. Logged on 7d72e4b:
     the context keys are `perPage … inherit, publiclmsRelated` with no `namespace`, and the vars come back without
     `post__in`. So related courses are just the newest courses: on an Arabic or Japanese course, the only course in
     that language, "You might also like" lists the course itself, and the English row is right only because
@@ -322,3 +363,19 @@ loses it).
     `render_block_data` for `core/query` blocks in a static, or check `$block->context['query']` for the
     `publiclms*` keys alone), and add an e2e check with the current course among the newest. The theme keeps
     the contract's markup and does not work around it.
+12. **Keyboard focus is lost after Enrol (accessibility, medium).** Found in the 1.4.0 rerun and checked in the
+    source of 8d055b6. Tab to "Enrol for free" and press Enter: the request succeeds and the status line announces
+    "You are enrolled. Your first lesson is ready.", but `actions.enroll` sets `context.enrolled`, which hides the
+    form (`data-wp-bind--hidden="context.enrolled"`) while its button has focus, so focus falls to `<body>` and the
+    next Tab starts from the top of the page. Fixes 7 and 10 covered Mark complete, quiz Start and Hand in.
+    Suggested fix: once enrolled, move focus to the new "Start learning" link (or the status message), as the
+    quiz runner and the hand-in do.
+13. **Order view: the "Price" header doesn't line up with the amounts (design, low).** In 8d055b6's
+    `src/blocks/checkout/style.scss`, the order table's headers are `text-align: start` while the amounts are
+    `end`, so "Price" sits at the start of the column and the prices at its end. Suggested fix: align the price
+    column's header to `end` too.
+14. **Dashboard course-card titles lose their size to the theme's `h3` (design, low; follow-up to 9).** In 8d055b6
+    the card title is `<h3 class="wp-block-publiclms-student-dashboard__title">` with no preset class, while the
+    plugin asks for `--publiclms-font-size-lg` at zero specificity; a block theme's `h3` element size wins (30px on
+    CampusInterface), so long course names wrap onto four lines in a dashboard card. Suggested fix: add
+    `has-lg-font-size`, as finding 9 did for the plugin's `h2` headings.

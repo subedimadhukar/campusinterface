@@ -45,6 +45,11 @@
 	color: var(--wp--preset--color--contrast);
 }
 
+/* Checkboxes, radio buttons and progress bars (log-in, quizzes, payment methods) take the primary colour. */
+:where(input[type="checkbox"], input[type="radio"], progress, input[type="range"]) {
+	accent-color: var(--wp--preset--color--primary);
+}
+
 /* Visible focus on every interactive element theme.json does not reach. */
 :where(input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible,
 :where(.wp-block-navigation__responsive-container-open, .wp-block-navigation__responsive-container-close):focus-visible {
