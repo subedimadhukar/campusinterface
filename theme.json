@@ -20,6 +20,11 @@
 					"slug": "contrast"
 				},
 				{
+					"color": "#68687f",
+					"name": "Muted",
+					"slug": "muted"
+				},
+				{
 					"color": "#4338ca",
 					"name": "Primary",
 					"slug": "primary"
@@ -621,13 +626,6 @@
 		{
 			"name": "page-login",
 			"title": "Log-in page (split)",
-			"postTypes": [
-				"page"
-			]
-		},
-		{
-			"name": "plms-dashboard",
-			"title": "Student Dashboard",
 			"postTypes": [
 				"page"
 			]

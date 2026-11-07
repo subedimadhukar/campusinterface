@@ -16,6 +16,11 @@
 					"slug": "contrast"
 				},
 				{
+					"color": "#5b6879",
+					"name": "Muted",
+					"slug": "muted"
+				},
+				{
 					"color": "#1d3a6e",
 					"name": "Primary",
 					"slug": "primary"

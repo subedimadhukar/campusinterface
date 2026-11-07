@@ -12,16 +12,21 @@ if ( 'cli' !== PHP_SAPI ) {
 	exit( 1 );
 }
 
-// Foreground, background, minimum ratio. The first fifteen are the pairs in the
-// plugin's token contract (B1); `secondary` on `surface` is the theme's own
-// (checklist ticks on surface bands); `warning` on `surface` is what Public LMS
-// uses for "Waiting for a grade" on its assignment panel (contract 1.3.0). Dark and primary bands reuse these pairs
-// with the roles swapped, which gives the same ratios.
+// Foreground, background, minimum ratio. The pairs in the plugin's token
+// contract (B1), plus: `muted` (secondary text, contract 1.6.0, B8) on `base`
+// and `surface`, and on `primary-soft` where the dashboard's current menu item
+// sits; `secondary` on `surface`, the theme's own (checklist ticks on surface
+// bands); `warning` on `surface`, which Public LMS uses for "Waiting for a
+// grade" on its assignment panel (contract 1.3.0). Dark and primary bands reuse
+// these pairs with the roles swapped, which gives the same ratios.
 $campusinterface_pairs = array(
 	array( 'contrast', 'base', 4.5 ),
 	array( 'contrast', 'surface', 4.5 ),
 	array( 'contrast', 'primary-soft', 4.5 ),
 	array( 'contrast', 'accent', 4.5 ),
+	array( 'muted', 'base', 4.5 ),
+	array( 'muted', 'surface', 4.5 ),
+	array( 'muted', 'primary-soft', 4.5 ),
 	array( 'base', 'primary', 4.5 ),
 	array( 'primary', 'base', 4.5 ),
 	array( 'primary', 'surface', 4.5 ),

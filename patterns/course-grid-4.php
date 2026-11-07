@@ -30,6 +30,10 @@
 
 			<!-- wp:post-title {"isLink":true,"level":3,"fontSize":"base"} /-->
 
+			<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"publiclms/course-field","args":{"key":"rating_summary"}}}},"className":"publiclms-course-card__rating","fontSize":"sm"} -->
+			<p class="publiclms-course-card__rating has-sm-font-size"></p>
+			<!-- /wp:paragraph -->
+
 			<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"fontSize":"sm","layout":{"type":"flex","flexWrap":"wrap"}} -->
 			<div class="wp-block-group has-sm-font-size">
 				<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"publiclms/course-field","args":{"key":"level"}}}}} -->

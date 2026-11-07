@@ -19,3 +19,16 @@
 .wp-block-details[open] > summary {
 	margin-block-end: var(--wp--preset--spacing--30);
 }
+
+/*
+ * Lessons, quizzes and assignments: on phones, once Public LMS's "Course
+ * content" button works (its script adds the class to <html>), the curriculum
+ * opens in the plugin's drawer, so the closed "Course contents" Details is not
+ * repeated below the header. Same breakpoint as the plugin's button. Without
+ * JavaScript, and on wider screens, the Details stays.
+ */
+@media (width < 782px) {
+	.publiclms-curriculum-drawer .wp-block-details.campusinterface-lesson-contents {
+		display: none;
+	}
+}

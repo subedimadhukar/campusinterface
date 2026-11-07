@@ -39,6 +39,15 @@
 	--wp--preset--font-family--body: var(--wp--preset--font-family--system-sans);
 }
 
+/*
+ * Course cards and meta rows are paragraphs bound to Public LMS course fields.
+ * A field with no value (a course without reviews, a course without a
+ * duration) leaves an empty paragraph; it takes no space and no gap.
+ */
+:where(.wp-block-post-template, .is-layout-flex) p:empty {
+	display: none;
+}
+
 /* Form fields follow the palette (dark variation included); theme.json has no element for them. */
 :where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"]), select, textarea) {
 	background-color: var(--wp--preset--color--base);

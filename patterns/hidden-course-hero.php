@@ -28,6 +28,10 @@
 				<p style="font-weight:600"></p>
 				<!-- /wp:paragraph -->
 
+				<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"publiclms/course-field","args":{"key":"rating_summary"}}}}} -->
+				<p></p>
+				<!-- /wp:paragraph -->
+
 				<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"publiclms/course-field","args":{"key":"level"}}}}} -->
 				<p></p>
 				<!-- /wp:paragraph -->
