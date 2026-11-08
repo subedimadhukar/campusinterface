@@ -45,13 +45,13 @@
 					}
 				},
 				{
-					"matchingUrlPattern": "^(?!.*(/courses/[^/]+/|/my-learning/)$).*",
+					"matchingUrlPattern": "^(?!.*(/courses/[^/]+/|/my-learning/|/teaching/)$).*",
 					"assertions": {
 						"resource-summary:third-party:count": [ "error", { "maxNumericValue": 0 } ]
 					}
 				},
 				{
-					"matchingUrlPattern": "(/courses/[^/]+/|/my-learning/)$",
+					"matchingUrlPattern": "(/courses/[^/]+/|/my-learning/|/teaching/)$",
 					"assertions": {
 						"resource-summary:third-party:count": [ "error", { "maxNumericValue": 1 } ]
 					}

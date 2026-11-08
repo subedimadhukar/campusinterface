@@ -2,9 +2,9 @@ name: Lighthouse
 
 # Performance and accessibility budgets (lighthouserc.json) on the academy
 # home, the course archive, a single course and a lesson, measured as a
-# visitor, and on the student dashboard, measured logged in as the seeded
-# learner (a second, additive collect with a Cookie header), with Public LMS
-# and its demo data. Public LMS lives in its own public repository, which the
+# visitor, and on the student and Teaching dashboards, measured logged in as
+# the seeded learner and instructor (additive collects with a Cookie header),
+# with Public LMS and its demo data. Public LMS lives in its own public repository, which the
 # job checks out beside the theme; no secret is needed. If the repository or
 # the PUBLIC_LMS_REF branch cannot be reached, the Lighthouse job is skipped,
 # not failed. An optional PUBLIC_LMS_TOKEN secret is used when set.
@@ -107,8 +107,8 @@ jobs:
         working-directory: campusinterface
         run: bin/lighthouse-seed.sh
 
-      # The public pages from lighthouserc.json as a visitor, then the
-      # dashboard logged in, added to the same results; the reports are
+      # The public pages from lighthouserc.json as a visitor, then the two
+      # dashboards logged in, added to the same results; the reports are
       # written before the budgets are asserted, so they are kept on failure.
       - name: Run Lighthouse CI
         working-directory: campusinterface
@@ -116,7 +116,10 @@ jobs:
           npx --yes @lhci/cli@0.15.1 collect
           npx --yes @lhci/cli@0.15.1 collect --additive \
             --url=http://localhost:8888/my-learning/ \
-            --settings.extraHeaders="$(bin/lighthouse-learner-cookie.sh)"
+            --settings.extraHeaders="$(bin/lighthouse-cookie.sh learner)"
+          npx --yes @lhci/cli@0.15.1 collect --additive \
+            --url=http://localhost:8888/teaching/ \
+            --settings.extraHeaders="$(bin/lighthouse-cookie.sh instructor)"
           npx --yes @lhci/cli@0.15.1 upload
           npx --yes @lhci/cli@0.15.1 assert
 

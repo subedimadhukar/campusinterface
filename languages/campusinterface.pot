@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-07T17:03:55+00:00\n"
+"POT-Creation-Date: 2026-11-08T05:30:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: campusinterface\n"
@@ -1117,24 +1117,6 @@ msgstr ""
 msgid "Enrol now"
 msgstr ""
 
-#: patterns/hidden-instructor-dashboard.php
-msgctxt "Pattern title"
-msgid "Instructor dashboard area"
-msgstr ""
-
-#: patterns/hidden-instructor-dashboard.php
-msgctxt "Pattern description"
-msgid "The body of the Instructor Dashboard page template. Shows the Public LMS instructor dashboard once the plugin registers it (phase 2); before that, the page title and a link to the course tools in the WordPress admin."
-msgstr ""
-
-#: patterns/hidden-instructor-dashboard.php:19
-msgid "Your instructor dashboard is on its way. Until then, manage your courses, lessons and learners in the WordPress admin."
-msgstr ""
-
-#: patterns/hidden-instructor-dashboard.php:25
-msgid "Open course tools"
-msgstr ""
-
 #: patterns/hidden-lesson-contents.php
 msgctxt "Pattern title"
 msgid "Lesson course contents"
@@ -2093,11 +2075,6 @@ msgstr ""
 #: theme.json
 msgctxt "Custom template name"
 msgid "Log-in page (split)"
-msgstr ""
-
-#: theme.json
-msgctxt "Custom template name"
-msgid "Instructor Dashboard"
 msgstr ""
 
 #: theme.json

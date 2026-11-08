@@ -3,7 +3,7 @@
 The contracts themselves live in the plugin repository:
 **[`plugins/public-lms/docs/CONTRACTS.md`](../../../plugins/public-lms/docs/CONTRACTS.md)**
 (on GitHub: [`subedimadhukar/public-lms`](https://github.com/subedimadhukar/public-lms/blob/main/docs/CONTRACTS.md), `docs/CONTRACTS.md`). This file records the theme's side of
-contract version **1.6.0**. A change to either side is a pull request on both repositories.
+contract version **1.7.0**. A change to either side is a pull request on both repositories.
 
 Plugin commit hashes from `9a19222` on are the ones after the plugin's history rewrite of 2026-11-05
 (`6661424` became `9a19222`, `9ec3484` became `7d72e4b`; earlier commits kept theirs).
@@ -19,17 +19,23 @@ Plugin commit hashes from `9a19222` on are the ones after the plugin's history r
 | 0.3.0 (phase 2, fix batch and commerce) | 0.3.0 at 8d055b6 (findings 4 to 11 fixed, checkout and orders, global seed, mPDF certificates), the plugin folder as built by the plugin session. Rerun in English, Arabic and Japanese, see "Phase 2 fix batch rerun" | 1.4.0 |
 | 0.3.0 (UI foundation) | 0.3.0 at 97352aa (Stage 0: the `publiclms-ui` primitives, the dashboard's sections and router), a pinned `git worktree` of that commit outside `wp-content/plugins`, built with `npm ci && npm run build` and the plugin folder's `vendor-prefixed/`. See "Contract 1.5.0 rerun" | 1.5.0 |
 | 0.3.0 (Stage 1 and the full-width dashboard) | 0.3.0 at 5c0e6b0 (branch `ui/student-dashboard`: Stage 1's focus layout, curriculum drawer, reviews, Q&A, announcements, course page, and the student dashboard of ADR-061), pinned and built the same way. See "Contract 1.6.0 rerun" | 1.6.0 |
+| 0.3.0 (Teaching, email preferences, course filters, classic-theme layer) | 0.4.0 at 6f6a266 (main: the 0.4.0 beta candidate with the Teaching dashboard, the learner's Email preferences, Questions and Reviews sections, and ADR-075's theme compatibility), pinned and built the same way. See "Contract 1.7.0 rerun" | 1.7.0 |
 
 ## A. Templates and patterns
 
-**What the theme ships (0.3.0):** overrides for six of the plugin's nine slugs: `single-plms_course`,
-`archive-plms_course`, `single-plms_lesson`, `single-plms_quiz`, `single-plms_assignment` (1.3.0) and
-`plms-instructor` (overridden before the plugin registers it, as A1 allows). Each one uses exactly the plugin's slug (A3.1), composes the
+**What the theme ships (0.3.0):** overrides for five of the plugin's ten slugs: `single-plms_course`,
+`archive-plms_course`, `single-plms_lesson`, `single-plms_quiz` and `single-plms_assignment` (1.3.0). Each one uses exactly the plugin's slug (A3.1), composes the
 `publiclms/*` patterns from A6 by slug, and replaces only the sections the theme designs itself with
 `campusinterface/*` patterns. The post types do not exist without the plugin, so the templates never apply on
 a site without it.
 
-**Left to the plugin (1.6.0):**
+**Left to the plugin (1.6.0 and 1.7.0):**
+- `plms-instructor`, the full-width Teaching dashboard (1.6.0 item 22; contract 1.7.0 in this file). The theme
+  had shipped `plms-instructor.html` since phase 1, before the plugin registered the slug: the page title as an
+  `h1` and a `hidden-instructor-dashboard` fallback inside the minimal header and footer. Under A3 that file
+  kept winning once the plugin's own template arrived, so `/teaching/` showed the embedded dashboard while
+  `/my-learning/` was full width. The file, its `customTemplates` entry, the fallback pattern and its
+  `campusinterface_has_plugin_pattern()` check are gone, and Teaching now matches My learning.
 - `plms-dashboard-app`, the full-width student dashboard (sidebar, top bar, phone bottom bar). The theme no
   longer ships `plms-dashboard.html`, so the plugin applies `plms-dashboard-app` to the page in
   `publiclms_dashboard_page_id` (A1, 1.6.0 item 11), and its fonts and colours are the theme's tokens.
@@ -39,48 +45,39 @@ a site without it.
   and the plugin's own layout works with the theme's tokens, so the theme does not override it. By default
   lessons, quizzes and assignments keep the theme's templates, with the `lesson-nav` part and `footer-minimal`.
 
-**Phase 2 patterns degrade cleanly (A6, 1.2.0 item 9).** Patterns the plugin has not registered yet are never
-referenced directly. Each sits behind a small theme pattern that checks
-`WP_Block_Patterns_Registry::is_registered()` at render time (`campusinterface_has_plugin_pattern()` in
-`functions.php`) and outputs the plugin pattern when it exists, or a fallback until then:
-
-| Area | Theme pattern | Before the plugin pattern exists |
-|---|---|---|
-| Instructor dashboard (`publiclms/instructor-dashboard`) | `campusinterface/hidden-instructor-dashboard` | Page title, a sentence and a button to the plugin's admin screen (`admin.php?page=publiclms`) |
-
-When a phase 2 plugin registers the pattern, the same theme files show it with no theme release. Once a
-pattern has landed, the theme references it directly and drops its fallback: the quiz patterns arrived in
-contract 1.3.0, so `single-plms_quiz` now uses `publiclms/quiz-header` and `publiclms/quiz-runner` and
-`campusinterface/hidden-quiz-body` is gone (0.3.0). Reviews arrived in 1.6.0: `single-plms_course` references
-`publiclms/course-reviews` directly and `campusinterface/hidden-course-reviews` is gone. The new 1.6.0 blocks,
-`publiclms/announcements` and `publiclms/course-qa`, are placed as blocks; on an older plugin they render nothing.
+**Phase 2 patterns degrade cleanly (A6, 1.2.0 item 9).** While phase 2 patterns were missing, the theme reached
+them through small `hidden-*` patterns that checked the pattern registry at render time and showed a fallback
+until the plugin shipped them. All have landed, so those wrappers are gone: the quiz patterns (1.3.0,
+`hidden-quiz-body`), course reviews (1.6.0, `hidden-course-reviews`) and the instructor dashboard (1.7.0 here,
+`hidden-instructor-dashboard`, with the theme's `plms-instructor` override). The 1.6.0 blocks
+`publiclms/announcements` and `publiclms/course-qa` are placed as blocks; on an older plugin they render nothing.
 
 | Theme file | Overrides | Layout | Plugin patterns used | Theme pieces |
 |---|---|---|---|---|
 | `templates/single-plms_course.html` | `publiclms//single-plms_course` | Tinted hero (subject, title, excerpt, meta row, enrol button, featured image); two columns: description, announcements and course sections, then the `sidebar` part; related courses on a surface band | `course-curriculum`, `course-instructor` (the `instructor-card` block, 1.6.0), `course-reviews` (1.6.0), and `course-enroll-card` inside the `sidebar` part; the `publiclms/announcements` block after the description (`.publiclms-course-announcements`, 1.6.0) | `hidden-course-hero` (meta row and button bound to `publiclms/course-field`: `instructor`, `rating_summary` (1.6.0), `level`, `lesson_count`, `duration`, `enrolled_count`, `enroll_url`, `enroll_label`), `sidebar-course`, `hidden-related-courses` (`publiclmsRelated`) |
-| `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also course category, tag and level archives) | Tinted archive header; a filters column (`<aside>` Group) beside an inherited Query Loop of classic cards, pagination and no-results | none: the archive header and grid are the theme's own | `hidden-course-filters` (course search scoped to `plms_course`, Terms Lists of `plms_course_category` and `plms_level`) |
+| `templates/archive-plms_course.html` | `publiclms//archive-plms_course` (also course category, tag and level archives) | Tinted archive header; a filters column (`<aside>` Group) beside an inherited Query Loop of classic cards, pagination and no-results | none: the archive header, filters and grid are the theme's own (the plugin's `publiclms/course-filters` block waits on finding 25, see "Contract 1.7.0 rerun") | `hidden-course-filters` (course search scoped to `plms_course`, Terms Lists of `plms_course_category` and `plms_level`) |
 | `templates/single-plms_lesson.html` | `publiclms//single-plms_lesson` | Distraction-free: `lesson-nav` part instead of the header (site title, "My dashboard" and log-out; the way back to the course is `lesson-header`'s course button), content width, the course outline in a closed Details block (on phones the plugin's drawer replaces it, see below), the collapsed Q&A after the content, `footer-minimal` | `lesson-header` (with the phones-only `curriculum-toggle`, 1.6.0), `lesson-content`, `lesson-navigation`, and `lesson-sidebar` inside the Details block; the `publiclms/course-qa` block, collapsed (`.publiclms-lesson-qa`, 1.6.0) | `lesson-nav`, `hidden-lesson-contents` |
 | `templates/single-plms_quiz.html` | `publiclms//single-plms_quiz` (registered from 1.3.0) | Same as the lesson: `lesson-nav` part, content width, the course outline in a closed Details block, the collapsed Q&A, `footer-minimal` | `quiz-header` (with the 1.3.0 quiz keys and the phones-only `curriculum-toggle`), `quiz-runner`, `lesson-navigation`, and `lesson-sidebar` inside the Details block; `publiclms/course-qa`, collapsed | `lesson-nav`, `hidden-lesson-contents` |
 | `templates/single-plms_assignment.html` | `publiclms//single-plms_assignment` (registered from 1.3.0) | Same as the lesson and the quiz | `lesson-header`, `assignment-submission` (brief, hand-in form, status, grade and feedback), `lesson-navigation`, and `lesson-sidebar` inside the Details block; `publiclms/course-qa`, collapsed | `lesson-nav`, `hidden-lesson-contents` |
-| `templates/plms-instructor.html` | `publiclms//plms-instructor` (phase 2 part B in the plugin) | `header-minimal` part, wide column, the page title as the `h1` (Post Title, Eyebrow style), `footer-minimal` | `instructor-dashboard` (through `hidden-instructor-dashboard`) | `hidden-instructor-dashboard` |
 
 **The lesson bar (1.6.0).** The `lesson-nav` part no longer carries a course button: `lesson-header` and
 `quiz-header` already link back to the course right below it, and with 1.6.0's phones-only curriculum button
 between the two, phones showed the course name twice in the first screen.
 
 **The curriculum drawer (1.6.0 item 3).** `lesson-header` and `quiz-header` carry the phones-only "Course content"
-button, which opens the course outline in the plugin's drawer. Once its script runs it adds
-`publiclms-curriculum-drawer` to `<html>`; below 782px the theme then hides its own closed "Course contents"
-Details (`.campusinterface-lesson-contents`, rule in `assets/css/blocks/details.css`), so phones get one way to
+button, which opens the course outline in the plugin's drawer. A one-line script in the head adds
+`publiclms-curriculum-drawer` to `<html>` before the first paint (1.6.0 item 21; until then the plugin's
+deferred script did it); below 782px the theme then hides its own closed "Course contents" Details (`.campusinterface-lesson-contents`, rule in `assets/css/blocks/details.css`), so phones get one way to
 the outline, not two. Without JavaScript, and on wider screens, the Details stays. The theme's templates have no
 sidebar column and no "always" toggle, so `publiclms-curriculum-hidden` needs nothing from the theme; it only
 acts in the plugin's `plms-focus` layout.
 
-`theme.json` lists `plms-instructor` ("Instructor Dashboard") in `customTemplates` with `"postTypes": [ "page" ]`
-(A3.2), next to the theme's own page templates `page-no-title`, `page-landing` (no header or footer) and
-`page-login` (split log-in layout). Its `plms-dashboard` entry went with the template file in 1.6.0; the plugin's
-"Student Dashboard" and "Student Dashboard (full width)" are in the picker from the plugin. A translated copy of
-the dashboard page (Polylang) is not the page in `publiclms_dashboard_page_id`, so it needs one of them picked.
+`theme.json`'s `customTemplates` lists only the theme's own page templates: `page-no-title`, `page-landing` (no
+header or footer) and `page-login` (split log-in layout). Its `plms-dashboard` entry went with that template file
+in 1.6.0, and its `plms-instructor` entry with that one in 1.7.0; "Student Dashboard", "Student Dashboard (full
+width)" and "Instructor Dashboard" are in the page template picker from the plugin. A translated copy of the
+dashboard or Teaching page (Polylang) is not the page in `publiclms_dashboard_page_id` or
+`publiclms_instructor_page_id`, so it needs its template picked.
 
 **Template parts.** `header`, `header-centered`, `header-large-title`, `header-minimal`, `footer`,
 `footer-columns`, `footer-minimal`, `sidebar` (area `sidebar`), `lesson-nav` (area `lesson-nav`) and
@@ -92,9 +89,9 @@ Rules the theme follows (plugin contract A3 to A5):
 
 1. Overrides use exactly the plugin's slugs and compose plugin patterns (`publiclms/*`), core blocks,
    plugin blocks and the theme's own patterns (`campusinterface/*`).
-2. When the theme ships a page template from A1 (now only `plms-instructor.html`), `theme.json` gains a matching
-   `customTemplates` entry (`"postTypes": [ "page" ]`, title "Instructor Dashboard") so it stays in the page
-   template picker.
+2. When the theme ships one of A1's page templates (it ships none since 1.7.0), `theme.json` gains a matching
+   `customTemplates` entry (`"postTypes": [ "page" ]` and the plugin's title) so it stays in the page template
+   picker.
 3. The theme never registers a pattern in the `publiclms/` namespace.
 4. No hierarchy filtering is needed: the slugs are the plugin's post type keys or `plms-` prefixed, so the
    theme's copies can never render for another plugin's `course`, `lesson` or `quiz` post types or for an
@@ -175,6 +172,21 @@ are; the theme adds no CSS for it. Decisions:
 - **Corporate as the demo default: the owner's call**, not changed. The theme's default palette stays; Corporate
   is one click away in Styles.
 
+**Contract 1.7.0 (B5, B9): nothing for the theme to change.**
+- **B5 order.** Each alias now resolves a theme adapter first, then the preset, then the plugin's value.
+  CampusInterface has no adapter and defines every preset the plugin reads, `muted` included, so every alias is
+  the theme's preset, as before. The new mixed fallbacks for `primary-soft`, `surface`, `line` and `muted` never
+  apply here.
+- **New aliases.** `--publiclms-color-on-primary` is `base` (white on the default palette), the text the theme
+  already puts on `primary` fills; `base` on `primary` is in `composer contrast`. `--publiclms-color-muted` is the
+  theme's `muted`. `--publiclms-radius-button` is used on classic themes only.
+- **Size fallbacks at (0,2,0).** Core's preset classes are `!important`, so plugin text with `has-*-font-size`
+  keeps the theme's preset sizes; the theme-compat session measured 0 changed pixels on 18 CampusInterface
+  shots.
+- **B9.** Classic themes only. On CampusInterface, the course archive, lesson, My learning and Teaching load no
+  `publiclms-compat` sheet, no adapter and no classic wrapper, and the body has no `plms-compat` or
+  `plms-layout-*` class (checked in the served HTML).
+
 Other theme decisions that plugin blocks inherit but do not depend on: `layout.contentSize` 720px,
 `layout.wideSize` 1240px, root padding aware alignments, viewport breakpoints at 30rem (mobile) and 45rem
 (tablet), and button `:hover`, `:focus` and `:active` styles on `core/button`.
@@ -207,9 +219,31 @@ and an assignment after it in the Bookkeeping course's first section (the seed h
 source change: on that seed the Lighthouse URLs still exist and the budgets pass, and axe finds nothing on a
 seeded quiz and assignment (visitor and learner), the dashboard and the course.
 
-**Still waiting on the plugin (not in 5c0e6b0):** the instructor dashboard and `plms-instructor` (still behind
-`hidden-instructor-dashboard`), and `publiclms/course-filters` (the archive keeps the theme's own filters).
-Checkout landed in 1.4.0; course reviews, Q&A and announcements in 1.6.0, see below.
+**Status at 6f6a266.** Checkout landed in 1.4.0; course reviews, Q&A and announcements in 1.6.0; the Teaching
+dashboard is adopted with 1.7.0. `publiclms/course-filters` is tested in the theme's archive and ready, but waits
+for finding 25 (it folds on phones after the first paint); see below.
+
+## Contract 1.7.0 rerun (Teaching, email preferences, course filters, classic themes)
+
+**2026-11-08, Public LMS 6f6a266** (main: the 0.4.0 beta candidate, with ADR-075's theme compatibility on top).
+Same method as before: a pinned `git worktree` outside `wp-content/plugins`, `npm ci && npm run build`,
+Composer's production packages (`--no-scripts`) and the plugin folder's `vendor-prefixed/` (Composer files
+unchanged since 5c0e6b0), on the theme's wp-env (8930, WordPress 7.1.4). The site kept its data; the upgrade to
+0.4.0 had already created the Teaching page at `/teaching/`. Arabic and Japanese Teaching ran on the older
+translated pages (`/ar/teach-ar/`, `/ja/teach-ja/`), which pick "Instructor Dashboard" themselves, as
+`instructor.wang`, who teaches the Arabic course. The worktree was removed afterwards and the env pointed back
+at the plugin folder.
+
+| Check | Result |
+|---|---|
+| Compatibility report | Confirmed: nothing in 1.7.0 asks CampusInterface to change. No compat sheet, adapter, classic wrapper or `plms-` body class on any page; the aliases resolve to the theme's presets, `on-primary` to `base` and `muted` to the theme's `muted` (see B) |
+| Teaching (items 22 to 26) | The theme's phase-1 `plms-instructor.html` was still winning over the plugin's new full-width template (A3), so `/teaching/` showed the embedded dashboard under the minimal header. Removed (see A). Teaching now renders full width like My learning: sidebar with Overview, Courses, Learners, Q&A and, after a rule, Announcements; "Course admin" and "Back to site"; top bar with greeting, summary and account menu; on phones four sections in the bottom bar and Announcements under "More". Every section in English at 1280 and 375 px, and Overview, Q&A, Learners and Announcements in Arabic (mirrored, bar from the right) and Japanese (system fonts). A learner and a visitor get "This page is for instructors." or the log-in prompt inside the frame |
+| Learner sections | Email preferences (two `fieldset` panels, checkboxes in the theme's `primary` through its `accent-color` rule, the always-sent note), Questions (dated rows, "Answered") and Reviews ("Ready to review" with progress, "Your reviews" with Edit), in English, Arabic and Japanese at both widths. Saving preferences by keyboard: the status line says "Your email preferences are saved.", focus stays on the button, the page does not reload, and the choice survives a reload (restored afterwards) |
+| Course filters (item 18) | Tried in the archive's filters column with enhanced pagination on the theme's Query Loop: it works in place by keyboard (count, focus on the count, a removable chip, the address), mirrors in Arabic, and passes axe. Not adopted: on phones the form folds only after the script runs, which moves the grid about 560px (Lighthouse CLS 0.40, performance 0.80; finding 25). The theme keeps its own filters (perf 0.99, CLS 0) until that is fixed |
+| Findings 17 to 23 | Fixed: 17 (the visitor's full-width dashboard has the brand, `main`, `h1` "My learning" and the log-in prompt; axe clean), 22 (stats in two columns, no stray rule) and 23 (B8 wording) in 8c6b89d; 18 (stars drawn on `::before`, outlined in `contrast`, focus ring visible), 19 (all four section `h2`s at the theme's size, 40px) and 20 ("Questions about this quiz" and "about this assignment") in 22d90bd. 21 only in part: the class is set before the first paint, but the button still waits for the script (finding 24) |
+| Accessibility | axe (WCAG 2.2 AA and best practices) with every disclosure opened, at 1280 and 375 px, on 23 views: every Teaching section (English as `instructor`, Arabic and Japanese as `instructor.wang`), Teaching as a learner and as a visitor, the learner's Email preferences, Questions and Reviews in three languages, the archive in English and Arabic, a lesson and a course. Clean except the "Needs attention" action link (finding 26). Keyboard pass on four Teaching sections, Email preferences (English and Arabic), Reviews and the archive at both widths: clean |
+| Lighthouse budgets | Fresh CI-like wp-env (WordPress 7.1.4, `WP_DEBUG` off, a clean database, `bin/lighthouse-seed.sh`, the workflow's commands), now with `/teaching/` logged in as `instructor`: every assertion passes on six URLs with the theme's own archive filters. Performance 0.99 everywhere, accessibility 1.00, LCP 1.81–1.88 s, TBT at most 35 ms; My learning 139 KB and Teaching 139 KB, each 9.7 KB of CSS, 48 KB of script and one Gravatar, both in the full-width layout. CLS 0 except the lesson, 0.044 (finding 24) |
+| Theme Check, PHPCS, contrast, validity | See the commit's checks: Theme Check on the `git archive` copy, WordPress 6.7.11 and 7.1.4, only the two usual INFO notes; PHPCS clean; `composer contrast` passes; block validity 47 patterns, 15 templates and 10 parts on both versions |
 
 ## Contract 1.6.0 rerun (Stage 1 and the full-width dashboard)
 
@@ -394,8 +428,9 @@ Numbering continues from the 1.2.0 run above. **Status at 8d055b6 (rechecked by 
 batch rerun"):** 4 to 11 are fixed: 4 in `f664c4c`, 5 in `6920b55`, 6 in `c713cc3`, 7 and 10 (focus) in `d7c35a7`,
 8 in `529a160` (the zip is attached to published releases; none is published yet, so the Playground link still
 waits), 9 and 10 (B1) in `d24dba7`, 11 in `af30cba`. **Status at 5c0e6b0 (contract 1.6.0):** 12 to 16 are fixed
-(12 in `47296eb`, 13 in `ca7ee11`, 14 in `f7c15f1` and `d725d7e`, 15 in `30b79b7`, 16 in `0024942`); **17 to 23
-below are new and open.**
+(12 in `47296eb`, 13 in `ca7ee11`, 14 in `f7c15f1` and `d725d7e`, 15 in `30b79b7`, 16 in `0024942`). **Status at
+6f6a266 (contract 1.7.0):** 17 to 23 are fixed (17, 22 and 23 in `8c6b89d`; 18, 19 and 20 in `22d90bd`; 21 in
+`22d90bd` only in part, see 24); **24 to 27 below are new and open.**
 
 4. **Progress bars fill from the left in right-to-left languages (RTL, medium).** Found in the theme's RTL pass
    (site language Arabic, `<html dir="rtl">`, Public LMS at 40f9aed). `publiclms/course-progress` and the
@@ -546,3 +581,39 @@ below are new and open.**
     the palettes it is 5.0 to 6.1:1 on `base` and 4.66 to 5.65:1 on `surface` (Kids is lowest; Dark is higher). It
     passes, but the sentence should say 4.5:1 or give the figures. CampusInterface now defines `muted`, so the
     fallback does not apply to it.
+
+24. **Finding 21's fix doesn't show the curriculum button before the first paint (performance, low).** At 6f6a266
+    the head script sets `html.publiclms-curriculum-drawer` before the first paint, and
+    `.publiclms-curriculum-drawer .wp-block-publiclms-curriculum-toggle__button[hidden]` asks for
+    `display: inline-flex`. But `publiclms-ui`'s shared rule, `[class*="wp-block-publiclms-"] [hidden] { display:
+    none !important; }`, wins over it, so the button still appears only when the store binds `hidden`. With
+    scripts blocked the class is there and the button is `display: none`. CampusInterface's Details now goes at
+    first paint, as intended, so the late button alone moves the lesson down 51px: Lighthouse measures CLS 0.044
+    on the theme's lesson (mobile, CI-like site; budget 0.05). Suggested fix: render the button without the
+    `hidden` attribute and hide it by default in CSS, showing it under the class, or give the show rule
+    `!important`, or leave this button out of the shared `[hidden]` rule.
+25. **Course filters fold on phones only after the script runs (performance, medium).** Below 782px
+    `callbacks.initFilters` sets `collapsed`, which hides the form behind "Filters". Until then the first paint
+    shows the whole form (search, five selects and the button, about 330px). On CampusInterface's archive, with
+    the block in its filters column (stacked above the grid on phones), the column shrinks from 660 to 98px once
+    the script runs and the grid moves up about 560px: Lighthouse's mobile run gives CLS 0.40 and performance 0.80,
+    against budgets of 0.05 and 0.9. The plugin's own `archive-plms_course` puts the block above the grid, so it
+    shifts the same way. Suggested fix: decide the folded state before the first paint, as item 21 does for the
+    drawer: under the head script's class (or `@media (scripting: enabled) and (max-width: 781px)`), start with the
+    form hidden and the toggle shown, then let the store take over; mind finding 24's `[hidden]` rule. Also, a
+    chip repeats the option's count ("Level: Beginner (5)"); "Level: Beginner" reads better. CampusInterface keeps
+    its own filters until the fold is fixed. The adoption is ready: the block in `hidden-course-filters` and
+    `"enhancedPagination":true` on the archive's Query Loop worked in place by keyboard, in Arabic, and with axe.
+26. **Teaching's "Needs attention" action links are under 24px tall (accessibility, low).** The links ("Grade in
+    the admin", "See learners") are `sm` text, 14px with the theme's 1.65 line height, so 23.1px tall. With two
+    tasks listed, axe reports `target-size` (serious) on the second, in English and Arabic at 1280px (instructor
+    with a submission to grade). The theme-compat findings list the same for classic themes (item 4); it applies
+    to block themes too. Suggested fix: give standalone action links in the frame a 24px minimum
+    (`min-block-size: 24px` with `display: inline-flex; align-items: center`, or some block padding).
+27. **Courses that share a date come back in a different order (low).** The seed creates all ten courses with the
+    same `post_date` (2026-11-05 10:24:31 on 8930), and "Newest first" (`CourseFilters`, and the Query Loop's
+    default) sorts by date alone. MySQL may return ties in any order: the theme's archive showed the courses in a
+    different order on two loads, and a paged grid (the plugin's `course-grid` shows 9 of the 10 seeded courses)
+    can repeat one course and skip another. Imported catalogues can share dates too. Suggested fix: add `ID` as
+    the second sort key (`'orderby' => array( 'date' => 'DESC', 'ID' => 'DESC' )`) wherever the plugin sorts
+    courses by date, and give seeded courses distinct dates.

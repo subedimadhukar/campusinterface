@@ -2,8 +2,9 @@
 #
 # Prepares the wp-env site that Lighthouse CI measures (lighthouserc.json):
 # pretty permalinks, the theme, Public LMS demo data (with the `/my-learning/`
-# student dashboard and the `learner` account) and an "Academy home" page
-# built from the theme's full-page pattern.
+# student dashboard, the `/teaching/` Teaching dashboard, and the `learner` and
+# `instructor` accounts) and an "Academy home" page built from the theme's
+# full-page pattern.
 #
 # Run from the theme folder after `npx @wordpress/env@12 start`, with Public
 # LMS mounted (see .github/workflows/lighthouse.yml).
@@ -19,11 +20,13 @@ wp plugin activate public-lms
 wp option update blogname 'Lakeside Academy'
 wp rewrite structure '/%postname%/'
 wp publiclms seed --courses=10
-# The dashboard is measured logged in as `learner` (bin/lighthouse-learner-cookie.sh).
-# Core's toolbar is the same on every page for logged-in users and weighs more
-# than the dashboard itself (dashicons and admin-bar CSS, about 42 KB), so it is
-# turned off for that account: the budget measures the theme and the dashboard.
+# The dashboards are measured logged in as `learner` and `instructor`
+# (bin/lighthouse-cookie.sh). Core's toolbar is the same on every page for
+# logged-in users and weighs more than a dashboard itself (dashicons and
+# admin-bar CSS, about 42 KB), so it is turned off for those two accounts: the
+# budgets measure the theme and the dashboards.
 wp user meta update learner show_admin_bar_front false
+wp user meta update instructor show_admin_bar_front false
 wp post create \
 	--post_type=page \
 	--post_status=publish \

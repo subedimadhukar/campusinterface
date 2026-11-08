@@ -62,6 +62,7 @@ Yes, in any language and script. Every text in the templates, parts and patterns
 = 0.3.0 =
 * Right-to-left: the quote bar now sits on the reading side; Arabic-script languages keep their letter joins in Safari; every stylesheet ships a right-to-left copy generated with rtlcss, which WordPress serves in right-to-left languages.
 * Multilingual: long translated words and figures wrap inside their column; footer privacy links point at the privacy page of the visitor's language; languages outside Latin-1 (Polish, Vietnamese, Greek, Arabic, Hindi, Chinese and every other) use the system fonts for the whole page instead of mixing fonts inside words. Checked with Arabic and Japanese sites and a 30-language type test.
+* Public LMS Teaching dashboard: instructors get the plugin's full-width Teaching dashboard, like learners' My learning.
 * Public LMS 1.6.0: the student dashboard uses the plugin's full-width layout (a side menu, a top bar and, on phones, a bar at the bottom) in the theme's colours and fonts; lessons, quizzes and assignments show the course's questions and answers, and on phones the course outline opens in the plugin's side panel; course pages show announcements and reviews, with the rating on course cards and in the course header; the plugin's optional focus layout works with every variation.
 * New Muted colour for secondary text in every colour variation, checked for contrast.
 * The lesson bar no longer repeats the course button that the lesson header shows just below it.
