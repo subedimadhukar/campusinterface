@@ -3,7 +3,7 @@
  * Title: Course filters
  * Slug: campusinterface/hidden-course-filters
  * Inserter: no
- * Description: The filters column of the course archive: a course search and links to subjects and levels. Public LMS can replace or extend this region with its own filter blocks.
+ * Description: The filters column of the course archive: a heading and the Public LMS Course filters block (search, subject, level, price, rating and sort), which updates the course list in place.
  *
  * @package CampusInterface
  * @since 0.2.0
@@ -16,10 +16,6 @@
 	<h2 class="wp-block-heading has-lg-font-size"><?php esc_html_e( 'Find a course', 'campusinterface' ); ?></h2>
 	<!-- /wp:heading -->
 
-	<!-- wp:search {"label":"<?php echo esc_attr__( 'Search courses', 'campusinterface' ); ?>","placeholder":"<?php echo esc_attr__( 'For example: Python', 'campusinterface' ); ?>","buttonText":"<?php echo esc_attr__( 'Search', 'campusinterface' ); ?>","buttonPosition":"button-inside","query":{"post_type":"plms_course"}} /-->
-
-	<!-- wp:categories {"taxonomy":"plms_course_category","label":"<?php echo esc_attr__( 'Subjects', 'campusinterface' ); ?>","showPostCounts":true,"fontSize":"sm"} /-->
-
-	<!-- wp:categories {"taxonomy":"plms_level","label":"<?php echo esc_attr__( 'Levels', 'campusinterface' ); ?>","showPostCounts":true,"fontSize":"sm"} /-->
+	<!-- wp:publiclms/course-filters /-->
 </div>
 <!-- /wp:group -->

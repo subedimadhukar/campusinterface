@@ -27,7 +27,7 @@
 			<!-- /wp:paragraph -->
 
 			<!-- wp:paragraph -->
-			<p><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact us', 'campusinterface' ); ?></a></p>
+			<p><a href="<?php echo esc_url( campusinterface_page_link( 'contact' ) ); ?>"><?php esc_html_e( 'Contact us', 'campusinterface' ); ?></a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

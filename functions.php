@@ -413,20 +413,201 @@ function campusinterface_courses_url() {
 }
 
 /**
- * Returns the URL of the privacy policy page.
+ * Returns the URL of the privacy policy page, or an empty string.
  *
- * Uses the page chosen in Settings > Privacy once it is published, which
- * translation plugins map to each language's own page, and the
- * `/privacy-policy/` path WordPress gives that page otherwise, so footer
- * links work before the page exists and in every language after.
+ * The page chosen in Settings > Privacy, once it is published; translation
+ * plugins map it to each language's own page. Until then the footers leave
+ * the link out rather than link to a page that does not exist.
  *
  * @since 0.3.0
  *
  * @return string
  */
 function campusinterface_privacy_policy_url() {
-	$url = get_privacy_policy_url();
-	return $url ? $url : home_url( '/privacy-policy/' );
+	return (string) get_privacy_policy_url();
+}
+
+/**
+ * Returns the URL of a published page, by its path, or an empty string.
+ *
+ * Footer and sidebar links to pages a site may or may not have (About,
+ * Contact, Accessibility and the like) use this, so each link appears once
+ * the site publishes that page and is left out until then. With WPML or
+ * Polylang the link goes to the page in the visitor's language.
+ *
+ * @since 0.3.0
+ *
+ * @param string $path Page path, for example `contact`.
+ * @return string
+ */
+function campusinterface_page_url( $path ) {
+	$page = get_page_by_path( $path );
+	if ( ! $page instanceof WP_Post || 'publish' !== $page->post_status ) {
+		return '';
+	}
+	$id = (int) apply_filters( 'wpml_object_id', $page->ID, 'page', true ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML's documented filter, which Polylang also answers.
+	return (string) get_permalink( $id ? $id : $page->ID );
+}
+
+/**
+ * Returns the ID of a published Public LMS page saved in an option, in the visitor's language, or 0.
+ *
+ * @since 0.3.0
+ *
+ * @param string $option Option holding the page ID, for example `publiclms_dashboard_page_id`.
+ * @return int
+ */
+function campusinterface_lms_page_id( $option ) {
+	$id = (int) get_option( $option );
+	if ( ! $id || 'publish' !== get_post_status( $id ) ) {
+		return 0;
+	}
+	$translated = (int) apply_filters( 'wpml_object_id', $id, 'page', true ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WPML's documented filter, which Polylang also answers.
+	return $translated ? $translated : $id;
+}
+
+/**
+ * Returns the URL of a Public LMS page saved in an option, or an empty string.
+ *
+ * @since 0.3.0
+ *
+ * @param string $option Option holding the page ID, for example `publiclms_dashboard_page_id`.
+ * @return string
+ */
+function campusinterface_lms_page_url( $option ) {
+	$id = campusinterface_lms_page_id( $option );
+	return $id ? (string) get_permalink( $id ) : '';
+}
+
+/**
+ * Returns the URL of the blog, or an empty string when the site has none.
+ *
+ * @since 0.3.0
+ *
+ * @return string
+ */
+function campusinterface_blog_url() {
+	if ( 'posts' === get_option( 'show_on_front' ) ) {
+		return home_url( '/' );
+	}
+	$id = (int) get_option( 'page_for_posts' );
+	return $id && 'publish' === get_post_status( $id ) ? (string) get_permalink( $id ) : '';
+}
+
+/**
+ * Returns the URL of the course catalogue while Public LMS is active, else an empty string.
+ *
+ * @since 0.3.0
+ *
+ * @return string
+ */
+function campusinterface_catalogue_url() {
+	return post_type_exists( 'plms_course' ) ? campusinterface_courses_url() : '';
+}
+
+/**
+ * Returns the URL of a published page for a link in an inserter pattern, or `#`.
+ *
+ * Inserter patterns are starting content the site owner edits, so a link to
+ * a page the site does not have yet (Contact, About) stays visible as a `#`
+ * placeholder instead of linking to a page that does not exist.
+ *
+ * @since 0.3.0
+ *
+ * @param string $path Page path, for example `contact`.
+ * @return string
+ */
+function campusinterface_page_link( $path ) {
+	$url = campusinterface_page_url( $path );
+	return $url ? $url : '#';
+}
+
+/**
+ * Returns the URL of a course category by its slug, or the course catalogue.
+ *
+ * @since 0.3.0
+ *
+ * @param string $slug Term slug in `plms_course_category`, for example `design`.
+ * @return string
+ */
+function campusinterface_course_category_url( $slug ) {
+	$term = taxonomy_exists( 'plms_course_category' ) ? get_term_by( 'slug', $slug, 'plms_course_category' ) : false;
+	$link = $term instanceof WP_Term ? get_term_link( $term ) : '';
+	return is_string( $link ) && '' !== $link ? $link : campusinterface_courses_url();
+}
+
+/**
+ * Returns the URL of a published course by its slug, or the course catalogue.
+ *
+ * @since 0.3.0
+ *
+ * @param string $slug Course slug, for example `ux-design-essentials`.
+ * @return string
+ */
+function campusinterface_course_url( $slug ) {
+	$course = post_type_exists( 'plms_course' ) ? get_page_by_path( $slug, OBJECT, 'plms_course' ) : null;
+	return $course instanceof WP_Post && 'publish' === $course->post_status ? (string) get_permalink( $course ) : campusinterface_courses_url();
+}
+
+/**
+ * Builds Navigation Link blocks for the links that have a URL.
+ *
+ * @since 0.3.0
+ *
+ * @param array<string, string> $links Label => URL; links with an empty URL are left out.
+ * @return string Block markup, or an empty string when no link has a URL.
+ */
+function campusinterface_navigation_links( $links ) {
+	$markup = '';
+	foreach ( $links as $label => $url ) {
+		if ( '' === $url ) {
+			continue;
+		}
+		$markup .= '<!-- wp:navigation-link ' . wp_json_encode(
+			array(
+				'label' => esc_html( $label ),
+				'url'   => esc_url( $url ),
+				'kind'  => 'custom',
+			),
+			JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP
+		) . " /-->\n";
+	}
+	return $markup;
+}
+
+/**
+ * Builds a line of text links, separated by middle dots, for the links that have a URL.
+ *
+ * @since 0.3.0
+ *
+ * @param array<string, string> $links Label => URL; links with an empty URL are left out.
+ * @return string HTML, or an empty string when no link has a URL.
+ */
+function campusinterface_text_links( $links ) {
+	$html = array();
+	foreach ( $links as $label => $url ) {
+		if ( '' !== $url ) {
+			$html[] = '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+		}
+	}
+	return implode( ' · ', $html );
+}
+
+/**
+ * The footers' line of site-wide links: accessibility statement, privacy policy, contact.
+ *
+ * @since 0.3.0
+ *
+ * @return string HTML, or an empty string when the site has none of these pages yet.
+ */
+function campusinterface_footer_page_links() {
+	return campusinterface_text_links(
+		array(
+			__( 'Accessibility', 'campusinterface' )  => campusinterface_page_url( 'accessibility' ),
+			__( 'Privacy policy', 'campusinterface' ) => campusinterface_privacy_policy_url(),
+			__( 'Contact', 'campusinterface' )        => campusinterface_page_url( 'contact' ),
+		)
+	);
 }
 
 /**
@@ -635,3 +816,47 @@ function campusinterface_preload_fonts() {
 	);
 }
 add_action( 'wp_head', 'campusinterface_preload_fonts', 1 );
+
+/**
+ * Gives the header a short starter menu instead of every page.
+ *
+ * With no menu chosen, the Navigation block falls back to a Page List of
+ * every published page, which on a Public LMS site includes its utility
+ * pages (Checkout, Teaching) for every visitor. While the plugin is active,
+ * that automatic fallback becomes Courses, My learning and, when the site has
+ * a posts page, the blog. A menu the site owner builds is used as it is.
+ *
+ * @since 0.3.0
+ *
+ * @param array<int, array<string, mixed>> $fallback_blocks Parsed blocks core would render.
+ * @return array<int, array<string, mixed>>
+ */
+function campusinterface_navigation_fallback( $fallback_blocks ) {
+	$names = array_values( array_filter( wp_list_pluck( $fallback_blocks, 'blockName' ) ) );
+	if ( array( 'core/page-list' ) !== $names || ! post_type_exists( 'plms_course' ) ) {
+		return $fallback_blocks;
+	}
+
+	$links = array( __( 'Courses', 'campusinterface' ) => campusinterface_catalogue_url() );
+
+	$dashboard = campusinterface_lms_page_id( 'publiclms_dashboard_page_id' );
+	if ( $dashboard ) {
+		$title           = get_the_title( $dashboard );
+		$label           = '' !== $title ? $title : __( 'My learning', 'campusinterface' );
+		$links[ $label ] = (string) get_permalink( $dashboard );
+	}
+
+	$posts_page = (int) get_option( 'page_for_posts' );
+	if ( $posts_page && 'publish' === get_post_status( $posts_page ) ) {
+		$links[ __( 'Blog', 'campusinterface' ) ] = (string) get_permalink( $posts_page );
+	}
+
+	$blocks = array();
+	foreach ( parse_blocks( campusinterface_navigation_links( $links ) ) as $block ) {
+		if ( ! empty( $block['blockName'] ) ) {
+			$blocks[] = $block;
+		}
+	}
+	return $blocks ? $blocks : $fallback_blocks;
+}
+add_filter( 'block_core_navigation_render_fallback', 'campusinterface_navigation_fallback' );

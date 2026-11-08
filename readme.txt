@@ -13,7 +13,7 @@ A full-site-editing block theme for schools, academies, online course creators a
 
 CampusInterface is a block theme for education websites. Every colour, font size, space and radius is a theme.json token you can change in Styles, with fluid type, responsive styles for phones and tablets, five colour variations (Campus, Studio, Kids, Corporate and Dark) and three type sets (Editorial, Modern and System) that mix freely. Every palette passes WCAG 2.2 AA contrast on the colour pairs the theme and Public LMS use.
 
-CampusInterface pairs with the free Public LMS plugin: install it to add courses, lessons, quizzes and certificates, and the theme's course patterns fill with your courses. Without the plugin, CampusInterface is a clean, fast school or academy website.
+CampusInterface pairs with the free Public LMS plugin (version 0.4 or later): install it to add courses, lessons, quizzes, assignments and certificates, and the theme's course patterns fill with your courses. The theme styles everything the plugin shows: the course catalogue with its search, subject, level, price, rating and sort filters; course pages with reviews, announcements and questions and answers; lessons, quizzes and assignments; and the full-width My learning and Teaching dashboards. Without the plugin, CampusInterface is a clean, fast school or academy website.
 
 * No jQuery and no theme JavaScript
 * Self-hosted variable fonts, nothing loaded from third-party servers
@@ -47,7 +47,7 @@ Found a barrier? Please report it at https://github.com/subedimadhukar/campusint
 
 = Do I need the Public LMS plugin? =
 
-No. The theme works on its own. The course grid pattern shows courses only when Public LMS is active.
+No. The theme works on its own. The course grid patterns, the course templates and the dashboards come alive when Public LMS 0.4 or later is active.
 
 = Does the theme work with other LMS plugins? =
 
@@ -60,6 +60,10 @@ Yes, in any language and script. Every text in the templates, parts and patterns
 == Changelog ==
 
 = 0.3.0 =
+* Tested with Public LMS 0.4.0 (theme contract 1.7.0).
+* Course catalogue: the filters column holds the plugin's course filters (search, subject, level, price, rating and sort), which update the list without reloading the page.
+* No dead links: the footers, the course sidebar and the lesson bar link only to pages the site has published (About, Contact, Accessibility, the privacy policy and the like) and leave the others out until they exist; inserter patterns link to an existing course or category, or the catalogue, and keep a placeholder for pages yet to be made. The course sidebar's "Not sure this is the right course?" card shows once the site has a Contact page.
+* Header menu: until you build a menu, the header shows Courses, My learning and, if you have one, the blog, instead of every page (so not the plugin's Checkout and Teaching pages).
 * Right-to-left: the quote bar now sits on the reading side; Arabic-script languages keep their letter joins in Safari; every stylesheet ships a right-to-left copy generated with rtlcss, which WordPress serves in right-to-left languages.
 * Multilingual: long translated words and figures wrap inside their column; footer privacy links point at the privacy page of the visitor's language; languages outside Latin-1 (Polish, Vietnamese, Greek, Arabic, Hindi, Chinese and every other) use the system fonts for the whole page instead of mixing fonts inside words. Checked with Arabic and Japanese sites and a 30-language type test.
 * Public LMS Teaching dashboard: instructors get the plugin's full-width Teaching dashboard, like learners' My learning.
@@ -73,7 +77,7 @@ Yes, in any language and script. Every text in the templates, parts and patterns
 
 = 0.2.0 =
 * 49 patterns (38 in the inserter): three heroes, course grids in 3 and 4 columns and a scroll-snap carousel, subjects, statistics, features, steps, instructors, testimonials, pricing in 2 and 3 columns, FAQ, two call-to-action bands, events, logos, newsletter, blog cards, log-in panel, promo bar, accessibility statement, five headers, three footers and two full pages.
-* Templates for Public LMS courses, course archives, lessons, quizzes and the student and instructor dashboards, plus landing and split log-in page templates. Tested with Public LMS contract 1.2.0; quiz, reviews and instructor dashboard areas show a fallback until the plugin ships them.
+* Templates for Public LMS courses, course archives, lessons, quizzes and the student and instructor dashboards, plus landing and split log-in page templates. Tested with Public LMS contract 1.2.0.
 * Ten template parts, including a lesson bar, a course sidebar and a WordPress 7.0 navigation overlay.
 * Colour variations Studio, Kids, Corporate and Dark; System type set; section styles for bands and cards; five Query Loop card styles.
 * Accessibility-ready: focus styles for every control, reduced-motion support, accessibility statement pattern.

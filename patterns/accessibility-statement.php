@@ -70,7 +70,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p><?php esc_html_e( 'If something on this site does not work for you, tell us what page you were on and what happened. We reply within five working days and will provide the content another way while we fix it.', 'campusinterface' ); ?> <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Contact us about accessibility', 'campusinterface' ); ?></a></p>
+<p><?php esc_html_e( 'If something on this site does not work for you, tell us what page you were on and what happened. We reply within five working days and will provide the content another way while we fix it.', 'campusinterface' ); ?> <a href="<?php echo esc_url( campusinterface_page_link( 'contact' ) ); ?>"><?php esc_html_e( 'Contact us about accessibility', 'campusinterface' ); ?></a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-08T05:30:22+00:00\n"
+"POT-Creation-Date: 2026-11-08T14:45:16+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: campusinterface\n"
@@ -208,6 +208,38 @@ msgstr ""
 msgid "Checklist"
 msgstr ""
 
+#: functions.php:606
+#: patterns/footer-columns.php:61
+msgid "Accessibility"
+msgstr ""
+
+#: functions.php:607
+#: patterns/footer-columns.php:115
+msgid "Privacy policy"
+msgstr ""
+
+#: functions.php:608
+#: patterns/footer-columns.php:60
+msgid "Contact"
+msgstr ""
+
+#: functions.php:840
+#: patterns/footer-columns.php:37
+#: patterns/footer.php:17
+#: patterns/header-minimal.php:31
+msgid "Courses"
+msgstr ""
+
+#: functions.php:845
+msgid "My learning"
+msgstr ""
+
+#: functions.php:851
+#: patterns/footer-columns.php:49
+#: patterns/hidden-blog-heading.php:14
+msgid "Blog"
+msgstr ""
+
 #: patterns/accessibility-statement.php
 msgctxt "Pattern title"
 msgid "Accessibility statement"
@@ -352,7 +384,6 @@ msgid "Thirty-six courses across six subjects, from your first spreadsheet to yo
 msgstr ""
 
 #: patterns/category-tiles.php:38
-#: patterns/footer-columns.php:39
 #: patterns/instructor-grid.php:42
 msgid "Data and analytics"
 msgstr ""
@@ -362,7 +393,6 @@ msgid "8 courses"
 msgstr ""
 
 #: patterns/category-tiles.php:54
-#: patterns/footer-columns.php:40
 #: patterns/instructor-grid.php:62
 msgid "Web development"
 msgstr ""
@@ -372,7 +402,6 @@ msgid "10 courses"
 msgstr ""
 
 #: patterns/category-tiles.php:70
-#: patterns/footer-columns.php:41
 msgid "Design"
 msgstr ""
 
@@ -381,7 +410,6 @@ msgid "6 courses"
 msgstr ""
 
 #: patterns/category-tiles.php:86
-#: patterns/footer-columns.php:42
 #: patterns/instructor-grid.php:102
 msgid "Communication"
 msgstr ""
@@ -706,17 +734,11 @@ msgstr ""
 
 #: patterns/footer-columns.php
 msgctxt "Pattern description"
-msgid "A four-column footer: the site title, tagline and a sentence, then link lists for courses, the academy and help, with the privacy policy link underneath."
+msgid "A four-column footer: the site title, tagline and a sentence, then link lists for courses, the academy and help, with the privacy policy link underneath. The course list shows the site's busiest course categories; the other lists link only pages the site has published, and a list with nothing to link is left out."
 msgstr ""
 
-#: patterns/footer-columns.php:27
-msgid "Practical courses in data, web development, design and communication, taught by people who do the work."
-msgstr ""
-
-#: patterns/footer-columns.php:35
-#: patterns/footer.php:29
-#: patterns/header-minimal.php:31
-msgid "Courses"
+#: patterns/footer-columns.php:33
+msgid "All courses"
 msgstr ""
 
 #: patterns/footer-columns.php:38
@@ -724,72 +746,49 @@ msgctxt "navigation landmark label"
 msgid "Course categories"
 msgstr ""
 
-#: patterns/footer-columns.php:43
-msgid "All courses"
-msgstr ""
-
-#: patterns/footer-columns.php:51
+#: patterns/footer-columns.php:42
 msgid "Academy"
 msgstr ""
 
-#: patterns/footer-columns.php:54
+#: patterns/footer-columns.php:43
 msgctxt "navigation landmark label"
 msgid "Academy"
 msgstr ""
 
-#: patterns/footer-columns.php:55
-#: patterns/footer.php:32
+#: patterns/footer-columns.php:46
+#: patterns/footer.php:20
 msgid "About"
 msgstr ""
 
-#: patterns/footer-columns.php:56
-#: patterns/footer.php:30
+#: patterns/footer-columns.php:47
+#: patterns/footer.php:18
 msgid "Instructors"
 msgstr ""
 
-#: patterns/footer-columns.php:57
-#: patterns/footer.php:31
+#: patterns/footer-columns.php:48
+#: patterns/footer.php:19
 msgid "Events"
 msgstr ""
 
-#: patterns/footer-columns.php:58
-#: patterns/hidden-blog-heading.php:14
-msgid "Blog"
-msgstr ""
-
-#: patterns/footer-columns.php:66
+#: patterns/footer-columns.php:54
 msgid "Help"
 msgstr ""
 
-#: patterns/footer-columns.php:69
+#: patterns/footer-columns.php:55
 msgctxt "navigation landmark label"
 msgid "Help"
 msgstr ""
 
-#: patterns/footer-columns.php:70
+#: patterns/footer-columns.php:58
 msgid "Questions and answers"
 msgstr ""
 
-#: patterns/footer-columns.php:71
+#: patterns/footer-columns.php:59
 msgid "Pricing"
 msgstr ""
 
-#: patterns/footer-columns.php:72
-#: patterns/footer-minimal.php:23
-#: patterns/footer.php:44
-msgid "Contact"
-msgstr ""
-
-#: patterns/footer-columns.php:73
-#: patterns/footer-minimal.php:23
-#: patterns/footer.php:44
-msgid "Accessibility"
-msgstr ""
-
-#: patterns/footer-columns.php:89
-#: patterns/footer-minimal.php:23
-#: patterns/footer.php:44
-msgid "Privacy policy"
+#: patterns/footer-columns.php:79
+msgid "Practical courses in data, web development, design and communication, taught by people who do the work."
 msgstr ""
 
 #: patterns/footer-minimal.php
@@ -799,7 +798,7 @@ msgstr ""
 
 #: patterns/footer-minimal.php
 msgctxt "Pattern description"
-msgid "One slim row with the site title and links to the accessibility statement, privacy policy and contact page. Used on the dashboard and lesson templates."
+msgid "One slim row with the site title and links to the accessibility statement, privacy policy and contact page, each once the site has published it. Used on the lesson, quiz and assignment templates."
 msgstr ""
 
 #: patterns/footer.php
@@ -809,10 +808,10 @@ msgstr ""
 
 #: patterns/footer.php
 msgctxt "Pattern description"
-msgid "Site title and tagline beside the footer navigation, with links to the accessibility statement, privacy policy and contact page underneath."
+msgid "Site title and tagline beside the footer navigation, with links to the accessibility statement, privacy policy and contact page underneath. Only pages the site has are linked: the course catalogue while Public LMS is active, and the Instructors, Events, About, Accessibility and Contact pages and the privacy policy once they are published."
 msgstr ""
 
-#: patterns/footer.php:28
+#: patterns/footer.php:38
 msgctxt "navigation landmark label"
 msgid "Footer"
 msgstr ""
@@ -1072,7 +1071,7 @@ msgstr ""
 
 #: patterns/hidden-course-filters.php
 msgctxt "Pattern description"
-msgid "The filters column of the course archive: a course search and links to subjects and levels. Public LMS can replace or extend this region with its own filter blocks."
+msgid "The filters column of the course archive: a heading and the Public LMS Course filters block (search, subject, level, price, rating and sort), which updates the course list in place."
 msgstr ""
 
 #: patterns/hidden-course-filters.php:13
@@ -1081,26 +1080,6 @@ msgstr ""
 
 #: patterns/hidden-course-filters.php:16
 msgid "Find a course"
-msgstr ""
-
-#: patterns/hidden-course-filters.php:19
-msgid "Search courses"
-msgstr ""
-
-#: patterns/hidden-course-filters.php:19
-msgid "For example: Python"
-msgstr ""
-
-#: patterns/hidden-course-filters.php:19
-msgid "Search"
-msgstr ""
-
-#: patterns/hidden-course-filters.php:21
-msgid "Subjects"
-msgstr ""
-
-#: patterns/hidden-course-filters.php:23
-msgid "Levels"
 msgstr ""
 
 #: patterns/hidden-course-hero.php
@@ -1267,7 +1246,7 @@ msgctxt "Pattern description"
 msgid "A slim bar for lessons, quizzes and assignments: the site title, and on the right the learner's dashboard and a log-out link. No main navigation, so learners stay on the lesson. The way back to the course is the Public LMS lesson header's course button, just below, so the bar does not repeat it."
 msgstr ""
 
-#: patterns/lesson-nav.php:30
+#: patterns/lesson-nav.php:27
 msgid "My dashboard"
 msgstr ""
 
@@ -1714,19 +1693,19 @@ msgstr ""
 
 #: patterns/sidebar-course.php
 msgctxt "Pattern description"
-msgid "The single course sidebar: the Public LMS enrol card (price, enrol button, what the course includes), then a card that points undecided learners to a person."
+msgid "The single course sidebar: the Public LMS enrol card (price, enrol button, what the course includes), then, once the site has a published Contact page, a card that points undecided learners to it."
 msgstr ""
 
-#: patterns/sidebar-course.php:23
+#: patterns/sidebar-course.php:25
 msgid "Not sure this is the right course?"
 msgstr ""
 
-#: patterns/sidebar-course.php:27
-msgid "Tell us what you want to learn and an adviser will suggest where to start, usually within one working day."
+#: patterns/sidebar-course.php:29
+msgid "Tell us what you want to learn, and we will suggest where to start."
 msgstr ""
 
-#: patterns/sidebar-course.php:31
-msgid "Ask an adviser"
+#: patterns/sidebar-course.php:33
+msgid "Ask us"
 msgstr ""
 
 #: patterns/stats.php

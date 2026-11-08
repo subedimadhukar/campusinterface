@@ -53,7 +53,7 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button -->
-		<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( '/courses/ux-design-essentials/' ) ); ?>"><?php esc_html_e( 'Reserve your place', 'campusinterface' ); ?></a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( campusinterface_course_url( 'ux-design-essentials' ) ); ?>"><?php esc_html_e( 'Reserve your place', 'campusinterface' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

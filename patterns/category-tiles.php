@@ -35,7 +35,7 @@
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
-			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( home_url( '/course-category/data-and-analytics/' ) ); ?>"><?php esc_html_e( 'Data and analytics', 'campusinterface' ); ?></a></h3>
+			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( campusinterface_course_category_url( 'data-and-analytics' ) ); ?>"><?php esc_html_e( 'Data and analytics', 'campusinterface' ); ?></a></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"sm"} -->
@@ -51,7 +51,7 @@
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
-			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( home_url( '/course-category/web-development/' ) ); ?>"><?php esc_html_e( 'Web development', 'campusinterface' ); ?></a></h3>
+			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( campusinterface_course_category_url( 'web-development' ) ); ?>"><?php esc_html_e( 'Web development', 'campusinterface' ); ?></a></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"sm"} -->
@@ -67,7 +67,7 @@
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
-			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( home_url( '/course-category/design/' ) ); ?>"><?php esc_html_e( 'Design', 'campusinterface' ); ?></a></h3>
+			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( campusinterface_course_category_url( 'design' ) ); ?>"><?php esc_html_e( 'Design', 'campusinterface' ); ?></a></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"sm"} -->
@@ -83,7 +83,7 @@
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
-			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( home_url( '/course-category/communication/' ) ); ?>"><?php esc_html_e( 'Communication', 'campusinterface' ); ?></a></h3>
+			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( campusinterface_course_category_url( 'communication' ) ); ?>"><?php esc_html_e( 'Communication', 'campusinterface' ); ?></a></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"sm"} -->
@@ -99,7 +99,7 @@
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
-			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( home_url( '/course-category/business-and-marketing/' ) ); ?>"><?php esc_html_e( 'Business and marketing', 'campusinterface' ); ?></a></h3>
+			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( campusinterface_course_category_url( 'business-and-marketing' ) ); ?>"><?php esc_html_e( 'Business and marketing', 'campusinterface' ); ?></a></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"sm"} -->
@@ -115,7 +115,7 @@
 			<!-- /wp:image -->
 
 			<!-- wp:heading {"level":3,"fontSize":"lg"} -->
-			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( home_url( '/course-category/career-skills/' ) ); ?>"><?php esc_html_e( 'Career skills', 'campusinterface' ); ?></a></h3>
+			<h3 class="wp-block-heading has-lg-font-size"><a href="<?php echo esc_url( campusinterface_course_category_url( 'career-skills' ) ); ?>"><?php esc_html_e( 'Career skills', 'campusinterface' ); ?></a></h3>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"fontSize":"sm"} -->
