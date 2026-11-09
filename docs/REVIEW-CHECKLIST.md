@@ -6,6 +6,11 @@ on 2026-11-04, for CampusInterface 0.3.0 (phase 2, end of the theme-only work), 
 `git archive` builds (dev files are `export-ignore`d in `.gitattributes`). Phase 1 results are kept where the
 phase 2 run did not replace them; rows marked "phase 2" are new.
 
+**Rechecked 2026-11-09** for 1.0 readiness against the Required page (last changed 2026-06-09) and the rewritten
+accessibility-ready requirements (18 items, announced 2026-05-06; criteria pages updated 2026-06-02), which added
+reflow and text spacing, no unexpected changes of context, content on hover or focus, an `accessibility.txt`
+statement and no inaccessible plugins. See "1.0 readiness" below.
+
 Legend: **Pass**, **N/A** (does not apply to this theme), **Owner** (needs a decision or account action by
 WPInterface before submission).
 
@@ -146,7 +151,7 @@ N/A: no settings pages, options or onboarding.
 | Guideline | Status | How |
 |---|---|---|
 | Skip to content link | Pass | Core skip link |
-| Meaningful landmark roles and names | Pass | `<header>`, `<main>`, `<footer>` from template parts and groups; every navigation has an `aria-label` (Main, Footer, Course categories, Academy, Help); course sidebar and archive filters are `<aside>`; the log-in template's coloured half is its `<header>` (phase 2) |
+| Meaningful landmark roles and names | Pass | `functions.php` declares `html5` support for `navigation-widgets`, which the 2026 requirement asks of any theme with a `functions.php` (2026-11-09). `<header>`, `<main>`, `<footer>` from template parts and groups; every navigation has an `aria-label` (Main, Footer, Course categories, Academy, Help); course sidebar and archive filters are `<aside>`; the log-in template's coloured half is its `<header>` (phase 2) |
 | Keyboard navigation | Pass | See section 3 and the phase 2 keyboard pass |
 | Controls with names, roles and states | Pass | Core blocks only (navigation toggles, Details, buttons, Login/out) |
 | Labelled form fields | Pass | Search blocks keep their label (visually hidden where `showLabel` is false); `wp_login_form()` labels |
@@ -156,13 +161,35 @@ N/A: no settings pages, options or onboarding.
 | Contrast of text and UI controls | Pass | `composer contrast`, all six palettes; form-field borders use `contrast`; axe `color-contrast` on rendered pages under all five colour variations (phase 2) |
 | Alternative text | Pass | Every content image has alt text; the ten icons beside headings are decorative and have `alt=""` (WCAG technique H67) |
 | Accessible audio, video and animation | Pass | No media and no animation in the theme; `prefers-reduced-motion` rule in `global.css` |
-| Reflow, resize, text spacing | Pass | Fluid type and grids down to 320px; tested at 375px; long translated words and figures wrap inside their column (phase 2, section 8) |
-| No unexpected changes of context | Pass | |
+| Reflow, resize, text spacing | Pass | Fluid type and grids down to 320px; long translated words and figures wrap inside their column (phase 2, section 8). 2026-11-09: 14 pages (home, academy home, landing, catalogue, a course, a lesson, My learning, Teaching, a page, search, 404, log-in, blog, the Arabic catalogue) at 320 and 640 px wide, i.e. 400% and 200% zoom at 1280, with line height 1.5, letter spacing 0.12em, word spacing 0.16em and paragraph spacing 2em forced: no sideways scrolling and no clipped text (Teaching's table header is visually hidden on purpose when rows stack, and data tables are exempt) |
+| No unexpected changes of context | Pass | No select, radio or checkbox in the theme submits or navigates on change; the Categories blocks are lists, not dropdowns; the catalogue's filters (Public LMS) apply only with "Show courses" |
 | No new windows without warning | Pass | No `target="_blank"` |
 | Content on hover or focus accessible | Pass | No hover-revealed content beyond core submenus |
-| Accessibility statement | Pass | `readme.txt` "Accessibility" section, and the `campusinterface/accessibility-statement` pattern for site owners |
-| No inaccessible plugins recommended | Pass | Public LMS is held to the same contract |
-| Screen reader text supported | Pass | Core `.screen-reader-text` styles are present in block themes |
+| Accessibility statement | Pass | `accessibility.txt` in the theme folder, in the 2026 standard's format (statement, quick information, testing tools and methodology, screen reader text class, features, help contact, where to report); the `readme.txt` "Accessibility" section points to it; the `campusinterface/accessibility-statement` pattern is for site owners |
+| No inaccessible plugins recommended | Pass, with a risk | The readme recommends only Public LMS, with no admin notice. The 2026 test has the reviewer install it and run every test with it active, and any barrier counts against the theme, so Public LMS must pass the same 18 requirements. Open there: theme finding 26 (Teaching's "Needs attention" links under 24px on block themes, WCAG 2.5.8) and no screen-reader-user pass yet |
+| Screen reader text supported | Pass | The theme defines `.screen-reader-text` in `assets/css/global.css` (core's rules, plus a visible focus state) and names it in `accessibility.txt` (2026-11-09). Checked as the requirement says: a Heading block with the class added is 1×1 px and clipped on the front end, and axe passes |
+
+## 1.0 readiness (2026-11-09)
+
+| Item | State |
+|---|---|
+| `screenshot.png` | 1200×900, 4:3, the theme's own academy home; nothing that reads as an advertisement |
+| `readme.txt` | Valid headers; short description under 150 characters; Accessibility, Privacy (new: no data, cookies or outside requests), FAQ, Changelog, Copyright and Resources sections; describes Public LMS 0.4 |
+| Resource licences | Fraunces and Figtree under the SIL OFL 1.1, with `OFL.txt` beside each; all 30 files in `assets/images/` and `screenshot.png` listed as WPInterface's own work under GPLv2 or later |
+| `Requires at least` / `Tested up to` / `Requires PHP` | 6.7 / 7.1 / 7.4. WordPress 7.1.4 is the latest release; 7.2 is in beta (Beta 4 on 2026-11-03) |
+| Theme Check | The `git archive` copy on WordPress 6.7.11 and 7.1.4: only the two usual INFO notes |
+| Release zip | 312 KB: only `accessibility.txt`, `assets/`, `functions.php`, `languages/`, `parts/`, `patterns/`, `readme.txt`, `screenshot.png`, `style.css`, `styles/`, `templates/`, `theme.json`; no hidden files, shell scripts or XML |
+| Accessibility-ready, 2026 | All 18 requirements pass on the theme (table above); fixed today: `accessibility.txt`, the theme's own screen reader text class, `navigation-widgets` |
+
+**Still needed before 1.0** (release steps and owner items, not code):
+1. Version 1.0.0 in `style.css` and the readme's `Stable tag`, with a 1.0.0 changelog entry, at release.
+2. `Tested up to: 7.2` once WordPress 7.2 is out (expected in December) and the theme has been checked on it.
+3. Public LMS published on WordPress.org first: a theme may recommend only plugins hosted there.
+4. The accessibility-ready review will run every test with Public LMS active: close theme finding 26 in the plugin and
+   do the screen-reader-user pass before requesting it.
+5. Owner: confirm `Contributors: wpinterface` is the WordPress.org username that will submit; make the Theme URI
+   page live; choose the accessibility help contact (`accessibility.txt` points to GitHub issues and the theme's
+   WordPress.org forum; an email address can be added).
 
 ## Before submission (owner)
 

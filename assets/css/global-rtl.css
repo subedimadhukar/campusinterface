@@ -48,6 +48,41 @@
 	display: none;
 }
 
+/*
+ * Text for screen readers only: hidden visually, still read aloud, and shown
+ * when it takes keyboard focus (a skip link, for example). Add the class to
+ * any block under Advanced > Additional CSS class(es). Named in
+ * accessibility.txt; the same rules as WordPress core's admin class.
+ */
+.screen-reader-text {
+	border: 0;
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+	background-color: var(--wp--preset--color--base);
+	clip-path: none;
+	color: var(--wp--preset--color--contrast);
+	display: block;
+	font-size: var(--wp--preset--font-size--sm);
+	font-weight: 600;
+	height: auto;
+	inset-block-start: 5px;
+	inset-inline-start: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	width: auto;
+	z-index: 100000;
+}
+
 /* Form fields follow the palette (dark variation included); theme.json has no element for them. */
 :where(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="button"]), select, textarea) {
 	background-color: var(--wp--preset--color--base);

@@ -34,7 +34,13 @@ CampusInterface is built to WCAG 2.2 level AA and carries the accessibility-read
 * Layouts reflow down to 320px wide and text resizes to 200%.
 * The Accessibility statement pattern gives site owners a starting point for their own statement.
 
+The theme's own accessibility statement, with how it is tested, is in accessibility.txt in the theme folder.
+
 Found a barrier? Please report it at https://github.com/subedimadhukar/campusinterface/issues.
+
+== Privacy ==
+
+CampusInterface collects no data, sets no cookies and makes no requests to other servers: its fonts, images and styles are all in the theme folder.
 
 == Installation ==
 
@@ -61,6 +67,7 @@ Yes, in any language and script. Every text in the templates, parts and patterns
 
 = 0.3.0 =
 * Tested with Public LMS 0.4.0 (theme contract 1.7.0).
+* Accessibility-ready, 2026 requirements: an accessibility.txt statement in the theme folder; the theme's own screen-reader-text class; navigation widgets wrapped in a navigation landmark; reflow and text-spacing checks at 320 and 640 pixels wide.
 * Course catalogue: the filters column holds the plugin's course filters (search, subject, level, price, rating and sort), which update the list without reloading the page.
 * No dead links: the footers, the course sidebar and the lesson bar link only to pages the site has published (About, Contact, Accessibility, the privacy policy and the like) and leave the others out until they exist; inserter patterns link to an existing course or category, or the catalogue, and keep a placeholder for pages yet to be made. The course sidebar's "Not sure this is the right course?" card shows once the site has a Contact page.
 * Header menu: until you build a menu, the header shows Courses, My learning and, if you have one, the blog, instead of every page (so not the plugin's Checkout and Teaching pages).

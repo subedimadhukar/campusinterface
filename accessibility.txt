@@ -1,0 +1,44 @@
+=== Accessibility Statement ===
+
+CampusInterface is designed and built to WCAG 2.2 level AA and carries the accessibility-ready tag. Every template, part, pattern and colour variation is tested with automated checks and by keyboard, in left-to-right and right-to-left languages, before each release.
+
+== Quick Information ==
+
+Accessibility audit completed: No
+Tested to standard and conformance level: WCAG 2.2 AA (supports)
+
+== Testing Tools and Methodology ==
+
+* axe-core (through Playwright) on every template, part and inserter pattern, and on the Public LMS course, lesson, quiz, assignment, checkout and dashboard pages, at 1280 and 375 pixels wide, as a visitor, a learner and an instructor, with every disclosure opened, in all five colour variations.
+* A keyboard pass on every template: the skip link first, visible focus on every stop, no hidden or off-screen stops, no keyboard traps, Escape and focus return for the mobile menu and dialogs.
+* Contrast: a script checks every colour pair the theme and Public LMS use, in all six palettes, on each change (`composer contrast`), and axe checks rendered pages.
+* Reflow and text spacing: pages at 320 and 640 pixels wide (400% and 200% zoom at 1280) with line height 1.5, letter spacing 0.12em, word spacing 0.16em and paragraph spacing 2em forced, checked for sideways scrolling and clipped text.
+* Lighthouse accessibility audits in continuous integration on the home page, course catalogue, a course, a lesson and the learner and instructor dashboards.
+* Languages: English, Arabic (right to left) and Japanese, at both widths.
+* Not yet done: a pass with a screen reader by a screen-reader user, and an audit by an outside reviewer. Both are planned before version 1.0 of the companion Public LMS Pro plugin.
+
+== Screen Reader Text Class ==
+
+`.screen-reader-text`, defined in assets/css/global.css: hidden visually, read by screen readers, and shown when it takes keyboard focus.
+
+== Accessibility Features ==
+
+* A "Skip to content" link is the first focusable element on every template.
+* Header, main and footer landmarks; every navigation landmark has its own name.
+* A visible 2px focus outline on every link, button, form field, disclosure and menu toggle, in a colour that meets 3:1 in every palette.
+* Links in text are underlined, and lose the underline on hover.
+* Text meets 4.5:1 contrast in every colour variation, and controls and focus outlines meet 3:1.
+* Layouts reflow down to 320 pixels wide and keep working with text resized to 200%.
+* No animations, auto-playing media or theme JavaScript; the theme honours "reduce motion" for anything added later.
+* No links open a new window or tab.
+* One level-one heading per page, with no skipped heading levels in the templates and patterns.
+* Every text in the templates, parts and patterns is translatable, and layouts mirror for right-to-left languages.
+* The "Accessibility statement" pattern gives site owners a starting point for their own statement.
+
+== Accessibility Help Contact ==
+
+[Open an issue](https://github.com/subedimadhukar/campusinterface/issues/new) on the theme's GitHub repository, or post in the theme's support forum on WordPress.org.
+
+== Where to Report Issues ==
+
+[GitHub issues](https://github.com/subedimadhukar/campusinterface/issues)

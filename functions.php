@@ -25,6 +25,13 @@ if ( ! function_exists( 'campusinterface_setup' ) ) :
 	function campusinterface_setup() {
 		// 16:9 course card, used by the course grid pattern's Post Featured Image block.
 		add_image_size( 'campusinterface-course-card', 480, 270, true );
+
+		/*
+		 * Navigation widgets wrapped in a <nav> landmark (accessibility-ready,
+		 * "Meaningful landmark roles and names"). Core already gives block
+		 * themes the other HTML5 supports; these lists merge with them.
+		 */
+		add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'search-form', 'gallery', 'caption', 'style', 'script', 'navigation-widgets' ) );
 	}
 endif;
 add_action( 'after_setup_theme', 'campusinterface_setup' );
